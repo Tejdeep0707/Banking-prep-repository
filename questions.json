@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "question": "If 'A' is coded as 1, 'B' as 2, and so on, what is the code for 'BANK'?",
+    "options": ["211411", "211412", "211414", "211421"],
+    "answer": "211411",
+    "topic": "Reasoning Ability"
+  },
+  {
+    "id": 2,
+    "question": "What is 15% of 1200?",
+    "options": ["150", "180", "210", "120"],
+    "answer": "180",
+    "topic": "Quantitative Aptitude"
+  },
+  {
+    "id": 3,
+    "question": "Who is the current Governor of the Reserve Bank of India (RBI) as of 2024?",
+    "options": ["Urjit Patel", "Raghuram Rajan", "Shaktikanta Das", "Nirmala Sitharaman"],
+    "answer": "Shaktikanta Das",
+    "topic": "Banking Awareness"
+  },
+  {
+    "id": 4,
+    "question": "Identify the correctly spelled word.",
+    "options": ["Accomodation", "Accommodation", "Acomodation", "Accomodatoin"],
+    "answer": "Accommodation",
+    "topic": "English Language"
+  },
+  {
+    "id": 5,
+    "question": "Which of the following is not a type of banking account?",
+    "options": ["Savings Account", "Current Account", "Fixed Deposit", "Social Media Account"],
+    "answer": "Social Media Account",
+    "topic": "Banking Awareness"
+  }
+]

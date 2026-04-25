@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Test - QUALISBANKING EXAMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>QUALISBANKING EXAMS</h1>
+    </header>
+
+    <div class="container">
+        <!-- Test Interface -->
+        <div id="test-interface" class="test-container">
+            <div class="progress-wrapper">
+                <div class="question-meta">
+                    <span id="question-number">Question 1 of 5</span>
+                    <span id="topic-tag">Topic: Loading...</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <div id="question-container">
+                <div id="question-text" class="question-text">Loading question...</div>
+                <div id="options-list" class="options-list">
+                    <!-- Options will be injected here -->
+                </div>
+            </div>
+
+            <div class="test-footer">
+                <button id="prev-btn" class="btn hidden" style="background-color: var(--secondary-color); color: white;">Previous</button>
+                <div style="flex-grow: 1;"></div>
+                <button id="next-btn" class="btn btn-disabled" disabled>Next</button>
+                <button id="submit-btn" class="btn btn-primary hidden">Submit Test</button>
+            </div>
+        </div>
+
+        <!-- Results Interface -->
+        <div id="results-interface" class="test-container hidden">
+            <div class="results-container">
+                <h2>Test Completed!</h2>
+                <div id="results-score" class="results-score">0/0</div>
+                
+                <div id="performance-msg" class="performance-msg">Good performance</div>
+
+                <div class="results-stats">
+                    <div class="stat-box">
+                        <span class="stat-val" id="total-attempted">0</span>
+                        <span>Attempted</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val" id="correct-answers" style="color: var(--success-color);">0</span>
+                        <span>Correct</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val" id="accuracy-pct">0%</span>
+                        <span>Accuracy</span>
+                    </div>
+                </div>
+
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
