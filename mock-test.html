@@ -4,50 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mock Test Engine | QUALISBANKING EXAMS</title>
+    <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body style="background: #f0f2f5;">
     <header class="sticky-header">
         <nav class="nav-bar">
-            <h1>QUALISBANKING EXAMS</h1>
-            <a href="index.html" style="text-decoration: none; color: var(--primary-color); font-weight: 600;"><i class="fas fa-times"></i> Exit Test</a>
+            <div class="nav-left">
+                <button id="sidebar-toggle" class="sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="index.html" class="logo-link">
+                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUALISBANKING LOGO" class="nav-logo">
+                </a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div id="timer-box" style="background: #fee2e2; color: #dc2626; padding: 8px 15px; border-radius: 50px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-clock"></i> <span id="timer-display">05:00</span>
+                </div>
+                <a href="index.html" style="text-decoration: none; color: var(--primary-color); font-weight: 600;"><i class="fas fa-times"></i> Exit</a>
+            </div>
         </nav>
     </header>
 
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Quick Access</h3>
+            <button id="sidebar-close" class="close-btn">&times;</button>
+        </div>
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <h4>Core Features</h4>
+                <ul>
+                    <li><a href="mock-test.html"><i class="fas fa-laptop-code"></i> Mock Tests</a></li>
+                    <li><a href="index.html#features"><i class="fas fa-brain"></i> Quiz Practice</a></li>
+                    <li><a href="index.html#features"><i class="fas fa-chart-line"></i> Performance Tracking</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h4>Course Series</h4>
+                <ul>
+                    <li><a href="course-ibps.html"><i class="fas fa-university"></i> IBPS Series</a></li>
+                    <li><a href="course-sbi.html"><i class="fas fa-landmark"></i> SBI Series</a></li>
+                    <li><a href="course-rbi.html"><i class="fas fa-piggy-bank"></i> RBI Series</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <div class="container" style="max-width: 900px; margin: 0 auto; padding: 20px;">
         <!-- Test Interface -->
-        <div id="test-interface" class="test-container animate-up">
-            <div class="progress-wrapper">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 600; color: var(--text-light);">
-                    <span id="question-number">Question 1 of 5</span>
-                    <span id="topic-tag" style="color: var(--accent-color);">Topic: Loading...</span>
+        <div id="test-interface" class="test-container animate-up" style="display: grid; grid-template-columns: 1fr 280px; gap: 30px; max-width: 1200px;">
+            <div class="test-main">
+                <div class="progress-wrapper">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 600; color: var(--text-light);">
+                        <span id="question-number">Question 1 of 5</span>
+                        <span id="topic-tag" style="color: var(--accent-color);">Topic: Loading...</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
                 </div>
-                <div class="progress-bar">
-                    <div id="progress-fill" class="progress-fill"></div>
+
+                <div id="question-container" style="margin-top: 40px;">
+                    <div id="question-text" class="question-text" style="font-size: 1.4rem; font-weight: 600; margin-bottom: 30px; line-height: 1.4;">Loading question...</div>
+                    <div id="options-list" class="options-list">
+                        <!-- Options injected by JS -->
+                    </div>
+                </div>
+
+                <div class="test-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee;">
+                    <button id="prev-btn" class="btn hidden" style="background: #e2e8f0; color: #475569;">Previous</button>
+                    <button id="mark-btn" class="btn" style="background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa;"><i class="fas fa-bookmark"></i> Mark for Review</button>
+                    <div style="flex-grow: 1;"></div>
+                    <button id="next-btn" class="btn btn-disabled" disabled style="background: #cbd5e1; color: #94a3b8;">Next Question</button>
+                    <button id="submit-btn" class="btn btn-primary hidden">Submit Final Test</button>
                 </div>
             </div>
 
-            <div id="question-container" style="margin-top: 40px;">
-                <div id="question-text" class="question-text" style="font-size: 1.4rem; font-weight: 600; margin-bottom: 30px; line-height: 1.4;">Loading question...</div>
-                <div id="options-list" class="options-list">
-                    <!-- Options injected by JS -->
+            <!-- Question Palette Side Panel -->
+            <div class="test-sidebar" style="background: white; padding: 25px; border-radius: 20px; box-shadow: var(--shadow-soft);">
+                <h4 style="margin-bottom: 20px; font-size: 0.9rem; text-transform: uppercase; color: var(--text-light); letter-spacing: 1px;">Question Palette</h4>
+                <div id="question-palette" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                    <!-- Numbers injected by JS -->
                 </div>
-            </div>
-
-            <div class="test-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee;">
-                <button id="prev-btn" class="btn hidden" style="background: #e2e8f0; color: #475569;">Previous</button>
-                <div style="flex-grow: 1;"></div>
-                <button id="next-btn" class="btn btn-disabled" disabled style="background: #cbd5e1; color: #94a3b8;">Next Question</button>
-                <button id="submit-btn" class="btn btn-primary hidden">Submit Final Test</button>
+                
+                <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 0.8rem;">
+                        <span style="width: 12px; height: 12px; border-radius: 3px; background: var(--primary-color);"></span> Answered
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 0.8rem;">
+                        <span style="width: 12px; height: 12px; border-radius: 3px; background: #ea580c;"></span> Marked
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; font-size: 0.8rem;">
+                        <span style="width: 12px; height: 12px; border-radius: 3px; background: #e2e8f0;"></span> Unvisited
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Results Interface -->
         <div id="results-interface" class="test-container hidden animate-up">
             <div style="text-align: center;">
-                <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 10px;"><i class="fas fa-trophy"></i></div>
-                <h2 style="font-size: 2rem; margin-bottom: 10px;">Test Completed!</h2>
+                <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 10px;"><i class="fas fa-chart-pie"></i></div>
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">Your Performance Analysis</h2>
                 <div id="results-score" class="results-score" style="font-size: 4rem; font-weight: 800; color: var(--primary-color); margin: 20px 0;">0/0</div>
                 
                 <div id="performance-msg" class="performance-msg" style="display: inline-block; padding: 10px 25px; border-radius: 50px; font-weight: 600; margin-bottom: 40px;">Good performance</div>
@@ -67,11 +130,23 @@
                     </div>
                 </div>
 
-                <a href="index.html" class="btn btn-primary" style="width: 100%;">Return to Dashboard</a>
+                <div id="insights-section" style="text-align: left; margin-top: 40px;">
+                    <h3 style="margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">Topic-Wise Insights 📊</h3>
+                    <div id="insights-container">
+                        <!-- Topic cards will be injected here -->
+                    </div>
+                </div>
+
+                <a href="index.html" class="btn btn-primary" style="width: 100%; margin-top: 40px;">Return to Dashboard</a>
             </div>
         </div>
     </div>
 
+    <!-- Firebase Compat SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="auth.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
