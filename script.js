@@ -1,347 +1,378 @@
-// Move questions back to local array to avoid CORS issues if opening file directly
-const questionsData = [
-  {
-    "id": 1,
-    "question": "If 'A' is coded as 1, 'B' as 2, and so on, what is the code for 'BANK'?",
-    "options": ["211411", "211412", "211414", "211421"],
-    "answer": "211411",
-    "topic": "Reasoning Ability"
-  },
-  {
-    "id": 2,
-    "question": "What is 15% of 1200?",
-    "options": ["150", "180", "210", "120"],
-    "answer": "180",
-    "topic": "Quantitative Aptitude"
-  },
-  {
-    "id": 3,
-    "question": "Who is the current Governor of the Reserve Bank of India (RBI) as of 2024?",
-    "options": ["Urjit Patel", "Raghuram Rajan", "Shaktikanta Das", "Nirmala Sitharaman"],
-    "answer": "Shaktikanta Das",
-    "topic": "Banking Awareness"
-  },
-  {
-    "id": 4,
-    "question": "Identify the correctly spelled word.",
-    "options": ["Accomodation", "Accommodation", "Acomodation", "Accomodatoin"],
-    "answer": "Accommodation",
-    "topic": "English Language"
-  },
-  {
-    "id": 5,
-    "question": "Which of the following is not a type of banking account?",
-    "options": ["Savings Account", "Current Account", "Fixed Deposit", "Social Media Account"],
-    "answer": "Social Media Account",
-    "topic": "Banking Awareness"
-  },
-  {
-    "id": 6,
-    "question": "A sum of money doubles itself in 8 years at simple interest. What is the rate of interest per annum?",
-    "options": ["10%", "12.5%", "15%", "18%"],
-    "answer": "12.5%",
-    "topic": "Quantitative Aptitude"
-  },
-  {
-    "id": 7,
-    "question": "In a certain code language, 'COMPUTER' is written as 'RFUVQNPC'. How is 'MEDICINE' written in that code?",
-    "options": ["EOJDJEFM", "EOJDEJFM", "MFEJDJOE", "EOJDJFME"],
-    "answer": "EOJDJEFM",
-    "topic": "Reasoning Ability"
-  },
-  {
-    "id": 8,
-    "question": "The 'Headquarters' of the World Bank is located at:",
-    "options": ["New York", "London", "Washington D.C.", "Paris"],
-    "answer": "Washington D.C.",
-    "topic": "Banking Awareness"
-  }
+// --- PREMIUM MOCK TEST ENGINE DATA (30 QUESTIONS) ---
+const mockTestData = [
+  { "id": 1, "question": "What will come in place of the question mark (?) in the following equation? 35% of 600 + 12^2 - 40 = ?", "options": ["314", "324", "294", "304", "334"], "answer": "314", "topic": "Quant", "difficulty": "easy" },
+  { "id": 2, "question": "Find the value of (?): √1024 ÷ 4 + 15 × 5 = ?", "options": ["81", "83", "85", "79", "77"], "answer": "83", "topic": "Quant", "difficulty": "easy" },
+  { "id": 3, "question": "The ratio of two numbers A and B is 3:4. If their sum is 140, what is the value of B?", "options": ["60", "70", "80", "90", "100"], "answer": "80", "topic": "Quant", "difficulty": "easy" },
+  { "id": 4, "question": "A number, when increased by 20%, becomes 720. Find the original number.", "options": ["580", "620", "640", "600", "660"], "answer": "600", "topic": "Quant", "difficulty": "easy" },
+  { "id": 5, "question": "What is the next number in the series? 4, 9, 16, 25, 36, ?", "options": ["45", "47", "49", "51", "53"], "answer": "49", "topic": "Quant", "difficulty": "easy" },
+  { "id": 6, "question": "Find the missing number in the series: 10, 11, 19, 46, ?", "options": ["100", "110", "112", "120", "108"], "answer": "110", "topic": "Quant", "difficulty": "moderate" },
+  { "id": 7, "question": "The average of 5 numbers is 20. If a 6th number 32 is added, what is the new average?", "options": ["21", "22", "23", "24", "25"], "answer": "22", "topic": "Quant", "difficulty": "moderate" },
+  { "id": 8, "question": "A shopkeeper buys an article for ₹800 and sells it for ₹920. Find the profit percentage.", "options": ["12%", "15%", "18%", "20%", "10%"], "answer": "15%", "topic": "Quant", "difficulty": "easy" },
+  { "id": 9, "question": "A can complete a work in 10 days and B can do the same work in 15 days. In how many days can they complete it together?", "options": ["5 days", "6 days", "7 days", "8 days", "9 days"], "answer": "6 days", "topic": "Quant", "difficulty": "moderate" },
+  { "id": 10, "question": "Find the simple interest on ₹5000 at a rate of 10% per annum for 2 years.", "options": ["₹800", "₹900", "₹1000", "₹1100", "₹1200"], "answer": "₹1000", "topic": "Quant", "difficulty": "easy" },
+  { "id": 11, "question": "If 'DELHI' is coded as 'EFMIJ', then how will 'BOMBAY' be coded?", "options": ["CPNCBZ", "CPNCBX", "CPMCBZ", "CQNCBZ", "CPNDBZ"], "answer": "CPNCBZ", "topic": "Reasoning", "difficulty": "easy" },
+  { "id": 12, "question": "Statement: All Cats are Dogs. Some Dogs are Rats. Conclusion: I. Some Cats are Rats. II. Some Rats are Dogs.", "options": ["Only I follows", "Only II follows", "Both I and II follow", "Neither I nor II follows", "Either I or II follows"], "answer": "Only II follows", "topic": "Reasoning", "difficulty": "moderate" },
+  { "id": 13, "question": "In the following inequality, which conclusion is definitely true? P < Q ≤ R = S", "options": ["P = S", "P > S", "P < S", "Q > S", "Q < P"], "answer": "P < S", "topic": "Reasoning", "difficulty": "easy" },
+  { "id": 14, "question": "A is the brother of B. B is the daughter of C. How is C related to A?", "options": ["Father", "Mother", "Uncle", "Grandfather", "Cannot be determined"], "answer": "Cannot be determined", "topic": "Reasoning", "difficulty": "moderate" },
+  { "id": 15, "question": "A man walks 5km North, then turns Right and walks 5km. What is the shortest distance from his starting point?", "options": ["5km", "10km", "5√2 km", "7km", "25km"], "answer": "5√2 km", "topic": "Reasoning", "difficulty": "moderate" },
+  { "id": 16, "question": "Find the odd one out: 27, 64, 125, 144, 216", "options": ["27", "64", "125", "144", "216"], "answer": "144", "topic": "Reasoning", "difficulty": "easy" },
+  { "id": 17, "question": "What is the next term in the series? 15, 30, 60, 120, ?", "options": ["180", "200", "220", "240", "260"], "answer": "240", "topic": "Reasoning", "difficulty": "easy" },
+  { "id": 18, "question": "Find the next term: A1, C3, E5, G7, ?", "options": ["H8", "I9", "J10", "I8", "H9"], "answer": "I9", "topic": "Reasoning", "difficulty": "easy" },
+  { "id": 19, "question": "In a row of 20 students, Rohan is 10th from the left end. What is his position from the right end?", "options": ["10th", "11th", "9th", "12th", "13th"], "answer": "11th", "topic": "Reasoning", "difficulty": "moderate" },
+  { "id": 20, "question": "How many meaningful English words can be formed using the letters 'A', 'E', 'T' (using each letter once)?", "options": ["One", "Two", "Three", "Four", "None"], "answer": "Two", "topic": "Reasoning", "difficulty": "moderate" },
+  { "id": 21, "question": "Identify the error: 'Neither of the two candidates (A) / have (B) / completed (C) / the task (D) / No error (E).'", "options": ["A", "B", "C", "D", "E"], "answer": "B", "topic": "English", "difficulty": "moderate" },
+  { "id": 22, "question": "Identify the error: 'The list (A) / of items (B) / are (C) / very long (D) / No error (E).'", "options": ["A", "B", "C", "D", "E"], "answer": "C", "topic": "English", "difficulty": "easy" },
+  { "id": 23, "question": "Fill in the blank: The weather was so _______ that we decided to stay indoors.", "options": ["pleasant", "gloomy", "bright", "sunny", "cheerful"], "answer": "gloomy", "topic": "English", "difficulty": "easy" },
+  { "id": 24, "question": "Fill in the blank: He is senior _______ me in the office.", "options": ["than", "to", "of", "from", "with"], "answer": "to", "topic": "English", "difficulty": "easy" },
+  { "id": 25, "question": "Choose the synonym for: DILIGENT", "options": ["Lazy", "Hardworking", "Proud", "Careless", "Wealthy"], "answer": "Hardworking", "topic": "English", "difficulty": "easy" },
+  { "id": 26, "question": "Choose the antonym for: ARROGANT", "options": ["Humble", "Proud", "Mean", "Rude", "Selfish"], "answer": "Humble", "topic": "English", "difficulty": "easy" },
+  { "id": 27, "question": "Improvement: He 'did not went' to the party last night.", "options": ["did not go", "does not go", "did not gone", "has not go", "No improvement"], "answer": "did not go", "topic": "English", "difficulty": "easy" },
+  { "id": 28, "question": "Identify correctly spelled word:", "options": ["Commitment", "Committment", "Comitment", "Comittment", "Commitmant"], "answer": "Commitment", "topic": "English", "difficulty": "moderate" },
+  { "id": 29, "question": "Cloze: Technology has _______ the way we communicate with others.", "options": ["destroyed", "transformed", "ignored", "limited", "stopped"], "answer": "transformed", "topic": "English", "difficulty": "easy" },
+  { "id": 30, "question": "Meaning of idiom: 'A piece of cake'?", "options": ["Something very tasty", "Something very easy", "A difficult task", "A small portion", "A birthday celebration"], "answer": "Something very easy", "topic": "English", "difficulty": "easy" }
 ];
 
-let questions = questionsData;
+// --- CORE ENGINE STATE ---
+let questions = [];
 let currentQuestionIndex = 0;
 let userAnswers = {}; 
 let markedForReview = new Set();
-let timeLeft = 300; // 5 minutes
+let timeLeft = 1800; // 30 minutes
 let timerInterval;
+let currentTestId = 1;
+let questionStartTime = Date.now();
+let timeSpentPerQuestion = {}; // { index: seconds }
 
-// DOM Elements
-const testInterface = document.getElementById('test-interface');
-const resultsInterface = document.getElementById('results-interface');
-const questionText = document.getElementById('question-text');
-const optionsList = document.getElementById('options-list');
-const questionNumberText = document.getElementById('question-number');
-const topicTag = document.getElementById('topic-tag');
-const progressFill = document.getElementById('progress-fill');
-const nextBtn = document.getElementById('next-btn');
-const prevBtn = document.getElementById('prev-btn');
-const submitBtn = document.getElementById('submit-btn');
-const markBtn = document.getElementById('mark-btn');
-const timerDisplay = document.getElementById('timer-display');
-const paletteContainer = document.getElementById('question-palette');
+// --- PERSISTENCE ---
+const STORAGE_KEY = 'quasibanking_mock_progress';
 
-// 1. Initialize
+function saveProgress() {
+    const data = {
+        testId: currentTestId,
+        answers: userAnswers,
+        marked: Array.from(markedForReview),
+        timeLeft: timeLeft,
+        timeSpent: timeSpentPerQuestion
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function loadProgress() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return false;
+    const data = JSON.parse(saved);
+    if (data.testId !== currentTestId) return false;
+    
+    userAnswers = data.answers || {};
+    markedForReview = new Set(data.marked || []);
+    timeLeft = data.timeLeft || 1800;
+    timeSpentPerQuestion = data.timeSpent || {};
+    return true;
+}
+
+function clearProgress() {
+    localStorage.removeItem(STORAGE_KEY);
+}
+
+// --- INITIALIZATION ---
+const getEl = (id) => document.getElementById(id);
+
 function initTest() {
+    const urlParams = new URLSearchParams(window.location.search);
+    currentTestId = parseInt(urlParams.get('id')) || 1;
+    
+    // Simulate 3 tests via seeded shuffle
+    questions = shuffleArray(mockTestData, currentTestId * 777);
+
+    const hasSaved = loadProgress();
+    
     renderPalette();
     renderQuestion();
     startTimer();
+    
+    if (hasSaved) console.log("Progress restored from local storage.");
 }
 
-// 2. Timer Logic
+function shuffleArray(array, seed) {
+    let m = array.length, t, i;
+    let seededRandom = function() {
+        var x = Math.sin(seed++) * 10000;
+        return x - Math.floor(x);
+    }
+    let arr = [...array];
+    while (m) {
+        i = Math.floor(seededRandom() * m--);
+        t = arr[m]; arr[m] = arr[i]; arr[i] = t;
+    }
+    return arr;
+}
+
+// --- TIMER ---
 function startTimer() {
     timerInterval = setInterval(() => {
         timeLeft--;
-        updateTimerDisplay();
+        updateTimerUI();
+        trackTime();
+        
+        if (timeLeft % 10 === 0) saveProgress(); // Auto-save every 10s
+        
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            calculateResults(); 
+            calculateResults(true); // Auto-submit
         }
     }, 1000);
 }
 
-function updateTimerDisplay() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timerDisplay.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    if (timeLeft < 60) {
-        timerDisplay.parentElement.style.background = '#fee2e2';
-        timerDisplay.style.color = '#dc2626';
-    }
+function updateTimerUI() {
+    const mins = Math.floor(timeLeft / 60);
+    const secs = timeLeft % 60;
+    const display = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    getEl('timer-display').innerText = display;
+    
+    if (timeLeft < 300) getEl('timer-box').style.color = '#ef4444';
 }
 
-// 3. Question Palette
+function trackTime() {
+    const now = Date.now();
+    const elapsed = Math.floor((now - questionStartTime) / 1000);
+    timeSpentPerQuestion[currentQuestionIndex] = (timeSpentPerQuestion[currentQuestionIndex] || 0) + 1;
+    questionStartTime = now;
+}
+
+// --- RENDERING ---
 function renderPalette() {
-    paletteContainer.innerHTML = '';
-    questions.forEach((_, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'palette-btn';
-        btn.innerText = index + 1;
-        btn.onclick = () => jumpToQuestion(index);
-        paletteContainer.appendChild(btn);
+    const container = getEl('question-palette');
+    container.innerHTML = '';
+    questions.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = 'palette-dot';
+        dot.innerText = idx + 1;
+        dot.id = `palette-dot-${idx}`;
+        dot.onclick = () => {
+            currentQuestionIndex = idx;
+            renderQuestion();
+        };
+        container.appendChild(dot);
     });
+}
+
+function renderQuestion() {
+    questionStartTime = Date.now(); // Reset time tracker for new question
+    const q = questions[currentQuestionIndex];
+    const optsContainer = getEl('options-list');
+    
+    getEl('question-number').innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+    getEl('topic-tag').innerText = q.topic.toUpperCase();
+    getEl('progress-fill').style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+    getEl('question-text').innerText = q.question;
+    
+    optsContainer.innerHTML = '';
+    const letters = ['A', 'B', 'C', 'D', 'E'];
+    
+    q.options.forEach((opt, idx) => {
+        const card = document.createElement('div');
+        card.className = `option-card ${userAnswers[currentQuestionIndex] === opt ? 'selected' : ''}`;
+        card.innerHTML = `
+            <div class="option-index">${letters[idx]}</div>
+            <span>${opt}</span>
+        `;
+        card.onclick = () => {
+            userAnswers[currentQuestionIndex] = opt;
+            saveProgress();
+            renderQuestion();
+            updatePaletteUI();
+        };
+        optsContainer.appendChild(card);
+    });
+
+    getEl('prev-btn').classList.toggle('hidden', currentQuestionIndex === 0);
+    const isLast = currentQuestionIndex === questions.length - 1;
+    getEl('next-btn').classList.toggle('hidden', isLast);
+    getEl('submit-btn').classList.toggle('hidden', !isLast);
+    
+    getEl('next-btn').disabled = !userAnswers[currentQuestionIndex];
+    getEl('next-btn').classList.toggle('btn-disabled', !userAnswers[currentQuestionIndex]);
+    
+    getEl('mark-btn').innerHTML = markedForReview.has(currentQuestionIndex) 
+        ? `<i class="fas fa-bookmark"></i> Unmarked` 
+        : `<i class="far fa-bookmark"></i> Mark`;
+
     updatePaletteUI();
 }
 
 function updatePaletteUI() {
-    const buttons = paletteContainer.querySelectorAll('.palette-btn');
-    buttons.forEach((btn, index) => {
-        btn.classList.remove('active', 'answered', 'marked');
-        
-        if (index === currentQuestionIndex) btn.classList.add('active');
-        if (userAnswers[index]) btn.classList.add('answered');
-        if (markedForReview.has(index)) btn.classList.add('marked');
+    questions.forEach((_, idx) => {
+        const dot = getEl(`palette-dot-${idx}`);
+        if (!dot) return;
+        dot.className = 'palette-dot';
+        if (idx === currentQuestionIndex) dot.classList.add('active');
+        if (markedForReview.has(idx)) dot.classList.add('marked');
+        else if (userAnswers[idx]) dot.classList.add('answered');
     });
 }
 
-function jumpToQuestion(index) {
-    currentQuestionIndex = index;
-    renderQuestion();
-}
-
-// 4. Question Rendering
-function renderQuestion() {
-    const q = questions[currentQuestionIndex];
-    questionNumberText.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
-    topicTag.innerText = `Topic: ${q.topic}`;
-    
-    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-    progressFill.style.width = `${progress}%`;
-    
-    questionText.innerText = q.question;
-    optionsList.innerHTML = '';
-
-    q.options.forEach(option => {
-        const div = document.createElement('div');
-        div.className = 'option-item';
-        if (userAnswers[currentQuestionIndex] === option) div.classList.add('selected');
-
-        div.innerHTML = `<span>${option}</span>`;
-        div.onclick = () => selectOption(option, div);
-        optionsList.appendChild(div);
-    });
-
-    // Update Nav Buttons
-    prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
-    
-    if (currentQuestionIndex === questions.length - 1) {
-        nextBtn.classList.add('hidden');
-        submitBtn.classList.remove('hidden');
-    } else {
-        nextBtn.classList.remove('hidden');
-        submitBtn.classList.add('hidden');
-    }
-
-    // Update Mark Button Text
-    markBtn.innerHTML = markedForReview.has(currentQuestionIndex) 
-        ? `<i class="fas fa-bookmark"></i> Unmark` 
-        : `<i class="fas fa-bookmark"></i> Mark for Review`;
-
-    updatePaletteUI();
-    updateNextButtonState();
-}
-
-function selectOption(option, element) {
-    userAnswers[currentQuestionIndex] = option;
-    document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
-    element.classList.add('selected');
-    updateNextButtonState();
-    updatePaletteUI();
-}
-
-function updateNextButtonState() {
-    const hasAnswer = userAnswers[currentQuestionIndex];
-    nextBtn.disabled = !hasAnswer;
-    nextBtn.classList.toggle('btn-disabled', !hasAnswer);
-    submitBtn.disabled = !hasAnswer && (currentQuestionIndex === questions.length - 1);
-}
-
-// 5. Actions
-nextBtn.onclick = () => {
+// --- ACTIONS ---
+getEl('next-btn').onclick = () => {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         renderQuestion();
     }
 };
 
-prevBtn.onclick = () => {
+getEl('prev-btn').onclick = () => {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
         renderQuestion();
     }
 };
 
-markBtn.onclick = () => {
-    if (markedForReview.has(currentQuestionIndex)) {
-        markedForReview.delete(currentQuestionIndex);
-    } else {
-        markedForReview.add(currentQuestionIndex);
-    }
-    renderQuestion();
+getEl('mark-btn').onclick = () => {
+    if (markedForReview.has(currentQuestionIndex)) markedForReview.delete(currentQuestionIndex);
+    else markedForReview.add(currentQuestionIndex);
+    saveProgress();
+    updatePaletteUI();
 };
 
-submitBtn.onclick = () => {
-    if (confirm("Are you sure you want to submit the test?")) {
+getEl('submit-btn').onclick = () => {
+    if (confirm("Submit Final Answers?")) {
         clearInterval(timerInterval);
         calculateResults();
     }
 };
 
-// 6. Results Logic
-function calculateResults() {
-    let correct = 0;
-    const topicStats = {};
-    let weakTopics = [];
+function confirmExit() {
+    if (confirm("Exit Test? Your progress will be saved.")) {
+        window.location.href = 'index.html';
+    }
+}
 
-    questions.forEach((q, index) => {
-        if (!topicStats[q.topic]) topicStats[q.topic] = { total: 0, correct: 0 };
-        topicStats[q.topic].total++;
-
-        if (userAnswers[index] === q.answer) {
-            correct++;
-            topicStats[q.topic].correct++;
+// --- ANALYTICS & RESULTS ---
+async function calculateResults(isAuto = false) {
+    if (isAuto) alert("Time is up! Your test has been submitted automatically.");
+    
+    let correct = 0, wrong = 0, attempted = 0;
+    const topicStats = { "Quant": {c:0, t:0}, "Reasoning": {c:0, t:0}, "English": {c:0, t:0} };
+    
+    questions.forEach((q, idx) => {
+        const uAns = userAnswers[idx];
+        topicStats[q.topic].t++;
+        if (uAns) {
+            attempted++;
+            if (uAns === q.answer) {
+                correct++;
+                topicStats[q.topic].c++;
+            } else {
+                wrong++;
+            }
         }
     });
 
-    for (let topic in topicStats) {
-        if ((topicStats[topic].correct / topicStats[topic].total) < 0.7) {
-            weakTopics.push(topic);
-        }
-    }
+    const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+    
+    // Time Analysis
+    const times = Object.values(timeSpentPerQuestion);
+    const avgTime = times.length ? Math.round(times.reduce((a,b) => a+b, 0) / questions.length) : 0;
+    const fastTime = times.length ? Math.min(...times) : 0;
+    const slowTime = times.length ? Math.max(...times) : 0;
 
-    const total = questions.length;
-    const attempted = Object.keys(userAnswers).length;
-    const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+    // Switch UI
+    getEl('test-interface').classList.add('hidden');
+    getEl('test-sidebar').classList.add('hidden');
+    getEl('timer-box').classList.add('hidden');
+    getEl('results-interface').classList.remove('hidden');
 
-    const stats = {
-        correct: correct,
-        total: total,
-        attempted: attempted,
-        accuracy: accuracy,
-        weakTopics: weakTopics
-    };
+    // Update Overall Stats
+    getEl('res-score').innerText = `${correct}/30`;
+    getEl('res-accuracy').innerText = `${accuracy}%`;
+    getEl('res-attempted').innerText = attempted;
+    getEl('res-correct').innerText = correct;
+    getEl('res-wrong').innerText = wrong;
+    getEl('res-test-id').innerText = currentTestId;
 
-    testInterface.classList.add('hidden');
-    resultsInterface.classList.remove('hidden');
+    // Update Time Stats
+    getEl('res-time-avg').innerText = `${avgTime}s`;
+    getEl('res-time-fast').innerText = `${fastTime}s`;
+    getEl('res-time-slow').innerText = `${slowTime}s`;
 
-    document.getElementById('results-score').innerText = `${correct}/${total}`;
-    document.getElementById('total-attempted').innerText = attempted;
-    document.getElementById('correct-answers').innerText = correct;
-    document.getElementById('accuracy-pct').innerText = `${accuracy}%`;
-
-    // NEW: Save to Firebase
-    saveTestToCloud(stats);
-
-    renderInsights(topicStats);
-}
-
-async function saveTestToCloud(stats) {
-    const user = firebase.auth().currentUser;
-    if (!user) {
-        console.warn("User not logged in. Results not saved to cloud.");
-        return;
-    }
-
-    const db = firebase.firestore();
-    try {
-        await db.collection("testResults").add({
-            userId: user.uid,
-            email: user.email,
-            score: stats.correct,
-            totalQuestions: stats.total,
-            accuracy: stats.accuracy,
-            attempted: stats.attempted,
-            weakTopics: stats.weakTopics,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        console.log("Performance synced to cloud! ☁️");
-    } catch (error) {
-        console.error("Error saving to Firestore:", error);
-    }
-}
-
-function renderInsights(topicStats) {
-    const container = document.getElementById('insights-container');
-    container.innerHTML = '';
-
-    let strong = [], weak = [];
-
-    for (const topic in topicStats) {
-        const stats = topicStats[topic];
-        const pct = (stats.correct / stats.total) * 100;
-        
-        const card = document.createElement('div');
-        card.className = 'modern-card';
-        card.style.padding = '20px';
-        card.style.marginBottom = '15px';
-        card.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h4 style="margin:0;">${topic}</h4>
-                <span style="font-size: 0.8rem; font-weight: 700; color: ${pct >= 70 ? '#16a34a' : '#dc2626'}">
-                    ${stats.correct}/${stats.total} Correct
-                </span>
-            </div>
-            <div class="progress-bar" style="margin: 10px 0; height: 8px; background: #f1f5f9;">
-                <div class="progress-fill" style="width: ${pct}%; background: ${pct >= 70 ? '#16a34a' : '#dc2626'}"></div>
+    // Render Sectional Bars
+    const barBox = getEl('sectional-bars');
+    barBox.innerHTML = '';
+    for (let t in topicStats) {
+        const s = topicStats[t];
+        const p = Math.round((s.c / 10) * 100);
+        barBox.innerHTML += `
+            <div style="margin-bottom: 20px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.85rem;">
+                    <span style="font-weight:700; color:white;">${t}</span>
+                    <span style="color:var(--text-muted);">${s.c}/10</span>
+                </div>
+                <div style="height:8px; background:rgba(255,255,255,0.05); border-radius:10px; overflow:hidden;">
+                    <div style="width:${p}%; height:100%; background:var(--primary-color);"></div>
+                </div>
             </div>
         `;
-        container.appendChild(card);
-
-        if (pct >= 70) strong.push(topic);
-        else weak.push(topic);
     }
 
-    const summary = document.createElement('div');
-    summary.className = 'modern-card';
-    summary.style.background = 'var(--primary-gradient)';
-    summary.style.color = 'white';
-    summary.style.marginTop = '20px';
-    summary.innerHTML = `
-        <h3 style="color: white;">Diagnostic Summary 🎯</h3>
-        <p style="margin-top:10px;"><b>Strongest Areas:</b> ${strong.length ? strong.join(', ') : 'None'}</p>
-        <p><b>Focus Required:</b> ${weak.length ? weak.join(', ') : 'None'}</p>
-    `;
-    container.appendChild(summary);
+    // Feedback
+    let feedback = "";
+    if (accuracy > 80) feedback = "Excellent work! You have a strong grasp of the fundamentals. Focus on maintaining speed.";
+    else if (accuracy > 50) feedback = "Good effort. You are strong in some areas but need more practice in others. Review the wrong answers below.";
+    else feedback = "Needs significant improvement. Focus on concept building for each section and attempt the test again.";
+    getEl('feedback-text').innerText = feedback;
+
+    // Review Section
+    renderReview();
+    
+    // Sync to Firebase
+    const user = firebase.auth().currentUser;
+    if (user) {
+        const db = firebase.firestore();
+        try {
+            await db.collection("testResults").add({
+                userId: user.uid,
+                email: user.email,
+                testId: currentTestId,
+                score: correct,
+                accuracy: accuracy,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+        } catch (e) { console.error(e); }
+    }
+    
+    clearProgress();
 }
 
-// Start!
+function renderReview() {
+    const container = getEl('review-container');
+    container.innerHTML = '';
+    
+    questions.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'review-question-card';
+        const uAns = userAnswers[idx];
+        const isCorrect = uAns === q.answer;
+        
+        let optionsHtml = '';
+        q.options.forEach(opt => {
+            let stateClass = 'review-neutral';
+            if (opt === q.answer) stateClass = 'review-correct';
+            else if (opt === uAns && !isCorrect) stateClass = 'review-wrong';
+            
+            optionsHtml += `<div class="review-option ${stateClass}">${opt} ${opt === q.answer ? '✓' : ''}</div>`;
+        });
+
+        card.innerHTML = `
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                <span style="font-weight:800; color:var(--primary-light);">#${idx + 1} - ${q.topic}</span>
+                <span style="font-weight:700; color:${uAns ? (isCorrect ? '#4ade80' : '#f87171') : '#94a3b8'};">
+                    ${uAns ? (isCorrect ? 'CORRECT' : 'WRONG') : 'UNATTEMPTED'}
+                </span>
+            </div>
+            <p style="font-size:1.1rem; font-weight:500; margin-bottom:20px;">${q.question}</p>
+            ${optionsHtml}
+        `;
+        container.appendChild(card);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', initTest);

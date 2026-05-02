@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarToggle = document.getElementById('sidebar-toggle');
     const sidebarClose = document.getElementById('sidebar-close');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
-    const themeToggle = document.getElementById('theme-toggle');
 
     function toggleSidebar() {
         if (!sidebar || !sidebarOverlay) return;
@@ -32,10 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const scrollBySet = (direction) => {
-            // Scroll by exactly one visible "page" (4 cards + gaps)
-            const scrollAmount = carousel.clientWidth + 20; // clientWidth covers 4 cards + gaps
+            const cardWidth = carousel.querySelector('.course-card').offsetWidth + 30; // Card width + gap
             carousel.scrollBy({ 
-                left: direction * scrollAmount, 
+                left: direction * cardWidth * 2, // Scroll by 2 cards at a time
                 behavior: 'smooth' 
             });
         };
@@ -48,22 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Initial setup
         updateArrowStates();
-    }
-
-    // --- THEME TOGGLE LOGIC ---
-    if (themeToggle) {
-        themeToggle.onclick = () => {
-            const currentTheme = document.body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.body.setAttribute('data-theme', newTheme);
-            themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-            localStorage.setItem('theme', newTheme);
-        };
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.body.setAttribute('data-theme', savedTheme);
-        themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     }
 
     // --- COURSE PREVIEW MODAL LOGIC ---
@@ -177,7 +159,7 @@ function initAuthState() {
 
         } else {
             // No user is signed in - REDIRECT TO LOGIN
-            if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+            if (window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.includes('mock-test.html')) {
                 window.location.href = 'auth.html';
             }
             
@@ -192,20 +174,24 @@ async function fetchUserStats(userId) {
     if (typeof firebase === 'undefined') return;
     const db = firebase.firestore();
     try {
+        // Fetch ALL results for this user to calculate accurate averages
         const snapshot = await db.collection("testResults")
             .where("userId", "==", userId)
             .orderBy("timestamp", "desc")
-            .limit(10)
             .get();
 
-        if (snapshot.empty) return;
+        if (snapshot.empty) {
+            console.log("No test results found for user.");
+            return;
+        }
 
         let totalTests = snapshot.size;
         let sumAccuracy = 0;
         let latestDoc = snapshot.docs[0].data();
 
         snapshot.forEach(doc => {
-            sumAccuracy += (doc.data().accuracy || 0);
+            const data = doc.data();
+            sumAccuracy += (data.accuracy || 0);
         });
 
         const statTotal = document.getElementById('stat-total');
@@ -215,10 +201,21 @@ async function fetchUserStats(userId) {
         if (statTotal) statTotal.innerText = totalTests;
         if (statAvg) statAvg.innerText = Math.round(sumAccuracy / totalTests) + "%";
         if (statLatest) statLatest.innerText = `${latestDoc.score}/${latestDoc.totalQuestions}`;
+        
+        console.log(`Synced ${totalTests} tests for user ${userId}`);
     } catch (error) {
         console.error("Error fetching stats:", error);
     }
 }
+
+function handleLogout() {
+    firebase.auth().signOut().then(() => {
+        window.location.href = 'auth.html';
+    }).catch((error) => {
+        console.error("Logout Error:", error);
+    });
+}
+window.handleLogout = handleLogout;
 
 // --- PAYMENT MODAL LOGIC ---
 const paymentModal = document.getElementById('payment-modal');

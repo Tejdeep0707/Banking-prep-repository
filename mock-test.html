@@ -3,27 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mock Test Engine | QUALISBANKING EXAMS</title>
+    <title>Premium Mock Test Engine | QUASIBANKING</title>
     <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --test-bg: #0f172a;
+            --test-card: rgba(30, 41, 59, 0.7);
+            --test-border: rgba(255, 255, 255, 0.1);
+            --primary-glow: rgba(99, 102, 241, 0.5);
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .glass-panel {
+            background: var(--test-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--test-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .test-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 24px;
+        }
+
+        .question-box h2 {
+            font-size: 1.8rem;
+            line-height: 1.4;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--test-border);
+            padding: 22px 28px;
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(8px);
+            border-color: var(--primary-light);
+        }
+
+        .option-card.selected {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+            border-color: var(--primary-color);
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .palette-dot {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--test-border);
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .palette-dot.active { border: 2px solid white; box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        .palette-dot.answered { background: #10b981; border-color: #10b981; color: white; }
+        .palette-dot.marked { background: #f59e0b; border-color: #f59e0b; color: white; }
+
+        /* Timer Styling */
+        #timer-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            padding: 12px 24px;
+            border-radius: 16px;
+            border: 1px solid var(--test-border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #4ade80;
+        }
+
+        /* Result Dashboard Styling */
+        .result-stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--test-border);
+            padding: 24px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .review-question-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--test-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .review-option {
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            border: 1px solid transparent;
+        }
+
+        .review-correct { background: rgba(16, 185, 129, 0.15); border-color: #10b981; color: #4ade80; }
+        .review-wrong { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; color: #f87171; }
+        .review-neutral { background: rgba(255,255,255,0.05); border-color: var(--test-border); color: #94a3b8; }
+
+        @media (max-width: 1024px) {
+            .test-wrapper { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-<body style="background: #f0f2f5;">
+<body data-theme="dark">
     <header class="sticky-header">
         <nav class="nav-bar">
             <div class="nav-left">
-                <button id="sidebar-toggle" class="sidebar-btn">
+                <button id="sidebar-toggle" class="btn btn-outline" style="padding: 10px; border-radius: 12px;">
                     <i class="fas fa-bars"></i>
                 </button>
                 <a href="index.html" class="logo-link">
-                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUALISBANKING LOGO" class="nav-logo">
+                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="nav-logo">
                 </a>
             </div>
             <div style="display: flex; align-items: center; gap: 20px;">
-                <div id="timer-box" style="background: #fee2e2; color: #dc2626; padding: 8px 15px; border-radius: 50px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                    <i class="fas fa-clock"></i> <span id="timer-display">05:00</span>
+                <div id="timer-box">
+                    <i class="far fa-clock"></i> <span id="timer-display">30:00</span>
                 </div>
-                <a href="index.html" style="text-decoration: none; color: var(--primary-color); font-weight: 600;"><i class="fas fa-times"></i> Exit</a>
+                <button onclick="confirmExit()" class="btn btn-outline" style="color: #f87171; border-color: rgba(248, 113, 113, 0.2);">Exit</button>
             </div>
         </nav>
     </header>
@@ -31,122 +160,155 @@
     <!-- Sidebar Navigation -->
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
-            <h3>Quick Access</h3>
+            <h3 style="font-weight: 700;">Menu</h3>
             <button id="sidebar-close" class="close-btn">&times;</button>
         </div>
         <div class="sidebar-content">
             <div class="sidebar-section">
-                <h4>Core Features</h4>
+                <h4>Core</h4>
                 <ul>
-                    <li><a href="mock-test.html"><i class="fas fa-laptop-code"></i> Mock Tests</a></li>
-                    <li><a href="index.html#features"><i class="fas fa-brain"></i> Quiz Practice</a></li>
-                    <li><a href="index.html#features"><i class="fas fa-chart-line"></i> Performance Tracking</a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="mock-test.html" class="active"><i class="fas fa-laptop-code"></i> Live Test</a></li>
                 </ul>
             </div>
-            <div class="sidebar-section">
-                <h4>Course Series</h4>
-                <ul>
-                    <li><a href="course-ibps.html"><i class="fas fa-university"></i> IBPS Series</a></li>
-                    <li><a href="course-sbi.html"><i class="fas fa-landmark"></i> SBI Series</a></li>
-                    <li><a href="course-rbi.html"><i class="fas fa-piggy-bank"></i> RBI Series</a></li>
-                </ul>
-            </div>
+            <div id="sidebar-auth-section" class="sidebar-section"></div>
         </div>
     </div>
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 20px;">
-        <!-- Test Interface -->
-        <div id="test-interface" class="test-container animate-up" style="display: grid; grid-template-columns: 1fr 280px; gap: 30px; max-width: 1200px;">
-            <div class="test-main">
-                <div class="progress-wrapper">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 600; color: var(--text-light);">
-                        <span id="question-number">Question 1 of 5</span>
-                        <span id="topic-tag" style="color: var(--accent-color);">Topic: Loading...</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div id="progress-fill" class="progress-fill"></div>
-                    </div>
+    <div class="test-wrapper">
+        <!-- Main Interface -->
+        <main id="test-interface" class="glass-panel" style="padding: 40px; display: flex; flex-direction: column; min-height: 600px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid var(--test-border); padding-bottom: 20px;">
+                <div>
+                    <div id="question-number" style="font-weight: 800; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Question 1 of 30</div>
+                    <div id="topic-tag" style="font-weight: 600; color: #94a3b8; font-size: 0.8rem; margin-top: 5px;">QUANTITATIVE APTITUDE</div>
                 </div>
-
-                <div id="question-container" style="margin-top: 40px;">
-                    <div id="question-text" class="question-text" style="font-size: 1.4rem; font-weight: 600; margin-bottom: 30px; line-height: 1.4;">Loading question...</div>
-                    <div id="options-list" class="options-list">
-                        <!-- Options injected by JS -->
+                <div style="width: 250px;">
+                    <div style="height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden;">
+                        <div id="progress-fill" style="width: 0%; height: 100%; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); transition: width 0.4s ease;"></div>
                     </div>
-                </div>
-
-                <div class="test-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee;">
-                    <button id="prev-btn" class="btn hidden" style="background: #e2e8f0; color: #475569;">Previous</button>
-                    <button id="mark-btn" class="btn" style="background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa;"><i class="fas fa-bookmark"></i> Mark for Review</button>
-                    <div style="flex-grow: 1;"></div>
-                    <button id="next-btn" class="btn btn-disabled" disabled style="background: #cbd5e1; color: #94a3b8;">Next Question</button>
-                    <button id="submit-btn" class="btn btn-primary hidden">Submit Final Test</button>
                 </div>
             </div>
 
-            <!-- Question Palette Side Panel -->
-            <div class="test-sidebar" style="background: white; padding: 25px; border-radius: 20px; box-shadow: var(--shadow-soft);">
-                <h4 style="margin-bottom: 20px; font-size: 0.9rem; text-transform: uppercase; color: var(--text-light); letter-spacing: 1px;">Question Palette</h4>
-                <div id="question-palette" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                    <!-- Numbers injected by JS -->
+            <div class="question-box">
+                <h2 id="question-text">Loading question...</h2>
+                <div id="options-list" class="option-container">
+                    <!-- Options injected here -->
                 </div>
-                
-                <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 0.8rem;">
-                        <span style="width: 12px; height: 12px; border-radius: 3px; background: var(--primary-color);"></span> Answered
+            </div>
+
+            <div style="margin-top: auto; display: flex; justify-content: space-between; padding-top: 40px; border-top: 1px solid var(--test-border);">
+                <button id="prev-btn" class="btn btn-outline hidden">Previous</button>
+                <button id="mark-btn" class="btn btn-outline" style="color: #f59e0b; border-color: rgba(245, 158, 11, 0.2);"><i class="far fa-bookmark"></i> Mark</button>
+                <div style="flex-grow: 1;"></div>
+                <button id="next-btn" class="btn btn-primary" disabled>Next Question</button>
+                <button id="submit-btn" class="btn btn-primary hidden" style="background: #10b981;">Submit Test</button>
+            </div>
+        </main>
+
+        <!-- Sidebar Palette -->
+        <aside id="test-sidebar" class="sidebar-area">
+            <div class="glass-panel" style="padding: 30px; position: sticky; top: 110px;">
+                <h4 style="font-weight: 800; text-transform: uppercase; font-size: 0.85rem; color: #94a3b8; margin-bottom: 20px;">Question Palette</h4>
+                <div id="question-palette" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+                    <!-- Numbers injected here -->
+                </div>
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--test-border); display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display:flex; align-items:center; gap:10px; font-size: 0.75rem; color: #94a3b8;">
+                        <span style="width:12px; height:12px; background:#10b981; border-radius:3px;"></span> Answered
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 0.8rem;">
-                        <span style="width: 12px; height: 12px; border-radius: 3px; background: #ea580c;"></span> Marked
+                    <div style="display:flex; align-items:center; gap:10px; font-size: 0.75rem; color: #94a3b8;">
+                        <span style="width:12px; height:12px; background:#f59e0b; border-radius:3px;"></span> Marked
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px; font-size: 0.8rem;">
-                        <span style="width: 12px; height: 12px; border-radius: 3px; background: #e2e8f0;"></span> Unvisited
+                    <div style="display:flex; align-items:center; gap:10px; font-size: 0.75rem; color: #94a3b8;">
+                        <span style="width:12px; height:12px; background:rgba(255,255,255,0.05); border-radius:3px;"></span> Unvisited
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
 
-        <!-- Results Interface -->
-        <div id="results-interface" class="test-container hidden animate-up">
-            <div style="text-align: center;">
-                <div style="font-size: 3rem; color: var(--accent-color); margin-bottom: 10px;"><i class="fas fa-chart-pie"></i></div>
-                <h2 style="font-size: 2rem; margin-bottom: 10px;">Your Performance Analysis</h2>
-                <div id="results-score" class="results-score" style="font-size: 4rem; font-weight: 800; color: var(--primary-color); margin: 20px 0;">0/0</div>
-                
-                <div id="performance-msg" class="performance-msg" style="display: inline-block; padding: 10px 25px; border-radius: 50px; font-weight: 600; margin-bottom: 40px;">Good performance</div>
+        <!-- Result Dashboard (Hidden by default) -->
+        <main id="results-interface" class="hidden" style="grid-column: 1 / -1; max-width: 1000px; margin: 0 auto; width: 100%;">
+            <div class="glass-panel" style="padding: 50px; text-align: center;">
+                <div style="font-size: 4rem; color: #f59e0b; margin-bottom: 20px;"><i class="fas fa-trophy"></i></div>
+                <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Performance Report</h1>
+                <p style="color: #94a3b8; margin-bottom: 50px;">Your detailed test analytics for QUASIBANKING Mock #<span id="res-test-id">1</span></p>
 
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;">
-                    <div style="background: #f8fafc; padding: 20px; border-radius: 15px;">
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700;" id="total-attempted">0</span>
-                        <span style="font-size: 0.8rem; color: #64748b; text-transform: uppercase;">Attempted</span>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 60px;">
+                    <div class="result-stat-card">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary-color);" id="res-score">0/30</div>
+                        <div style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px;">Total Score</div>
                     </div>
-                    <div style="background: #f0fdf4; padding: 20px; border-radius: 15px; color: #16a34a;">
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700;" id="correct-answers">0</span>
-                        <span style="font-size: 0.8rem; color: #16a34a; text-transform: uppercase;">Correct</span>
+                    <div class="result-stat-card">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #10b981;" id="res-accuracy">0%</div>
+                        <div style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px;">Accuracy</div>
                     </div>
-                    <div style="background: #f1f5f9; padding: 20px; border-radius: 15px;">
-                        <span style="display: block; font-size: 1.5rem; font-weight: 700;" id="accuracy-pct">0%</span>
-                        <span style="font-size: 0.8rem; color: #64748b; text-transform: uppercase;">Accuracy</span>
+                    <div class="result-stat-card">
+                        <div style="font-size: 2.5rem; font-weight: 800;" id="res-attempted">0</div>
+                        <div style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px;">Attempted</div>
+                    </div>
+                    <div class="result-stat-card">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #10b981;" id="res-correct">0</div>
+                        <div style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px;">Correct</div>
+                    </div>
+                    <div class="result-stat-card">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #ef4444;" id="res-wrong">0</div>
+                        <div style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px;">Wrong</div>
                     </div>
                 </div>
 
-                <div id="insights-section" style="text-align: left; margin-top: 40px;">
-                    <h3 style="margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">Topic-Wise Insights 📊</h3>
-                    <div id="insights-container">
-                        <!-- Topic cards will be injected here -->
+                <!-- Sectional Breakdown -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; margin-bottom: 60px;">
+                    <div>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 25px;">Section-wise Performance</h3>
+                        <div id="sectional-bars"></div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 25px;">Time Analysis</h3>
+                        <div class="result-stat-card" style="text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <p style="color:#94a3b8; font-size: 0.8rem;">AVG. TIME / QUES</p>
+                                <p style="font-size: 1.5rem; font-weight: 700;" id="res-time-avg">0s</p>
+                            </div>
+                            <div>
+                                <p style="color:#94a3b8; font-size: 0.8rem;">FASTEST RESPONSE</p>
+                                <p style="font-size: 1.5rem; font-weight: 700; color: #10b981;" id="res-time-fast">0s</p>
+                            </div>
+                            <div style="grid-column: span 2;">
+                                <p style="color:#94a3b8; font-size: 0.8rem;">SLOWEST RESPONSE</p>
+                                <p style="font-size: 1.5rem; font-weight: 700; color: #ef4444;" id="res-time-slow">0s</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <a href="index.html" class="btn btn-primary" style="width: 100%; margin-top: 40px;">Return to Dashboard</a>
+                <!-- Smart Feedback -->
+                <div id="smart-feedback" style="background: linear-gradient(to right, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1)); padding: 30px; border-radius: 20px; border: 1px solid var(--primary-glow); margin-bottom: 60px; text-align: left;">
+                    <h4 style="font-weight: 800; font-size: 1.1rem; color: white; margin-bottom: 10px;">AI Performance Insights 🧠</h4>
+                    <p id="feedback-text" style="color: #cbd5e1; line-height: 1.6;"></p>
+                </div>
+
+                <!-- Answer Review Section -->
+                <div style="text-align: left; margin-bottom: 60px;">
+                    <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 30px;">Answer Review & Solutions</h3>
+                    <div id="review-container"></div>
+                </div>
+
+                <div style="display: flex; gap: 20px; justify-content: center;">
+                    <button onclick="window.location.reload()" class="btn btn-primary" style="padding: 20px 40px;"><i class="fas fa-redo"></i> Retry Test</button>
+                    <a href="index.html" class="btn btn-outline" style="padding: 20px 40px; border-radius: 14px;">Return to Dashboard</a>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 
-    <!-- Firebase Compat SDKs -->
+    <!-- Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="auth.js"></script>
+    <script src="main.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
