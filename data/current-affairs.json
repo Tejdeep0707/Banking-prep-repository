@@ -1,0 +1,735 @@
+{
+  "articles": [
+    {
+      "id": "ca-bank-1",
+      "category": "banking",
+      "title": "RBI Keeps Policy Repo Rate Unchanged at 6.5% for Consecutive Meeting",
+      "summary": "The RBI Monetary Policy Committee kept the repo rate unchanged while focusing on inflation control and economic growth.",
+      "why_it_matters": "Monetary policy decisions directly affect banking operations, liquidities, and government bond yields. Questions on policy rates (Repo, Reverse Repo, MSF, Bank Rate) are mandatory segments in IBPS PO, SBI PO, and RBI Grade B general awareness phases.",
+      "detailed_explanation": "The Reserve Bank of India (RBI) Monetary Policy Committee (MPC) decided to keep the policy repo rate unchanged at 6.50% in its latest session. The committee also maintained its policy stance of 'withdrawal of accommodation' to align consumer inflation targets (CPI) progressively with the medium-term goal of 4.0%, while ensuring stable GDP expansion guidelines. Credit reserves remain robust across public lenders.",
+      "exam_relevance": "Direct questions on repo rate, reverse repo, bank rate, marginal standing facility (MSF), and policy stance occur in almost every IBPS and SBI mains paper.",
+      "key_facts": [
+        "Policy Repo Rate remains at 6.50%",
+        "Standing Deposit Facility (SDF) rate stands at 6.25%",
+        "Marginal Standing Facility (MSF) and Bank Rate stand at 6.75%",
+        "MPC voted with a 5-to-1 majority",
+        "Target CPI inflation rate is maintained at 4.0% with a +/- 2.0% tolerance band"
+      ],
+      "memory_points": "Remember: Repo is the rate at which RBI lends to commercial banks. When Repo remains unchanged, interest rates on retail/home loans generally remain stable.",
+      "exam_questions": [
+        "What is the current policy repo rate as of the latest RBI MPC meeting?",
+        "Explain the objective behind the RBI's policy stance of 'withdrawal of accommodation'."
+      ],
+      "date": "2026-05-29",
+      "importance": "high",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://www.rbi.org.in",
+      "ibps_stars": 5,
+      "sbi_stars": 4,
+      "rbi_stars": 5,
+      "is_must_read": true
+    },
+    {
+      "id": "ca-bank-2",
+      "category": "banking",
+      "title": "India's GDP Growth Forecast Revised Upward to 7.2% by Rating Agencies",
+      "summary": "Leading credit rating agencies have upgraded India's GDP growth projections citing rural recovery and strong cap-ex.",
+      "why_it_matters": "GDP forecasts by major institutions (RBI, IMF, World Bank, ADB, Moody's, Fitch) are frequently tested in banking mains. It reflects the macroeconomic framework on which banking credit expansion relies.",
+      "detailed_explanation": "Global and domestic credit rating agencies have revised India's real GDP growth forecast upward for fiscal year 2026-27 to 7.2%. The upgrades are supported by solid recovery in agricultural sectors, a resurgence in private consumer demand, and sustained government infrastructure capital expenditures.",
+      "exam_relevance": "Questions asking about the specific GDP growth percentage projected by rating agencies or multilateral banks are standard in current affairs sections.",
+      "key_facts": [
+        "GDP growth projection revised from 6.8% to 7.2%",
+        "Capital expenditure growth rate stands at 11% annually",
+        "Key drivers: Rural consumption, industrial investments, and service exports resilience"
+      ],
+      "memory_points": "To remember: Standard agencies (Fitch, S&P, Moody's) align with the RBI's estimate of 7.2% growth.",
+      "exam_questions": [
+        "What is the revised GDP growth projection for India for FY 2026-27 by rating agencies?",
+        "Which sectors led the upward revision of India's growth targets?"
+      ],
+      "date": "2026-05-28",
+      "importance": "medium",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 4,
+      "sbi_stars": 4,
+      "rbi_stars": 5,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bank-3",
+      "category": "banking",
+      "title": "RBI Expands Digital Rupee Pilot Program to Include Retail Secondary Markets",
+      "summary": "The central bank CBDC pilot now covers secondary markets and offline simulations for retail users.",
+      "why_it_matters": "Fintech and digital banking innovations (CBDC, UPI, IMPS, RTGS) form a critical core of the banking awareness syllabus. Understanding CBDC mechanics is crucial for banking interviews.",
+      "detailed_explanation": "The Reserve Bank of India announced a major expansion of the Central Bank Digital Currency (CBDC) pilot, targeting retail users in tier-2 cities. Additional merchant integrations and offline transaction simulator protocols are being introduced to test resilience in low-network regions.",
+      "exam_relevance": "Tested in General Awareness (GA) and Computer Aptitude. Features of retail vs. wholesale CBDC and technical parameters are frequently asked.",
+      "key_facts": [
+        "CBDC Retail pilot expanded to 5 new tier-2 cities",
+        "Offline payment simulation protocol successfully tested",
+        "NPCI UPI QR code interoperability remains active"
+      ],
+      "memory_points": "CBDC (Digital Rupee) is a legal tender issued in digital form, representing a direct liability on the central bank (RBI).",
+      "exam_questions": [
+        "What are the two major segments of the RBI's Digital Rupee pilot?",
+        "Explain how UPI QR code interoperability benefits digital rupee usage."
+      ],
+      "date": "2026-05-27",
+      "importance": "info",
+      "reading_time": "5 Min Read",
+      "fullArticleUrl": "https://www.rbi.org.in",
+      "ibps_stars": 4,
+      "sbi_stars": 5,
+      "rbi_stars": 5,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bank-4",
+      "category": "banking",
+      "title": "Retail Inflation Cools Down to 4.2% Easing Liquidity Stances",
+      "summary": "CPI inflation cooled down to a multi-month low of 4.2%, driven by food and energy price moderation.",
+      "why_it_matters": "Inflation data (CPI, WPI) and index compositions are central macroeconomic indicators. Candidates must know the target bands and calculating institutions (NSO, etc.).",
+      "detailed_explanation": "Consumer Price Index (CPI) based inflation eased to a multi-month low of 4.2%. This moderation was driven by food and energy price stabilizes, aligning the CPI output close to the RBI's comfort band of 4% (+/- 2%). Easing inflation reduces the pressure on short-term banking liquidity.",
+      "exam_relevance": "Standard question topic in RBI Grade B and SBI PO mains. Knowledge of WPI vs. CPI index parameters is essential.",
+      "key_facts": [
+        "Retail inflation measured by CPI falls to 4.2%",
+        "Food inflation index cooled by 60 basis points",
+        "Base year for CPI calculation is 2012"
+      ],
+      "memory_points": "CPI inflation is calculated by the National Statistical Office (NSO) under the Ministry of Statistics and Programme Implementation (MoSPI).",
+      "exam_questions": [
+        "Which organization publishes CPI based inflation data in India?",
+        "What is the base year currently used for CPI inflation indexes?"
+      ],
+      "date": "2026-05-26",
+      "importance": "info",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://www.livemint.com",
+      "ibps_stars": 3,
+      "sbi_stars": 4,
+      "rbi_stars": 5,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bank-5",
+      "category": "banking",
+      "title": "RBI Releases the 28th Financial Stability Report (FSR)",
+      "summary": "The bi-annual report highlights commercial bank resilience, low Gross NPAs, and strong CRAR.",
+      "why_it_matters": "The Financial Stability Report is a key document for banking regulation. Questions on CRAR, Capital Adequacy, GNPA, and provisioning coverages are frequently asked in RBI Grade B and SBI PO mains.",
+      "detailed_explanation": "The Reserve Bank of India released its bi-annual Financial Stability Report. The report notes that the Indian financial system remains resilient, with commercial banks maintaining strong capital-to-risk-weighted assets ratio (CRAR) and historically low Gross NPA levels.",
+      "exam_relevance": "Capital adequacy metrics (CRAR/CAR) and Gross/Net NPA numbers from the latest FSR are highly recurring in banking exams.",
+      "key_facts": [
+        "Gross Non-Performing Assets (GNPA) ratio of Scheduled Commercial Banks fell to 2.8%",
+        "Capital Adequacy Ratio (CRAR) remained strong at 16.6%",
+        "Macro stress tests indicate banks possess buffers to withstand severe shocks"
+      ],
+      "memory_points": "Key metric: GNPA ratio below 3% indicates excellent credit quality across commercial banks.",
+      "exam_questions": [
+        "What was the GNPA ratio reported in the 28th Financial Stability Report?",
+        "How frequently does the RBI publish the Financial Stability Report?"
+      ],
+      "date": "2026-05-25",
+      "importance": "high",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://www.rbi.org.in",
+      "ibps_stars": 5,
+      "sbi_stars": 5,
+      "rbi_stars": 5,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-nat-1",
+      "category": "national",
+      "title": "Government Expands 'Lakhpati Didi' Scheme to Support Rural Micro-Enterprises",
+      "summary": "Union Cabinet approved expanded budgets targeting rural women self-help group members.",
+      "why_it_matters": "Welfare schemes, financial inclusions, and rural developments are core to banking exams, especially regarding credit facilities provided by NABARD and RRBs.",
+      "detailed_explanation": "The Union Cabinet approved an expanded budget layout for the 'Lakhpati Didi' initiative, targeting self-help group (SHG) members. The expansion introduces training modules in drone technology, solar assembly, and digital financial literacy, helping women establish rural micro-enterprises.",
+      "exam_relevance": "Questions asking about target counts, financial allocations, or program objectives of newly modified national schemes are common in mains.",
+      "key_facts": [
+        "Target number of Lakhpati Didis increased to 3 crore rural women",
+        "Focus on technology skills (agriculture drones, solar energy technicians)",
+        "Implemented through National Rural Livelihoods Mission (NRLM)"
+      ],
+      "memory_points": "Lakhpati Didi targets helping SHG women achieve an annual income of at least ₹1 Lakh.",
+      "exam_questions": [
+        "What is the target count of women under the Lakhpati Didi expansion?",
+        "Which ministry implements the Lakhpati Didi scheme?"
+      ],
+      "date": "2026-05-29",
+      "importance": "high",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 5,
+      "sbi_stars": 4,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-nat-2",
+      "category": "national",
+      "title": "Cabinet Approves Financial Incentives for Massive Semiconductor Hub in Gujarat",
+      "summary": "The semiconductor hub under India Semiconductor Mission (ISM) aims to build domestic chip plants.",
+      "why_it_matters": "National industrial developments, budgets, and semiconductor initiatives are standard general awareness questions in banking exams.",
+      "detailed_explanation": "The Central government has approved financial incentives for setting up a state-of-the-art semiconductor fabrication plant in Gujarat. The project, under the India Semiconductor Mission (ISM), aims to build domestic capacity in electronics chips manufacturing and reduce import dependencies.",
+      "exam_relevance": "Questions regarding state locations, budget allocations, and nodal agencies of industrial projects appear regularly.",
+      "key_facts": [
+        "Total investment approved: ₹91,000 crore",
+        "Nodal agency: India Semiconductor Mission (ISM)",
+        "Partnership between domestic groups and international tech leaders"
+      ],
+      "memory_points": "Gujarat is the primary state setting up India's first commercial semiconductor fabrication facility.",
+      "exam_questions": [
+        "Where is the massive semiconductor hub being established under India Semiconductor Mission?",
+        "What is the total investment outlay approved for the Gujarat semiconductor plant?"
+      ],
+      "date": "2026-05-28",
+      "importance": "medium",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://www.business-standard.com",
+      "ibps_stars": 4,
+      "sbi_stars": 3,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-nat-3",
+      "category": "national",
+      "title": "New Governor Appointed for the Financial Regulator Board",
+      "summary": "The Appointments Committee of the Cabinet approved the selection of a senior economist to lead the board.",
+      "why_it_matters": "Appointments of key officials (Governors, Deputy Governors, SEBI chief, LIC Chairman, CMDs of Public Sector Banks) are standard direct questions.",
+      "detailed_explanation": "The Appointments Committee of the Cabinet has approved the appointment of a senior financial economist as the head of the policy regulation board, bringing extensive experience from global financial institutions to manage sovereign guidelines.",
+      "exam_relevance": "Direct questions on appointments, tenures, and backgrounds of regulatory board heads are common in banking general awareness.",
+      "key_facts": [
+        "Appointed for a tenure of 3 years",
+        "Nodal body: Appointments Committee of the Cabinet (ACC)",
+        "Previous post: Executive Director at multilateral monetary board"
+      ],
+      "memory_points": "Tenures of regulators are usually 3 years, extendable by government orders.",
+      "exam_questions": [
+        "Who approves the appointments of regulatory board heads in India?",
+        "What is the standard initial tenure for a financial regulator head?"
+      ],
+      "date": "2026-05-27",
+      "importance": "info",
+      "reading_time": "2 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 5,
+      "sbi_stars": 5,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-nat-4",
+      "category": "national",
+      "title": "National Digital Education Initiative PM-SHRI Expanded in Phase 2",
+      "summary": "Ministry of Education expanded PM-SHRI scheme to upgrade 5,000 additional smart schools.",
+      "why_it_matters": "National initiatives and education reforms are featured in the social and economic issues (ESI) paper of RBI Grade B.",
+      "detailed_explanation": "The Ministry of Education has announced Phase 2 of the PM-SHRI scheme to upgrade 5,000 additional schools. The program incorporates coding, smart classrooms, and skill-based curricula aligned with the National Education Policy.",
+      "exam_relevance": "Important for descriptive sections in RBI ESI and MCQs in PO mains concerning educational investments.",
+      "key_facts": [
+        "5,000 schools added in Phase 2",
+        "Focus on NEP-2020 integration (skill training, AI elements)",
+        "Funding shares distributed between Center and States (60:40)"
+      ],
+      "memory_points": "PM-SHRI stands for PM Schools for Rising India, targeting upgradation of existing schools into model institutions.",
+      "exam_questions": [
+        "What does PM-SHRI stand for?",
+        "What is the funding distribution ratio between Center and States under PM-SHRI?"
+      ],
+      "date": "2026-05-26",
+      "importance": "info",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://www.livemint.com",
+      "ibps_stars": 3,
+      "sbi_stars": 3,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-nat-5",
+      "category": "national",
+      "title": "Mega Infrastructure Expressway Corridor Project Approved by CCEA",
+      "summary": "Cabinet Committee on Economic Affairs cleared a new 450 km industrial expressway corridor.",
+      "why_it_matters": "Infrastructure developments and budgets are monitored by banks providing capital (e.g. IDBI, NaBFID, etc.) and frequently appear in exams.",
+      "detailed_explanation": "The Cabinet Committee on Economic Affairs (CCEA) has cleared the construction of a new 450 km industrial expressway corridor, aiming to slash transport times between agricultural nodes and regional ports, expanding domestic logistics.",
+      "exam_relevance": "Questions asking about the length of the expressway, cities connected, and approving cabinet committees are common.",
+      "key_facts": [
+        "Total length: 450 km",
+        "Approved by: Cabinet Committee on Economic Affairs (CCEA)",
+        "Nodal agency: National Highways Authority of India (NHAI)"
+      ],
+      "memory_points": "CCEA is chaired by the Prime Minister. Major infra clearances go through this committee.",
+      "exam_questions": [
+        "Which cabinet committee approves major infrastructure projects in India?",
+        "What is the proposed length of the newly cleared expressway corridor?"
+      ],
+      "date": "2026-05-25",
+      "importance": "medium",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://www.business-standard.com",
+      "ibps_stars": 4,
+      "sbi_stars": 3,
+      "rbi_stars": 3,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-int-1",
+      "category": "international",
+      "title": "BRICS Summit Outlines Local Currency Payment Settlement System",
+      "summary": "Summit finalized a framework to settle cross-border trade invoices in local currencies.",
+      "why_it_matters": "Bilateral trade currency changes impact banking FX divisions. International currency settlements and frameworks are premium topics in global finance modules.",
+      "detailed_explanation": "During the BRICS summit, member nations finalized a framework to settle cross-border trade invoices in local currencies. The BRICS Pay digital settlement card framework was also demonstrated to reduce dollar clearing dependencies.",
+      "exam_relevance": "Frequently asked in RBI Grade B and PO exams regarding international banking and foreign exchange mechanisms.",
+      "key_facts": [
+        "Focus on local currency settlements to reduce transaction costs",
+        "Demonstration of BRICS Pay digital settlement framework",
+        "Aims to optimize financial transaction times between members"
+      ],
+      "memory_points": "BRICS Pay is a decentralized payment system that coordinates transfers between commercial banks of member states.",
+      "exam_questions": [
+        "What is the objective of the BRICS Pay payment settlement framework?",
+        "How do local currency settlements affect commercial bank foreign exchange divisions?"
+      ],
+      "date": "2026-05-29",
+      "importance": "high",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://www.livemint.com",
+      "ibps_stars": 4,
+      "sbi_stars": 4,
+      "rbi_stars": 5,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-int-2",
+      "category": "international",
+      "title": "India-US Strategic Dialogue Centers on iCET Tech Transfers",
+      "summary": "Bilateral talks highlighted agreements on quantum computing, AI, and secure semiconductor supply chains.",
+      "why_it_matters": "Tech agreements and international summits form a regular part of the current affairs syllabus in RBI and SBI PO exams.",
+      "detailed_explanation": "The annual bilateral strategic talks in Washington highlighted agreements on quantum computing research, artificial intelligence guidelines, and secure semiconductor supply chains under the iCET initiative, improving strategic industrial exports.",
+      "exam_relevance": "Direct questions on tech agreements, summit names, and bilateral initiatives are common.",
+      "key_facts": [
+        "iCET stands for Initiative on Critical and Emerging Technology",
+        "Agreements cover quantum computing, AI, and semiconductors",
+        "Joint research funds established by both governments"
+      ],
+      "memory_points": "iCET is the primary bilateral framework between India and the US coordinating technology transfers.",
+      "exam_questions": [
+        "What does the acronym iCET stand for?",
+        "Which sectors were highlighted for cooperation in the India-US dialogue?"
+      ],
+      "date": "2026-05-28",
+      "importance": "medium",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 3,
+      "sbi_stars": 3,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-int-3",
+      "category": "international",
+      "title": "G20 Financial Taskforce Outlines Sovereign Debt Relief Guidelines",
+      "summary": "Finance ministers and central bankers proposed a framework to address debt distress in low-income nations.",
+      "why_it_matters": "Multilateral organizations (G20, IMF, World Bank, ADB, AIIB) guidelines and presidencies are tested extensively in banking exams.",
+      "detailed_explanation": "Under the G20 presidency taskforce, finance ministers and central bankers have proposed a framework to address debt distress in low-income nations and restructure multilateral loans to prevent defaults.",
+      "exam_relevance": "Crucial for advanced banking papers. Questions on IMF quotas, sovereign restructuring, and G20 finance parameters are frequent.",
+      "key_facts": [
+        "Debt Service Suspension Initiative (DSSI) guidelines discussed",
+        "Joint framework involving IMF and Paris Club creditors",
+        "Aims to stabilize balance of payments in developing economies"
+      ],
+      "memory_points": "G20 debt frameworks coordinate relief measures between sovereign creditors and debtor nations.",
+      "exam_questions": [
+        "Which international monetary body coordinates debt restructuring under G20 guidelines?",
+        "What is the objective of the Debt Service Suspension Initiative (DSSI)?"
+      ],
+      "date": "2026-05-27",
+      "importance": "info",
+      "reading_time": "5 Min Read",
+      "fullArticleUrl": "https://www.business-standard.com",
+      "ibps_stars": 3,
+      "sbi_stars": 4,
+      "rbi_stars": 5,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-int-4",
+      "category": "international",
+      "title": "United Nations Climate Conference Launches New Carbon Credit Registry",
+      "summary": "The UN climate secretariat launched a digital platform for trading sovereign carbon offsets.",
+      "why_it_matters": "Global carbon policies and green banking standards (like ESG ratings) are essential concepts in advanced banking discussions.",
+      "detailed_explanation": "The UN climate secretariat has launched a digital platform for trading sovereign carbon offsets under the Paris Agreement guidelines, aiming to coordinate transparent green capital flows to developing economies.",
+      "exam_relevance": "Highly relevant for banking sustainability chapters and RBI Grade B ESI topics.",
+      "key_facts": [
+        "Registry aligned with Article 6 of the Paris Agreement",
+        "Aims to create a unified international carbon price framework",
+        "Coordinated by the UN Framework Convention on Climate Change (UNFCCC)"
+      ],
+      "memory_points": "Article 6 of the Paris Agreement regulates the trading of carbon credits across borders.",
+      "exam_questions": [
+        "Under which article of the Paris Agreement is the UN carbon registry established?",
+        "What is the role of green bonds in international carbon trading?"
+      ],
+      "date": "2026-05-26",
+      "importance": "info",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://www.livemint.com",
+      "ibps_stars": 3,
+      "sbi_stars": 3,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-int-5",
+      "category": "international",
+      "title": "India-UAE Trade Cooperation Expands Under Local Currency Framework",
+      "summary": "Bilateral trade settled using the Indian Rupee and UAE Dirham expanded significantly.",
+      "why_it_matters": "Local currency settlement (LCS) agreements signed by RBI are of utmost importance for financial current affairs.",
+      "detailed_explanation": "Bilateral trade settled using the Indian Rupee and UAE Dirham expanded significantly. Banks in both countries successfully cleared transactions using the local payment linkages without intermediary conversions, reducing FX fees.",
+      "exam_relevance": "Standard topic in banking mains. Details of Nostro/Vostro accounts and transaction clearings are heavily tested.",
+      "key_facts": [
+        "First transaction cleared without intermediate currencies (USD/EUR)",
+        "Uses the Local Currency Settlement System (LCSS)",
+        "Nodal banks: State Bank of India and major UAE lenders"
+      ],
+      "memory_points": "LCS agreements bypass the global SWIFT dollar routing, lowering exchange risk.",
+      "exam_questions": [
+        "What is the system name used to settle India-UAE trades in domestic currencies?",
+        "How do local currency settlements reduce transaction costs for exporters?"
+      ],
+      "date": "2026-05-25",
+      "importance": "medium",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://www.rbi.org.in",
+      "ibps_stars": 4,
+      "sbi_stars": 4,
+      "rbi_stars": 5,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bus-1",
+      "category": "business",
+      "title": "Major Bank Partners with Fintech Platform for Rural Micro-Loans",
+      "summary": "Leading private bank signed a co-lending agreement to disburse micro-loans to rural MSMEs.",
+      "why_it_matters": "Co-lending models, banking partnerships, and PSL (Priority Sector Lending) targets are heavily tested segments in IBPS and SBI exams.",
+      "detailed_explanation": "A leading private sector bank has signed a co-lending agreement with a fintech corporation. The collaboration leverages digital credit verification algorithms to disburse quick micro-loans to rural MSMEs, helping banks meet PSL targets.",
+      "exam_relevance": "Questions asking about RBI co-lending guidelines, sharing ratios (usually 80:20), and target sectors are highly frequent.",
+      "key_facts": [
+        "Credit verification algorithms run on mobile applications",
+        "Risk sharing ratio: 80% (Bank) and 20% (Fintech)",
+        "Designed to fulfill Priority Sector Lending (PSL) guidelines"
+      ],
+      "memory_points": "RBI guidelines allow banks to co-lend with registered NBFCs to increase credit availability.",
+      "exam_questions": [
+        "What is the standard risk-sharing ratio in co-lending models between banks and NBFCs?",
+        "How does co-lending help commercial banks meet Priority Sector Lending targets?"
+      ],
+      "date": "2026-05-29",
+      "importance": "high",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 5,
+      "sbi_stars": 5,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bus-2",
+      "category": "business",
+      "title": "Public Sector Insurance Giant Files Draft Prospectus for Massive IPO",
+      "summary": "State-owned insurance entity filed draft red herring prospectus (DRHP) with SEBI for public listing.",
+      "why_it_matters": "Capital markets, IPO guidelines, SEBI regulations, and DRHP processes are important financial topics in RBI ESI and general awareness papers.",
+      "detailed_explanation": "Following successful corporate restructuring, a leading state-owned insurance entity has filed a draft red herring prospectus with SEBI for a public listing, targeting capital market entry in the upcoming quarter.",
+      "exam_relevance": "Critical for capital markets chapters. Understanding SEBI roles, DRHP timelines, and book-building is essential.",
+      "key_facts": [
+        "Filer: State-owned insurance entity",
+        "Regulator approving: SEBI (Securities and Exchange Board of India)",
+        "Listing type: Book-built initial public offering"
+      ],
+      "memory_points": "DRHP is a preliminary registration document filed with SEBI before the public issue opens.",
+      "exam_questions": [
+        "What is the purpose of filing a Draft Red Herring Prospectus (DRHP) with SEBI?",
+        "Explain the book-building process in an Initial Public Offering."
+      ],
+      "date": "2026-05-28",
+      "importance": "medium",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://www.business-standard.com",
+      "ibps_stars": 4,
+      "sbi_stars": 4,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bus-3",
+      "category": "business",
+      "title": "Fintech Payment Gateway Scales Operations, Secures Key License",
+      "summary": "Domestic digital payments company secured merchant payment aggregator license from RBI.",
+      "why_it_matters": "Innovations in payment gateways (NPCI, payment aggregators, PPIs) are hot topics in banking syllabus.",
+      "detailed_explanation": "A domestic digital payments company has secured merchant payment aggregator licenses from the RBI to offer cross-border settlement services for tourists and business portals.",
+      "exam_relevance": "Payment Aggregator (PA) and Payment Gateway (PG) guidelines of the RBI are standard test questions.",
+      "key_facts": [
+        "License issued: Payment Aggregator License",
+        "Regulating authority: Reserve Bank of India",
+        "Aims to regulate digital merchant acquisitions"
+      ],
+      "memory_points": "Payment Aggregators facilitate e-commerce sites to accept various payment instruments from customers.",
+      "exam_questions": [
+        "What is the difference between a Payment Aggregator and a Payment Gateway?",
+        "Which organization issues licenses for operating as a Payment Aggregator in India?"
+      ],
+      "date": "2026-05-27",
+      "importance": "info",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 3,
+      "sbi_stars": 3,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bus-4",
+      "category": "business",
+      "title": "Enterprise AI Startup Raises $100M in Series C Funding Round",
+      "summary": "AI company closed major funding round to develop LLMs tailored for banking operations.",
+      "why_it_matters": "Venture capital, startup investments, and fundraising rounds (Series A, B, C) are frequently asked in current affairs.",
+      "detailed_explanation": "An Indian artificial intelligence company has closed a major funding round from global venture firms to develop specialized large language models tailored for the banking and sovereign security industries.",
+      "exam_relevance": "General awareness questions regarding startup funding values, series terminology, and venture firms.",
+      "key_facts": [
+        "Amount raised: $100 Million",
+        "Funding round: Series C",
+        "Primary focus: Banking specialized language models"
+      ],
+      "memory_points": "Series C funding is typically sought by late-stage startups to scale operations and expand globally.",
+      "exam_questions": [
+        "What is Series C funding in startup venture cycles?",
+        "How are AI language models applied in automated banking customer services?"
+      ],
+      "date": "2026-05-26",
+      "importance": "info",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://www.livemint.com",
+      "ibps_stars": 3,
+      "sbi_stars": 3,
+      "rbi_stars": 3,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bus-5",
+      "category": "business",
+      "title": "Anti-Trust Commission Approves Consolidation of Regional Private Lenders",
+      "summary": "Competition Commission of India (CCI) approved consolidation of two regional institutions.",
+      "why_it_matters": "Mergers and acquisitions in the banking sector (SEBI/CCI guidelines, asset transfers) are tested extensively in both mains and interviews.",
+      "detailed_explanation": "The Competition Commission of India (CCI) has approved the consolidation of two prominent regional institutions. The unified entity will create a top-tier private asset holding block operating under integrated digital platforms.",
+      "exam_relevance": "CCI functions, regulatory clearances for mergers, and names of merging banks are standard exam segments.",
+      "key_facts": [
+        "Approving body: Competition Commission of India (CCI)",
+        "Under Section 31 of the Competition Act, 2002",
+        "Amalgamation creates a larger consolidated asset sheet"
+      ],
+      "memory_points": "CCI regulates anti-competitive agreements and mergers to maintain market competition.",
+      "exam_questions": [
+        "Under which Act is the Competition Commission of India established?",
+        "What is the role of the CCI in bank mergers?"
+      ],
+      "date": "2026-05-25",
+      "importance": "medium",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://www.business-standard.com",
+      "ibps_stars": 5,
+      "sbi_stars": 4,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-def-1",
+      "category": "defence",
+      "title": "Joint Air Combat Exercise 'EX-EASTERN BRIDGE' Successfully Conducted",
+      "summary": "Bilateral air force training concluded, practicing air defense coordination and intercept missions.",
+      "why_it_matters": "Defense exercises (military, naval, air) and bilateral security operations are frequent direct questions in banking exams.",
+      "detailed_explanation": "The joint air force training maneuvers concluded, practicing air defense coordination, simulated interception missions, and tactical interoperability profiles in extreme operational climates.",
+      "exam_relevance": "Direct matching questions asking about exercise names, participating countries, and locations occur regularly in clerk and PO prelims.",
+      "key_facts": [
+        "Exercise name: EX-EASTERN BRIDGE",
+        "Participating units: Air force combat wings",
+        "Focus: Air interception and refueling simulations"
+      ],
+      "memory_points": "Ex-Eastern Bridge is a recurring bilateral exercise focused on air combat operations.",
+      "exam_questions": [
+        "What is the primary objective of the 'EX-EASTERN BRIDGE' joint exercise?",
+        "Bilateral defense exercises help improve tactical interoperability between which wings?"
+      ],
+      "date": "2026-05-29",
+      "importance": "medium",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 4,
+      "sbi_stars": 4,
+      "rbi_stars": 3,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-def-2",
+      "category": "defence",
+      "title": "DRDO Unveils Autonomous AI-Integrated Drone Swarm Technologies",
+      "summary": "Swarm technology capable of high-altitude surveillance and border patrol demonstrated.",
+      "why_it_matters": "Indigenous defense tech innovations, missile tests, and DRDO/ISRO projects are core topics in current affairs.",
+      "detailed_explanation": "The Defense Research and Development Organization (DRDO) demonstrated smart swarm technology capable of high-altitude surveillance and border patrol operations without active GPS dependencies, improving safety guidelines.",
+      "exam_relevance": "Questions about developing research laboratories, drone names, and technological integrations.",
+      "key_facts": [
+        "Developed by: DRDO laboratories",
+        "Features: GPS-denied navigation, autonomous swarming",
+        "Application: High-altitude border surveillance"
+      ],
+      "memory_points": "DRDO is the primary national agency coordinating military technology research.",
+      "exam_questions": [
+        "Which organization developed the autonomous AI-integrated drone swarm technology?",
+        "How do drone swarms operate in GPS-denied environments?"
+      ],
+      "date": "2026-05-28",
+      "importance": "high",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://www.business-standard.com",
+      "ibps_stars": 4,
+      "sbi_stars": 4,
+      "rbi_stars": 3,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-def-3",
+      "category": "defence",
+      "title": "India Signs Maritime Security Cooperation Pact for Sharing Naval Ports",
+      "summary": "Naval forces signed mutual agreements to share maintenance bases and surveillance patrols.",
+      "why_it_matters": "International security treaties and maritime agreements are important for general awareness.",
+      "detailed_explanation": "Naval forces signed mutual agreements to share maintenance bases and coordinate maritime surveillance patrols to ensure commerce lanes remain free and open in international channels.",
+      "exam_relevance": "Signatory countries, maritime limits, and ports named in bilateral treaties are common questions.",
+      "key_facts": [
+        "Pact covers port access and refueling rights",
+        "Focus on safety in critical shipping lanes",
+        "Signatories: Maritime security commands"
+      ],
+      "memory_points": "Port sharing agreements increase the operational reach of the Navy in distant waters.",
+      "exam_questions": [
+        "What is the benefit of port sharing agreements for naval supply lines?",
+        "How do maritime security pacts protect commercial shipping channels?"
+      ],
+      "date": "2026-05-27",
+      "importance": "info",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 3,
+      "sbi_stars": 3,
+      "rbi_stars": 3,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-def-4",
+      "category": "defence",
+      "title": "Smart Laser-Fencing Border Barriers Deployed Across Riverine Channels",
+      "summary": "Border surveillance divisions completed installation of laser-guided smart fencing arrays.",
+      "why_it_matters": "National border developments and security systems are minor but recurring GK segments in clerk and PO exams.",
+      "detailed_explanation": "Border surveillance divisions completed installation of laser-guided smart fencing arrays across complex riverine channels, monitoring border activity automatically and alerting central command posts.",
+      "exam_relevance": "Questions asking about tech names and boundary limits where laser fencing is deployed.",
+      "key_facts": [
+        "Sensor type: Infrared and thermal lasers",
+        "Deployed by: Border security forces",
+        "Location: Border channels and river sectors"
+      ],
+      "memory_points": "Laser barriers are virtual fences that trigger alarms upon interception in difficult terrains.",
+      "exam_questions": [
+        "What technology is utilized in virtual border fencing systems?",
+        "Where are smart laser-fencing barriers deployed?"
+      ],
+      "date": "2026-05-26",
+      "importance": "info",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://www.livemint.com",
+      "ibps_stars": 3,
+      "sbi_stars": 3,
+      "rbi_stars": 3,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-def-5",
+      "category": "defence",
+      "title": "Defence Acquisition Council Clears Mega Procurements Under Make in India",
+      "summary": "DAC cleared capital acquisitions for fighter jets, carrier upgrades, and radar networks.",
+      "why_it_matters": "Defense procurements, cabinet clearances, and budget allocations are frequently asked in general awareness questionnaires.",
+      "detailed_explanation": "The Defence Acquisition Council (DAC), chaired by the Defense Minister, approved capital acquisitions worth crores for fighter jets, carrier upgrades, and advanced radar nets fabricated by domestic manufacturers, promoting self-reliance.",
+      "exam_relevance": "DAC composition, approving authority (Defense Minister), and purchase values are standard mains questions.",
+      "key_facts": [
+        "Approving authority: Defence Acquisition Council (DAC)",
+        "Focus: Domestic manufacturing (Make in India - Indigenization)",
+        "Equipment: Advanced fighter jet spares, radar arrays"
+      ],
+      "memory_points": "The Defense Minister is the ex-officio chairman of the Defence Acquisition Council.",
+      "exam_questions": [
+        "Who chairs the Defence Acquisition Council in India?",
+        "What is the objective of DAC approvals under the 'Make in India' framework?"
+      ],
+      "date": "2026-05-25",
+      "importance": "high",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://economictimes.indiatimes.com",
+      "ibps_stars": 4,
+      "sbi_stars": 4,
+      "rbi_stars": 3,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-nat-6",
+      "category": "national",
+      "title": "CCEA Approves PM-PRANAM Scheme to Promote Organic Farming & Sustainable Soil Health",
+      "summary": "The Cabinet Committee on Economic Affairs approved the PM-PRANAM scheme to encourage states to adopt alternative bio-fertilizers.",
+      "why_it_matters": "Central government schemes and agriculture funding allocations form a significant part of the NABARD Grade A and IBPS AFO exams.",
+      "detailed_explanation": "The Cabinet Committee on Economic Affairs (CCEA) chaired by the Prime Minister cleared the PM Programme for Restoration, Awareness, Nourishment and Amelioration of Mother Earth (PM-PRANAM) scheme. It aims to reduce chemical fertilizer usage and subsidize bio-fertilizers.",
+      "exam_relevance": "Candidates are regularly questioned on scheme expansions, acronyms (PRANAM), and nodal implementing ministries.",
+      "key_facts": [
+        "Subsidizes organic and bio-fertilizers",
+        "CCEA approved budget outlays",
+        "Funded through savings from fertilizer subsidy reductions"
+      ],
+      "memory_points": "Remember: PM-PRANAM incentivizes states to use alternative fertilizers.",
+      "exam_questions": [
+        "What does the acronym PRANAM stand for?",
+        "How is the PM-PRANAM scheme funded?"
+      ],
+      "date": "2026-05-24",
+      "importance": "medium",
+      "reading_time": "3 Min Read",
+      "fullArticleUrl": "https://pib.gov.in",
+      "ibps_stars": 4,
+      "sbi_stars": 4,
+      "rbi_stars": 4,
+      "is_must_read": false
+    },
+    {
+      "id": "ca-bank-6",
+      "category": "banking",
+      "title": "RBI Directs Commercial Banks to Double Outlays Under PM-SVANidhi Scheme",
+      "summary": "The central bank issued notices to double target credit targets for street vendors under PM-SVANidhi.",
+      "why_it_matters": "Financial inclusion schemes (PM-SVANidhi, PMJDY, Mudra) are core elements of retail lending parameters tested in banking interviews and mains.",
+      "detailed_explanation": "The Reserve Bank of India directed commercial and regional rural banks to scale up lending metrics under the Prime Minister Street Vendor’s AtmaNirbhar Nidhi (PM-SVANidhi) micro-credit scheme. The targets aim to facilitate collateral-free working capital loans to urban street vendors.",
+      "exam_relevance": "Interest subventions (currently 7%), loan ceilings (up to ₹50,000 in subsequent tranches), and implementing agency (SIDBI) details are heavily tested.",
+      "key_facts": [
+        "Collateral-free working capital loan",
+        "Interest subvention rate is 7%",
+        "SIDBI acts as the implementation partner"
+      ],
+      "memory_points": "PM-SVANidhi is for street vendors, offering micro-credit up to ₹50,000 across three tranches.",
+      "exam_questions": [
+        "Which agency implements the PM-SVANidhi micro-credit scheme?",
+        "What is the maximum loan limit in subsequent tranches of PM-SVANidhi?"
+      ],
+      "date": "2026-05-23",
+      "importance": "high",
+      "reading_time": "4 Min Read",
+      "fullArticleUrl": "https://www.rbi.org.in",
+      "ibps_stars": 5,
+      "sbi_stars": 4,
+      "rbi_stars": 5,
+      "is_must_read": false
+    }
+  ]
+}

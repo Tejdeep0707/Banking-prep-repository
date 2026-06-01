@@ -3,113 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard | QUASIBANKING</title>
+    <title>QuasiBanking | India's Premium Banking Exam Academy</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="India's best banking exam preparation platform. QuasiBanking offers structured courses, expert video lessons, and mock tests.">
+    <meta name="keywords" content="Banking exams, SBI Clerk, RBI Grade B, IBPS PO, banking preparation, QuasiBanking">
+    <meta property="og:title" content="QuasiBanking | Banking Exam Preparation">
+    <meta property="og:description" content="India's best banking exam preparation platform.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://quasibanking.com/">
+    
     <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    animation: {
-                        'scroll': 'scroll 30s linear infinite',
-                    },
-                    keyframes: {
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    
     <style>
         .animate-scroll:hover {
             animation-play-state: paused;
         }
-        /* Hero Section Light Theme Overrides */
-        .hero-wrapper {
-            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%) !important;
-        }
-        .hero-badge {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(4px);
-            border: 1px solid #e2e8f0;
-            color: #4f46e5;
-        }
-        .hero-main h1 {
-            color: #0f172a !important;
-            background: none !important;
-            -webkit-text-fill-color: initial !important;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        .hero-tagline {
-            color: #4f46e5 !important;
-        }
-        .hero-main p {
-            color: #475569 !important;
-        }
-        .feature-pill {
-            background: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
-        }
-        .feature-pill span {
-            color: #1e293b !important;
-        }
-        .stat-num {
-            color: #4f46e5 !important;
-        }
-        .stat-text {
-            color: #64748b !important;
-        }
     </style>
 </head>
 <body data-theme="dark">
-    <!-- Premium Scrolling Pills Ticker -->
-    <div class="w-full overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600 py-2">
-        <div class="flex gap-4 animate-scroll whitespace-nowrap">
-            <a href="course-ibps.html" class="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-full text-sm font-medium hover:bg-white/30 hover:scale-105 transition flex items-center gap-2">
-                <i class="fas fa-fire"></i> IBPS Mock Test Series
+    <!-- Premium Dashboard Sidebar -->
+    <aside id="dashboard-sidebar" class="premium-sidebar">
+        <!-- TOP SECTION: Logo, Brand & Tagline -->
+        <div class="sidebar-top">
+            <a href="index.html" class="sidebar-logo-link">
+                <div class="sidebar-logo-container">
+                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="sidebar-logo">
+                </div>
+                <div class="sidebar-brand-wrapper">
+                    <span class="sidebar-brand-name">QUASIBANKING</span>
+                    <span class="sidebar-tagline">India's Premium Banking Platform</span>
+                </div>
             </a>
-            <a href="course-sbi.html" class="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-full text-sm font-medium hover:bg-white/30 hover:scale-105 transition flex items-center gap-2">
-                <i class="fas fa-bullhorn"></i> SBI Clerk Crash Course
+        </div>
+
+        <!-- MAIN NAVIGATION: Premium Interactive Navigation Cards -->
+        <nav class="sidebar-nav">
+            <a href="index.html#user-stats" class="nav-card active" id="nav-dashboard">
+                <div class="nav-card-icon"><i class="fas fa-home"></i></div>
+                <span class="nav-card-title">Dashboard</span>
             </a>
-            <a href="course-rbi.html" class="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-full text-sm font-medium hover:bg-white/30 hover:scale-105 transition flex items-center gap-2">
-                <i class="fas fa-rocket"></i> RBI Assistant Mains
+            <a href="index.html#courses" class="nav-card" id="nav-courses">
+                <div class="nav-card-icon"><i class="fas fa-book"></i></div>
+                <span class="nav-card-title">Courses</span>
             </a>
-            <a href="#courses" class="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-full text-sm font-medium hover:bg-white/30 hover:scale-105 transition flex items-center gap-2">
-                <i class="fas fa-lightbulb"></i> Combo Offer: Mock + Course
+            <a href="#" class="nav-card" id="nav-mocks">
+                <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
+                <span class="nav-card-title">Mock Tests</span>
             </a>
-            <!-- Duplicates for seamless loop -->
-            <a href="course-ibps.html" class="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-full text-sm font-medium hover:bg-white/30 hover:scale-105 transition flex items-center gap-2">
-                <i class="fas fa-fire"></i> IBPS Mock Test Series
+            <a href="current-affairs.html" class="nav-card" id="nav-affairs">
+                <div class="nav-card-icon"><i class="fas fa-newspaper"></i></div>
+                <span class="nav-card-title">Current Affairs</span>
             </a>
-            <a href="course-sbi.html" class="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-full text-sm font-medium hover:bg-white/30 hover:scale-105 transition flex items-center gap-2">
-                <i class="fas fa-bullhorn"></i> SBI Clerk Crash Course
+            <a href="resources.html" class="nav-card" id="nav-resources">
+                <div class="nav-card-icon"><i class="fas fa-folder-open"></i></div>
+                <span class="nav-card-title">Resources</span>
             </a>
-            <a href="course-rbi.html" class="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-full text-sm font-medium hover:bg-white/30 hover:scale-105 transition flex items-center gap-2">
-                <i class="fas fa-rocket"></i> RBI Assistant Mains
+            <a href="notifications.html" class="nav-card" id="nav-notifications">
+                <div class="nav-card-icon"><i class="fas fa-bell"></i></div>
+                <span class="nav-card-title">Notifications</span>
+                <span id="sidebar-notif-badge" class="notif-badge hidden">0</span>
             </a>
-            <a href="#courses" class="px-4 py-2 bg-white/20 backdrop-blur-md text-white rounded-full text-sm font-medium hover:bg-white/30 hover:scale-105 transition flex items-center gap-2">
-                <i class="fas fa-lightbulb"></i> Combo Offer: Mock + Course
+            <a href="interview.html" class="nav-card" id="nav-interview">
+                <div class="nav-card-icon"><i class="fas fa-bullseye"></i></div>
+                <span class="nav-card-title">Interview & GD</span>
             </a>
+        </nav>
+
+        <!-- MIDDLE SECTION: Progress Widget & Quick Actions -->
+        <div class="sidebar-widgets-container">
+            <!-- Progress Widget -->
+            <div class="sidebar-widget progress-widget">
+                <div class="widget-header">
+                    <span class="widget-title">🎯 Target Exam</span>
+                    <span class="exam-value">IBPS PO 2026</span>
+                </div>
+                <div class="widget-content">
+                    <div class="widget-progress-bar-container">
+                        <div class="widget-progress-bar">
+                            <div id="sidebar-progress-fill" class="widget-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <span id="sidebar-progress-percent" class="progress-percent">0%</span>
+                    </div>
+                    <div class="widget-stats-grid">
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-courses">0</span>
+                            <span class="widget-stat-label">Enrolled</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-mocks">0</span>
+                            <span class="widget-stat-label">Mocks</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-accuracy">0%</span>
+                            <span class="widget-stat-label">Accuracy</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-streak">0 Days</span>
+                            <span class="widget-stat-label">Streak</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Section -->
+            <div class="sidebar-widget quick-actions-widget">
+                <span class="widget-title">Quick Actions</span>
+                <div class="quick-actions-grid">
+                    <a href="index.html#user-stats" class="quick-action-btn" id="qa-resume">
+                        <i class="fas fa-play"></i> Resume Learning
+                    </a>
+                    <a href="#" class="quick-action-btn" id="qa-mock">
+                        <i class="fas fa-stopwatch"></i> Take Mock Test
+                    </a>
+                    <a href="index.html#courses" class="quick-action-btn" id="qa-browse">
+                        <i class="fas fa-search"></i> Browse Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM SECTION: Profile, Theme Switcher & Logout -->
+        <div class="sidebar-bottom">
+            <div class="sidebar-profile-card" id="sidebar-profile">
+                <div class="profile-avatar" id="sidebar-avatar">G</div>
+                <div class="profile-info">
+                    <span class="profile-name" id="sidebar-username">Guest Aspirant</span>
+                    <span class="profile-role">Student</span>
+                </div>
+            </div>
+
+            <div class="sidebar-actions">
+                <button id="sidebar-theme-toggle" class="sidebar-action-btn" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+                <button id="sidebar-logout-btn" class="sidebar-action-btn logout-btn hidden" onclick="handleLogout()" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Sidebar overlay for mobile drawer backdrop -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Premium Featured Offers Ticker -->
+    <div class="featured-offers-bar">
+        <div class="offers-wrapper">
+            <div class="offers-track">
+                <a href="course-sbi.html" class="offer-pill">
+                    <span class="offer-emoji">🎯</span>
+                    <span class="offer-title">SBI Victory Batch 2026</span>
+                    <span class="offer-badge badge-trending">Trending</span>
+                </a>
+                <a href="course-rbi.html" class="offer-pill">
+                    <span class="offer-emoji">🎯</span>
+                    <span class="offer-title">RBI Assistant Complete Course</span>
+                    <span class="offer-badge badge-popular">Popular</span>
+                </a>
+                <a href="course-ibps.html" class="offer-pill">
+                    <span class="offer-emoji">🎯</span>
+                    <span class="offer-title">IBPS Clerk Crash Course</span>
+                    <span class="offer-badge badge-live">Live Batch</span>
+                </a>
+                <a href="#courses" class="offer-pill">
+                    <span class="offer-emoji">🎯</span>
+                    <span class="offer-title">Premium Combo Offer</span>
+                    <span class="offer-badge badge-save">Save 50%</span>
+                </a>
+                
+                <!-- Duplicates for seamless loop -->
+                <a href="course-sbi.html" class="offer-pill">
+                    <span class="offer-emoji">🎯</span>
+                    <span class="offer-title">SBI Victory Batch 2026</span>
+                    <span class="offer-badge badge-trending">Trending</span>
+                </a>
+                <a href="course-rbi.html" class="offer-pill">
+                    <span class="offer-emoji">🎯</span>
+                    <span class="offer-title">RBI Assistant Complete Course</span>
+                    <span class="offer-badge badge-popular">Popular</span>
+                </a>
+                <a href="course-ibps.html" class="offer-pill">
+                    <span class="offer-emoji">🎯</span>
+                    <span class="offer-title">IBPS Clerk Crash Course</span>
+                    <span class="offer-badge badge-live">Live Batch</span>
+                </a>
+                <a href="#courses" class="offer-pill">
+                    <span class="offer-emoji">🎯</span>
+                    <span class="offer-title">Premium Combo Offer</span>
+                    <span class="offer-badge badge-save">Save 50%</span>
+                </a>
+            </div>
         </div>
     </div>
 
     <header class="sticky-header">
+        <!-- Top Notification Train (Always Visible Ticker) -->
+        <div class="top-notification-train" id="top-notification-train">
+            <div class="train-wrapper">
+                <div class="train-track" id="train-track-content">
+                    <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
+                    <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
+                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
+                    <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
+                    <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
+                    <!-- Duplicates for seamless loop -->
+                    <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
+                    <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
+                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
+                    <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
+                    <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
+                </div>
+            </div>
+            <!-- Live Status Widget -->
+            <div class="live-status-widget">
+                <span class="live-indicator">
+                    <span class="pulse-dot"></span>
+                    LIVE
+                </span>
+                <span class="live-count">12 Updates Today</span>
+            </div>
+        </div>
+
         <nav class="nav-bar">
             <div class="nav-left">
-                <button id="sidebar-toggle" class="btn btn-outline" style="padding: 10px; border-radius: 12px;">
+                <button id="mobile-sidebar-toggle" class="mobile-toggle-btn" aria-label="Toggle Navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a href="index.html" class="logo-link">
+                <a href="index.html" class="logo-link" aria-label="Go to Homepage">
                     <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="nav-logo">
                 </a>
             </div>
             <div class="nav-right">
+                <!-- Premium Notification Bell and Dropdown -->
+                <div class="nav-notification-container" id="nav-notif-container">
+                    <button id="nav-notif-bell" class="nav-notif-bell-btn" aria-label="Toggle Notifications Dropdown">
+                        <i class="fas fa-bell"></i>
+                        <span id="nav-notif-bell-badge" class="notif-bell-badge hidden">0</span>
+                    </button>
+                    <div id="nav-notif-dropdown" class="nav-notif-dropdown-panel hidden">
+                        <div class="dropdown-header">
+                            <h3>Notifications</h3>
+                            <button id="mark-all-read-btn" class="mark-all-read-link">Mark all as read</button>
+                        </div>
+                        <div class="dropdown-tabs">
+                            <button class="dropdown-tab-btn active" data-priority="all">All</button>
+                            <button class="dropdown-tab-btn" data-priority="high">🚨 High</button>
+                            <button class="dropdown-tab-btn" data-priority="medium">⚡ Med</button>
+                            <button class="dropdown-tab-btn" data-priority="general">📢 Gen</button>
+                        </div>
+                        <div class="dropdown-list" id="dropdown-notif-list">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="notifications.html" class="see-all-link">See All Notifications &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="header-auth-btn">
                     <a href="auth.html" class="btn btn-primary">Login</a>
                 </div>
@@ -117,116 +272,159 @@
         </nav>
     </header>
 
-    <!-- Sidebar Navigation -->
-    <div id="sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <h3 style="font-weight: 700;">Menu</h3>
-            <button id="sidebar-close" class="close-btn">&times;</button>
-        </div>
-        <div class="sidebar-content">
-            <div class="sidebar-section">
-                <h4>Main</h4>
-                <ul>
-                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="#courses"><i class="fas fa-book-open"></i> My Courses</a></li>
-                    <li><a href="#mock-tests"><i class="fas fa-file-signature"></i> Mock Tests</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-section">
-                <h4>Course Series</h4>
-                <ul>
-                    <li><a href="course-ibps.html"><i class="fas fa-university"></i> IBPS Series</a></li>
-                    <li><a href="course-sbi.html"><i class="fas fa-landmark"></i> SBI Series</a></li>
-                    <li><a href="course-rbi.html"><i class="fas fa-piggy-bank"></i> RBI Series</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-section">
-                <h4>PDF STORE</h4>
-                <ul>
-                    <li><a href="RESOURCES/BOOK1.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Book 1</a></li>
-                    <li><a href="RESOURCES/BOOK 2.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Book 2</a></li>
-                    <li><a href="RESOURCES/BOOK 3.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Book 3</a></li>
-                    <li><a href="RESOURCES/BOOK 4.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Book 4</a></li>
-                </ul>
-            </div>
-            <div id="sidebar-auth-section" class="sidebar-section" style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--glass-border);">
-                <a href="auth.html" class="btn btn-primary" style="width: 100%;"><i class="fas fa-sign-in-alt"></i> Login</a>
-            </div>
-        </div>
-    </div>
-    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
 
     <!-- Premium Hero Section -->
-    <section class="hero-wrapper py-24 bg-gradient-to-br from-slate-50 to-indigo-100 relative overflow-hidden">
-        <div class="hero-bg-blobs">
-            <div class="blob blob-1"></div>
-            <div class="blob blob-2"></div>
+    <section class="hero-wrapper relative overflow-hidden min-h-[80vh] flex items-center justify-center">
+        <!-- Abstract Background Elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-[-10%] left-[-5%] w-[40%] h-[60%] bg-indigo-600/10 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[60%] bg-purple-600/10 blur-[120px] rounded-full"></div>
         </div>
-        <div class="hero-main relative z-10">
-            <div class="hero-badge bg-white/80 border border-slate-200 text-indigo-600 px-4 py-1 rounded-full inline-flex items-center gap-2 mb-6 shadow-sm">
-                <i class="fas fa-certificate"></i>
-                <span class="text-sm font-semibold">#1 Ranked Banking Prep Platform</span>
-            </div>
-            <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-wide drop-shadow-sm mb-8" id="welcome-msg">QUASIBANKING CLASSES</h1>
-            <p class="hero-tagline text-indigo-600 font-bold text-xl mb-8">Smart Preparation for Banking Exams</p>
-            <p class="text-slate-600 text-lg leading-relaxed max-w-xl mx-auto mb-14">Elevate your preparation with research-backed curriculum, real-time mock tests, and expert-led video resources.</p>
-            
-            <div class="hero-ctas flex gap-5 justify-center mb-20">
-                <a href="#mock-tests" class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300">Start Mock Test</a>
-                <a href="#courses" class="px-6 py-3 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all duration-300 shadow-sm">Explore Courses</a>
-            </div>
 
-            <div class="feature-highlights grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
-                <div class="feature-pill bg-white border border-slate-200 rounded-2xl p-4 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex items-center gap-4">
-                    <i class="fas fa-bolt text-indigo-500 text-2xl"></i>
-                    <span class="font-semibold text-slate-800">Smart Mock Tests</span>
+        <div class="hero-main relative z-10 container mx-auto px-6 text-center">
+            <div class="reveal active">
+                <div class="hero-badge px-6 py-2 rounded-full inline-flex items-center gap-3 mb-8 border border-indigo-500/20 bg-indigo-500/5 backdrop-blur-md">
+                    <i class="fas fa-crown text-amber-400"></i>
+                    <span class="text-sm font-bold tracking-wider uppercase text-indigo-300">India's Premium Banking Academy</span>
                 </div>
-                <div class="feature-pill bg-white border border-slate-200 rounded-2xl p-4 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex items-center gap-4">
-                    <i class="fas fa-chart-pie text-indigo-500 text-2xl"></i>
-                    <span class="font-semibold text-slate-800">Detailed Analysis</span>
-                </div>
-                <div class="feature-pill bg-white border border-slate-200 rounded-2xl p-4 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex items-center gap-4">
-                    <i class="fas fa-layer-group text-indigo-500 text-2xl"></i>
-                    <span class="font-semibold text-slate-800">Structured Courses</span>
-                </div>
-            </div>
+                
+                <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
+                    <span class="hero-title-primary">QUASI BANKING</span>
+                    <span class="hero-title-accent">CLASSES</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+                    Master the art of banking exams with India's most research-driven curriculum and expert-led mentorship.
+                </p>
 
-            <div class="hero-stats flex justify-center gap-12 mt-16">
-                <div class="stat-item flex flex-col items-center">
-                    <span class="stat-num text-3xl font-bold text-indigo-600">10,000+</span>
-                    <span class="stat-text text-xs uppercase tracking-wider text-slate-500 font-bold">Students</span>
+                <div class="hero-cta-group">
+                    <a href="#courses" class="btn-hero-primary">
+                        <span>Start Learning</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#series" class="btn-hero-secondary">
+                        <i class="fas fa-play-circle"></i>
+                        <span>Explore Series</span>
+                    </a>
                 </div>
-                <div class="stat-item flex flex-col items-center">
-                    <span class="stat-num text-3xl font-bold text-indigo-600">50+</span>
-                    <span class="stat-text text-xs uppercase tracking-wider text-slate-500 font-bold">Mock Tests</span>
-                </div>
-                <div class="stat-item flex flex-col items-center">
-                    <span class="stat-num text-3xl font-bold text-indigo-600">24/7</span>
-                    <span class="stat-text text-xs uppercase tracking-wider text-slate-500 font-bold">Support</span>
+
+                <div class="hero-stats">
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-value">10K+</span>
+                        <span class="hero-stat-label">Aspirants</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-value">95%</span>
+                        <span class="hero-stat-label">Success Rate</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-value">500+</span>
+                        <span class="hero-stat-label">Mock Tests</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-value">24/7</span>
+                        <span class="hero-stat-label">Expert Help</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <main class="section-container">
-        <!-- User Stats (Dynamically shown) -->
-        <section id="user-stats" class="stats-grid hidden">
-            <div class="stat-card">
-                <div style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Courses Enrolled</div>
-                <div id="stat-courses" style="font-size: 2.5rem; font-weight: 800; color: var(--primary-light);">0</div>
-            </div>
-            <div class="stat-card">
-                <div style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Tests Completed</div>
-                <div id="stat-total" style="font-size: 2.5rem; font-weight: 800; color: var(--secondary-color);">0</div>
-            </div>
-            <div class="stat-card">
-                <div style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Avg. Accuracy</div>
-                <div id="stat-avg" style="font-size: 2.5rem; font-weight: 800; color: var(--success-color);">0%</div>
+        <!-- Student Command Center has been moved into the sidebar Dashboard Drawer -->
+
+        <!-- Popular Courses Section (Redesigned) -->
+        <section id="popular-courses" class="popular-courses-section">
+            <h2 class="popular-courses-title">Popular Courses</h2>
+            
+            <div class="popular-carousel-container">
+                <button class="popular-nav-btn prev" id="popular-prev" aria-label="Previous Course"><i class="fas fa-chevron-left"></i></button>
+                <button class="popular-nav-btn next" id="popular-next" aria-label="Next Course"><i class="fas fa-chevron-right"></i></button>
+                
+                <div class="popular-carousel-wrapper">
+                    <div class="popular-carousel-inner" id="popular-carousel">
+                        <!-- Slide 1: SBI Victory Batch -->
+                        <div class="popular-slide" role="group" aria-roledescription="slide" aria-label="1 of 2">
+                            <div class="slide-left">
+                                <div class="featured-logo-wrapper">
+                                    <img src="RESOURCES/COURSES PIC/SBI CLERK MAIN.jpg" alt="SBI Logo" class="featured-logo">
+                                </div>
+                                <div class="badge-combo">COMBO!</div>
+                                <div class="badge-deal">DEAL</div>
+                            </div>
+                            <div class="slide-right">
+                                <h3 class="course-main-title">SBI Victory Batch 2026: Prelims + Mains</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> 400+ Hours of Interactive Live Classes</li>
+                                    <li><i class="fas fa-check-circle"></i> Special Focus on New Pattern DI & Puzzles</li>
+                                    <li><i class="fas fa-check-circle"></i> Comprehensive Study Material & PDF Notes</li>
+                                    <li><i class="fas fa-check-circle"></i> Weekly Mock Tests with Detailed Analysis</li>
+                                    <li><i class="fas fa-check-circle"></i> Personal Mentorship till Selection</li>
+                                </ul>
+                                <div class="sample-qr-container">
+                                    <a href="RESOURCES/COURSE INFO.docx" target="_blank" class="sample-box" style="text-decoration: none;" aria-label="Download PDF Sample">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>PDF SAMPLE</span>
+                                    </a>
+                                    <div class="qr-box" aria-label="Scan QR Code for more info">
+                                        <i class="fas fa-qrcode"></i>
+                                        <span>SCAN HERE</span>
+                                    </div>
+                                </div>
+                                <div class="slide-bottom-info">
+                                    Limited Slots Available: Covering >90% of Bank Syllabus
+                                </div>
+                                <a href="#" class="btn btn-primary mt-8 py-5 text-xl font-bold enroll-btn" data-price="1999" aria-label="Enroll in SBI Victory Batch for ₹1,999">Enroll for ₹1,999</a>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2: RBI Zenith Batch -->
+                        <div class="popular-slide" role="group" aria-roledescription="slide" aria-label="2 of 2">
+                            <div class="slide-left">
+                                <div class="featured-logo-wrapper">
+                                    <img src="RESOURCES/COURSES PIC/RBI.jpg" alt="RBI Logo" class="featured-logo">
+                                </div>
+                                <div class="badge-combo">COMBO!</div>
+                                <div class="badge-deal">DEAL</div>
+                            </div>
+                            <div class="slide-right">
+                                <h3 class="course-main-title">RBI Zenith Batch (Grade B) Phase 1 + 2</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Phase 2 Expert Descriptive Writing Guidance</li>
+                                    <li><i class="fas fa-check-circle"></i> Complete ESI & FM Modules with Notes</li>
+                                    <li><i class="fas fa-check-circle"></i> Based on Latest RBI Selection Patterns</li>
+                                    <li><i class="fas fa-check-circle"></i> Lifetime Access to Recorded Sessions</li>
+                                    <li><i class="fas fa-check-circle"></i> Interview Preparation with Bank Officers</li>
+                                </ul>
+                                <div class="sample-qr-container">
+                                    <a href="RESOURCES/COURSE INFO.docx" target="_blank" class="sample-box" style="text-decoration: none;" aria-label="Download PDF Sample">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>PDF SAMPLE</span>
+                                    </a>
+                                    <div class="qr-box" aria-label="Scan QR Code for more info">
+                                        <i class="fas fa-qrcode"></i>
+                                        <span>SCAN HERE</span>
+                                    </div>
+                                </div>
+                                <div class="slide-bottom-info">
+                                    Expert Mentorship till RBI Grade B Mains 2026
+                                </div>
+                                <a href="#" class="btn btn-primary mt-8 py-5 text-xl font-bold enroll-btn" data-price="2499" aria-label="Enroll in RBI Zenith Batch for ₹2,499">Enroll for ₹2,499</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination-dots" role="tablist" aria-label="Course Slides">
+                    <button class="dot active" role="tab" aria-label="Slide 1" aria-selected="true" aria-controls="popular-carousel"></button>
+                    <button class="dot" role="tab" aria-label="Slide 2" aria-selected="false" aria-controls="popular-carousel"></button>
+                </div>
             </div>
         </section>
 
         <!-- Why Choose Us Section -->
-        <section style="margin-bottom: 120px;">
+        <section style="margin-bottom: 120px;" class="reveal">
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-award text-indigo-500"></i> The Quasi Advantage</h2>
                 <p class="section-subtitle">Empowering thousands of banking aspirants with research-driven pedagogy and modern learning tools.</p>
@@ -235,12 +433,12 @@
                 <div class="modern-card">
                     <div class="series-icon text-indigo-500"><i class="fas fa-brain"></i></div>
                     <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Smart Learning</h3>
-                    <p style="color: var(--text-muted);">Adaptive curriculum that evolves with your performance, focusing on your weak areas automatically.</p>
+                    <p style="color: var(--text-muted);">Adaptive curriculum that evolves with your performance, focusing on your growth automatically.</p>
                 </div>
                 <div class="modern-card">
-                    <div class="series-icon text-cyan-500"><i class="fas fa-chart-line"></i></div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Advanced Analytics</h3>
-                    <p style="color: var(--text-muted);">Deep-dive insights into your accuracy, speed, and time-management for every single question.</p>
+                    <div class="series-icon text-cyan-500"><i class="fas fa-file-alt"></i></div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 15px;">Quality Material</h3>
+                    <p style="color: var(--text-muted);">Comprehensive study materials and PDFs designed by industry experts for maximum retention.</p>
                 </div>
                 <div class="modern-card">
                     <div class="series-icon text-amber-500"><i class="fas fa-user-tie"></i></div>
@@ -251,7 +449,7 @@
         </section>
 
         <!-- Exam Series Section -->
-        <section id="series" style="margin-bottom: 120px;">
+        <section id="series" style="margin-bottom: 120px;" class="reveal">
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-university text-indigo-500"></i> Specialized Exam Series</h2>
                 <p class="section-subtitle">Meticulously crafted paths for every major banking recruitment in India.</p>
@@ -261,31 +459,39 @@
                     <div class="series-logo-wrap" style="width: 80px; height: 80px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--glass-border); background: white; padding: 10px; display: flex; align-items: center; justify-content: center;">
                         <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
-                    <h3 style="font-size: 1.5rem;">IBPS Excellence</h3>
-                    <p style="color: var(--text-muted);">Master the IBPS PO, Clerk, and RRB patterns with 5000+ practice questions.</p>
+                    <h3 style="font-size: 1.5rem;">IBPS Series</h3>
+                    <p style="color: var(--text-muted);">Master IBPS PO & Clerk patterns with comprehensive syllabus coverage.</p>
                     <span style="color: var(--primary-light); font-weight: 600; margin-top: auto;">Explore Path &rarr;</span>
                 </a>
                 <a href="course-sbi.html" class="series-card modern-card">
                     <div class="series-logo-wrap" style="width: 80px; height: 80px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--glass-border); background: white; padding: 10px; display: flex; align-items: center; justify-content: center;">
                         <img src="RESOURCES/COURSES PIC/SBI CLERK MAIN.jpg" alt="SBI" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
-                    <h3 style="font-size: 1.5rem;">SBI Mastery</h3>
-                    <p style="color: var(--text-muted);">High-octane preparation for SBI PO & Clerk, the gold standard of banking jobs.</p>
+                    <h3 style="font-size: 1.5rem;">SBI Series</h3>
+                    <p style="color: var(--text-muted);">High-octane preparation for SBI PO & Clerk, the gold standard of banking.</p>
                     <span style="color: var(--secondary-color); font-weight: 600; margin-top: auto;">Explore Path &rarr;</span>
                 </a>
                 <a href="course-rbi.html" class="series-card modern-card">
                     <div class="series-logo-wrap" style="width: 80px; height: 80px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--glass-border); background: white; padding: 10px; display: flex; align-items: center; justify-content: center;">
                         <img src="RESOURCES/COURSES PIC/RBI.jpg" alt="RBI" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
-                    <h3 style="font-size: 1.5rem;">RBI Grade B / Asst</h3>
-                    <p style="color: var(--text-muted);">Premium training for India's central bank, covering Phase 1 and Phase 2 depth.</p>
+                    <h3 style="font-size: 1.5rem;">RBI Series</h3>
+                    <p style="color: var(--text-muted);">Premium training for Grade B & Assistant with descriptive writing practice.</p>
                     <span style="color: var(--accent-color); font-weight: 600; margin-top: auto;">Explore Path &rarr;</span>
+                </a>
+                <a href="#courses" class="series-card modern-card">
+                    <div class="series-logo-wrap" style="width: 80px; height: 80px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--glass-border); background: white; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                        <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="RRB" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <h3 style="font-size: 1.5rem;">RRB Series</h3>
+                    <p style="color: var(--text-muted);">Targeted resources for Regional Rural Banks (PO, Clerk & Officer Scale).</p>
+                    <span style="color: #10b981; font-weight: 600; margin-top: auto;">Explore Path &rarr;</span>
                 </a>
             </div>
         </section>
 
         <!-- Featured Courses -->
-        <section id="courses" style="margin-bottom: 120px;">
+        <section id="courses" style="margin-bottom: 120px;" class="reveal">
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-graduation-cap text-indigo-500"></i> Most Enrolled Courses</h2>
                 <p class="section-subtitle">Join our top-rated batches and start your selection journey today.</p>
@@ -297,237 +503,365 @@
                 
                 <div class="carousel-wrapper" id="course-carousel">
                     <!-- SBI Clerk -->
+                    <div class="course-card relative group" style="flex: 0 0 320px;">
+                        <div class="absolute top-4 left-4 z-10 px-3 py-1 bg-amber-500 text-white text-[10px] font-bold rounded-full shadow-lg uppercase tracking-wider">Bestseller</div>
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/SBI CLERK MAIN.jpg" alt="SBI Clerk">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">SBI Clerk 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Master high-level puzzles and DI to secure your clerk position!</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.9</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(2.5k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="999" style="width: 100%;">Enroll for ₹999</a>
+                        </div>
+                    </div>
+
+                    <!-- SBI PO -->
+                    <div class="course-card relative group" style="flex: 0 0 320px;">
+                        <div class="absolute top-4 left-4 z-10 px-3 py-1 bg-indigo-500 text-white text-[10px] font-bold rounded-full shadow-lg uppercase tracking-wider">Premium</div>
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/SBI CLERK MAIN.jpg" alt="SBI PO">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">SBI PO 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Elite preparation with case-based reasoning and interview prep.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.9</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(1.2k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="1499" style="width: 100%;">Enroll for ₹1499</a>
+                        </div>
+                    </div>
+
+                    <!-- IBPS Clerk -->
+                    <div class="course-card relative group" style="flex: 0 0 320px;">
+                        <div class="absolute top-4 left-4 z-10 px-3 py-1 bg-emerald-500 text-white text-[10px] font-bold rounded-full shadow-lg uppercase tracking-wider">New</div>
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS Clerk">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">IBPS Clerk 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Crush the cutoff with full syllabus coverage and daily quizzes.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.7</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(3.1k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="899" style="width: 100%;">Enroll for ₹899</a>
+                        </div>
+                    </div>
+
+                    <!-- IBPS RRB PO -->
                     <div class="course-card" style="flex: 0 0 320px;">
-                    <div class="course-banner">
-                        <img src="RESOURCES/COURSES PIC/SBI CLERK MAIN.jpg" alt="SBI Clerk">
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">SBI Clerk Ultimate</h3>
-                        <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Full Prelims + Mains coverage with conceptual clarity.</p>
-                        <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.9</span>
-                            <span style="color: var(--text-muted); font-size: 0.8rem;">(2.5k reviews)</span>
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS RRB PO">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">IBPS RRB PO 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Secure your RRB PO role with targeted resources and video lessons.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.8</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(1.5k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="1199" style="width: 100%;">Enroll for ₹1199</a>
                         </div>
                     </div>
-                    <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
-                        <a href="https://appx.co.in/course/sbi-clerk" target="_blank" class="btn btn-primary" style="width: 100%;">Enroll for ₹999</a>
-                    </div>
-                </div>
 
-                <!-- IBPS PO -->
-                <div class="course-card" style="flex: 0 0 320px;">
-                    <div class="course-banner">
-                        <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS PO">
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">IBPS PO Target 2024</h3>
-                        <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Intensive batch focused on Speed & Accuracy.</p>
-                        <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.8</span>
-                            <span style="color: var(--text-muted); font-size: 0.8rem;">(1.8k reviews)</span>
+                    <!-- IBPS RRB Clerk -->
+                    <div class="course-card" style="flex: 0 0 320px;">
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS RRB Clerk">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">IBPS RRB Clerk 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Step into banking with absolute confidence and PYQ practice.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.8</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(2.2k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="799" style="width: 100%;">Enroll for ₹799</a>
                         </div>
                     </div>
-                    <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
-                        <a href="https://appx.co.in/course/ibps-po" target="_blank" class="btn btn-primary" style="width: 100%;">Enroll for ₹1299</a>
-                    </div>
-                </div>
 
-                <!-- RBI Grade B -->
-                <div class="course-card" style="flex: 0 0 320px;">
-                    <div class="course-banner">
-                        <img src="RESOURCES/COURSES PIC/RBI.jpg" alt="RBI Grade B">
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">RBI Grade B Officer</h3>
-                        <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Specialized Phase 1 & 2 preparation with ESI/FM.</p>
-                        <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
-                            <span style="color: #fbbf24;"><i class="fas fa-star"></i> 5.0</span>
-                            <span style="color: var(--text-muted); font-size: 0.8rem;">(900 reviews)</span>
+                    <!-- RBI Grade-B -->
+                    <div class="course-card" style="flex: 0 0 320px;">
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/RBI.jpg" alt="RBI Grade-B">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">RBI Grade-B 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Premium Phase 2 preparation and descriptive answer writing.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 5.0</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(1.2k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="2499" style="width: 100%;">Enroll for ₹2499</a>
                         </div>
                     </div>
-                    <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
-                        <a href="https://appx.co.in/course/rbi-grade-b" target="_blank" class="btn btn-primary" style="width: 100%;">Enroll for ₹2499</a>
+
+                    <!-- IBPS PO/MT -->
+                    <div class="course-card" style="flex: 0 0 320px;">
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS PO/MT">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">IBPS PO/MT 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Conquer PO/MT exams with a winning strategy for speed and accuracy.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.8</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(2.8k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="1299" style="width: 100%;">Enroll for ₹1299</a>
+                        </div>
+                    </div>
+
+                    <!-- RRB Officer Scale-I -->
+                    <div class="course-card" style="flex: 0 0 320px;">
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="RRB Officer Scale-I">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">RRB Officer Scale-I 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">End-to-end syllabus coverage for the RRB Officer Scale-I role.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.7</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(1.1k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="1099" style="width: 100%;">Enroll for ₹1099</a>
+                        </div>
+                    </div>
+
+                    <!-- IBPS RRB Office Assistant -->
+                    <div class="course-card" style="flex: 0 0 320px;">
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS RRB Office Assistant">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">IBPS RRB Office Assistant 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Comprehensive practice sets and sectional practice for RRB Office Assistant.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.8</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(1.9k reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="699" style="width: 100%;">Enroll for ₹699</a>
+                        </div>
+                    </div>
+
+                    <!-- RBI Office Assistant -->
+                    <div class="course-card" style="flex: 0 0 320px;">
+                        <div class="course-banner">
+                            <img src="RESOURCES/COURSES PIC/RBI.jpg" alt="RBI Office Assistant">
+                        </div>
+                        <div class="course-content">
+                            <h3 class="course-title">RBI Office Assistant 2026</h3>
+                            <p class="course-subtitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Join RBI with elite preparation and financial awareness modules.</p>
+                            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
+                                <span style="color: #fbbf24;"><i class="fas fa-star"></i> 4.9</span>
+                                <span style="color: var(--text-muted); font-size: 0.8rem;">(850 reviews)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 24px; border-top: 1px solid var(--glass-border);">
+                            <a href="#" class="btn btn-primary enroll-btn" data-price="1999" style="width: 100%;">Enroll for ₹1999</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Mock Tests Section -->
-        <section id="mock-tests">
+        <!-- Contact & Support Section -->
+        <section id="contact-support-section" class="mb-[120px] reveal">
             <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-stopwatch text-indigo-500"></i> Practice Mock Tests (3 Free)</h2>
-                <p class="section-subtitle">Experience the exact exam interface before the big day.</p>
+                <h2 class="section-title"><i class="fas fa-headset text-indigo-500"></i> Contact & Support</h2>
+                <p class="section-subtitle">Need assistance with your banking preparation? Get in touch with us today.</p>
             </div>
-            <div class="card-grid">
-                <!-- Mock Test 1 -->
-                <div class="modern-card" style="display: flex; flex-direction: column; gap: 20px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Free</span>
-                        <span style="color: var(--text-muted); font-size: 0.8rem;"><i class="far fa-clock"></i> 60 Mins</span>
-                    </div>
-                    <div>
-                        <h3 style="font-size: 1.4rem; margin-bottom: 10px;">IBPS PO Prelims Mock #1</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">30 Questions covering Quant, Reasoning, and English. Detailed analysis provided.</p>
-                    </div>
-                    <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                        <div style="display: flex; -space-x-2">
-                            <img src="https://ui-avatars.com/api/?name=User+1" class="w-8 h-8 rounded-full border-2 border-[#1e293b]" alt="">
-                            <img src="https://ui-avatars.com/api/?name=User+2" class="w-8 h-8 rounded-full border-2 border-[#1e293b]" alt="">
-                            <span style="margin-left: 10px; font-size: 0.8rem; color: var(--text-muted);">250+ taking now</span>
-                        </div>
-                        <a href="mock-test.html?id=1" class="btn btn-outline hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all" style="padding: 10px 20px; font-size: 0.85rem;">Attempt Test</a>
-                    </div>
-                </div>
 
-                <!-- Mock Test 2 -->
-                <div class="modern-card" style="display: flex; flex-direction: column; gap: 20px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Free</span>
-                        <span style="color: var(--text-muted); font-size: 0.8rem;"><i class="far fa-clock"></i> 60 Mins</span>
-                    </div>
-                    <div>
-                        <h3 style="font-size: 1.4rem; margin-bottom: 10px;">SBI Clerk Prelims Mock #2</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">30 Premium Questions covering Quant, Reasoning, and English.</p>
-                    </div>
-                    <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                        <div style="display: flex; -space-x-2">
-                            <img src="https://ui-avatars.com/api/?name=User+3" class="w-8 h-8 rounded-full border-2 border-[#1e293b]" alt="">
-                            <img src="https://ui-avatars.com/api/?name=User+4" class="w-8 h-8 rounded-full border-2 border-[#1e293b]" alt="">
-                            <span style="margin-left: 10px; font-size: 0.8rem; color: var(--text-muted);">180+ taking now</span>
-                        </div>
-                        <a href="mock-test.html?id=2" class="btn btn-outline hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all" style="padding: 10px 20px; font-size: 0.85rem;">Attempt Test</a>
-                    </div>
+            <!-- Contact Cards Grid -->
+            <div class="contact-grid mb-[60px]" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+                <div class="contact-card">
+                    <div class="contact-icon text-indigo-500"><i class="fas fa-envelope"></i></div>
+                    <h3>Email Support</h3>
+                    <p class="contact-detail">support@quasibanking.com</p>
+                    <p class="contact-desc">We respond to email queries within 24 hours.</p>
                 </div>
+                <div class="contact-card">
+                    <div class="contact-icon text-cyan-500"><i class="fas fa-phone-alt"></i></div>
+                    <h3>Phone Support</h3>
+                    <p class="contact-detail">+91 98765 43210</p>
+                    <p class="contact-desc">Available for voice calls during office hours.</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon text-amber-500"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Office Address</h3>
+                    <p class="contact-detail">New Delhi, India</p>
+                    <p class="contact-desc">Visit our mentoring head office for career counseling.</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon text-emerald-500"><i class="fas fa-clock"></i></div>
+                    <h3>Working Hours</h3>
+                    <p class="contact-detail">Mon - Sat: 9 AM - 6 PM</p>
+                    <p class="contact-desc">Closed on national holidays and Sundays.</p>
+                </div>
+            </div>
 
-                <!-- Mock Test 3 -->
-                <div class="modern-card" style="display: flex; flex-direction: column; gap: 20px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Free</span>
-                        <span style="color: var(--text-muted); font-size: 0.8rem;"><i class="far fa-clock"></i> 60 Mins</span>
-                    </div>
-                    <div>
-                        <h3 style="font-size: 1.4rem; margin-bottom: 10px;">RBI Assistant Prelims Mock #3</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">High-level 30 Questions mimicking the exact real exam.</p>
-                    </div>
-                    <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
-                        <div style="display: flex; -space-x-2">
-                            <img src="https://ui-avatars.com/api/?name=User+5" class="w-8 h-8 rounded-full border-2 border-[#1e293b]" alt="">
-                            <img src="https://ui-avatars.com/api/?name=User+6" class="w-8 h-8 rounded-full border-2 border-[#1e293b]" alt="">
-                            <span style="margin-left: 10px; font-size: 0.8rem; color: var(--text-muted);">320+ taking now</span>
+            <!-- Support Form Wrapper -->
+            <div class="support-wrapper">
+                <!-- Support Form -->
+                <div class="support-form-card" style="width: 100%; max-width: 800px; margin: 0 auto;">
+                    <h2>Send Us a Message</h2>
+                    <p class="form-instruction">Please fill in your details and choose a category. We will route your message to the correct support team.</p>
+                    
+                    <form id="contact-form" class="support-form" novalidate>
+                        <div id="contact-success" class="contact-toast hidden success-msg">
+                            <i class="fas fa-check-circle"></i> Message Sent! Our team will get back to you within 24 hours.
                         </div>
-                        <a href="mock-test.html?id=3" class="btn btn-outline hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all" style="padding: 10px 20px; font-size: 0.85rem;">Attempt Test</a>
-                    </div>
+                        <div id="contact-error" class="contact-toast hidden error-msg">
+                            <i class="fas fa-exclamation-circle"></i> Please fill in all required fields correctly.
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-name">Full Name *</label>
+                                <input type="text" id="contact-name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email Address *</label>
+                                <input type="email" id="contact-email" name="email" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-category">Category *</label>
+                            <select id="contact-category" name="category" required>
+                                <option value="" disabled selected>Select Query Category</option>
+                                <option value="technical">Technical Issue</option>
+                                <option value="course">Course Query</option>
+                                <option value="payment">Payment Issue</option>
+                                <option value="mocktest">Mock Test Issue</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-subject">Subject *</label>
+                            <input type="text" id="contact-subject" name="subject" placeholder="What is this regarding?" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Message *</label>
+                            <textarea id="contact-message" name="message" rows="6" placeholder="Write your detailed query here..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <span>Send Message</span> <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
+
     </main>
 
-    <footer class="footer-bg" style="background: rgba(15, 23, 42, 0.95); padding-top: 100px;">
-        <div class="footer-content">
-            <div>
-                <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="Logo" class="nav-logo" style="height: 60px; margin-bottom: 25px;">
-                <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">QuasiBanking Academy is India's leading research-driven Edutech platform for banking aspirants. We combine technology with expert pedagogy to make quality education accessible to everyone.</p>
-                <div class="flex gap-4">
-                    <a href="http://www.youtube.com/@QuasiBankingClasses-h4w" target="_blank" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-telegram"></i></a>
-                    <a href="https://www.instagram.com/quasibankingclasses?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-instagram"></i></a>
-                </div>
+    <!-- Gradient divider above premium footer -->
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
+    <footer class="premium-footer">
+        <div class="premium-footer-backdrop"></div>
+        <div class="premium-footer-content">
+            <!-- Left Section -->
+            <div class="flex flex-col items-start">
+                <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="Logo" class="nav-logo" style="height: 60px; margin-bottom: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <h3 class="footer-brand-title">QUASIBANKING CLASSES</h3>
+                <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                    India’s Premium Banking Exam Preparation Platform
+                </p>
             </div>
+
+            <!-- Center Section -->
             <div>
-                <h4 style="color: white; margin-bottom: 25px; font-size: 1.1rem; font-weight: 700;">Our Series</h4>
-                <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px;">
-                    <li><a href="course-ibps.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">IBPS PO / Clerk</a></li>
-                    <li><a href="course-sbi.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">SBI PO / Clerk</a></li>
-                    <li><a href="course-rbi.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">RBI Grade B</a></li>
-                    <li><a href="mock-test.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">Mock Test Series</a></li>
+                <h4 class="footer-section-title">Quick Links</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="#courses" class="footer-nav-link">Courses</a></li>
+                    <li><a href="#courses" class="footer-nav-link">Mock Tests</a></li>
+                    <li><a href="course-ibps.html" class="footer-nav-link">Current Affairs</a></li>
+                    <li><a href="#series" class="footer-nav-link">About Us</a></li>
                 </ul>
             </div>
+
+            <!-- Right Section -->
             <div>
-                <h4 style="color: white; margin-bottom: 25px; font-size: 1.1rem; font-weight: 700;">Support</h4>
-                <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px;">
-                    <li><a href="#" style="color: var(--text-muted); text-decoration: none;">Student Portal</a></li>
-                    <li><a href="#" style="color: var(--text-muted); text-decoration: none;">Refund Policy</a></li>
-                    <li><a href="#" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a></li>
-                    <li><a href="mailto:support@quasibanking.com" style="color: var(--text-muted); text-decoration: none;">Email Support</a></li>
+                <h4 class="footer-section-title">Resources</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="#" class="footer-nav-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-nav-link">Terms & Conditions</a></li>
+                    <li><a href="#" class="footer-nav-link">Refund Policy</a></li>
+                    <li><a href="mailto:support@quasibanking.com" class="footer-nav-link">Contact</a></li>
                 </ul>
             </div>
         </div>
-        <div style="max-width: 1300px; margin: 80px auto 0; padding: 30px 24px; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-            &copy; 2024 QuasiBanking Academy Private Limited. All Rights Reserved. Crafted for future Bankers.
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom-bar">
+            <span>&copy; 2026 QuasiBanking Classes. All Rights Reserved. Crafted for future bankers.</span>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/quasibankingclasses" target="_blank" rel="noopener noreferrer" class="social-glow-btn instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-glow-btn telegram" aria-label="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="http://www.youtube.com/@QuasiBankingClasses-h4w" target="_blank" rel="noopener noreferrer" class="social-glow-btn youtube" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-glow-btn linkedin" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
         </div>
     </footer>
 
-    <!-- Course Preview Modal -->
+    <!-- Simplified Course Preview Modal -->
     <div id="course-modal" class="modal-overlay">
-        <div class="modal-content bg-[#1e293b] border border-gray-700 rounded-[32px] p-8 max-w-[500px] w-[90%] relative shadow-2xl transition-all duration-300">
+        <div class="modal-content bg-[#1e293b] border border-gray-700 rounded-[32px] p-10 max-w-[450px] w-[90%] relative shadow-2xl transition-all duration-300">
             <button class="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl transition" id="modal-close">&times;</button>
             
             <div class="modal-body text-center">
-                <!-- Header Section -->
-                <div class="text-sm text-indigo-400 font-semibold mb-2 flex items-center justify-center gap-2">
-                    <span class="px-3 py-1 bg-indigo-500/10 rounded-full">🔥 Bestseller</span>
-                </div>
+                <h2 class="text-3xl font-extrabold text-white mb-4" id="modal-title">Course Title</h2>
+                <div class="w-16 h-1 bg-indigo-500 mx-auto mb-6 rounded-full"></div>
                 
-                <div class="w-20 h-20 bg-indigo-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl text-indigo-500" id="modal-icon">
-                    <i class="fas fa-university"></i>
-                </div>
-                
-                <h2 class="text-3xl font-extrabold text-white mb-2" id="modal-title">Course Title</h2>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6" id="modal-desc">Detailed course description will go here.</p>
+                <p class="text-gray-300 text-base leading-relaxed mb-8" id="modal-desc">
+                    Detailed course description will go here.
+                </p>
 
-                <!-- Pricing Section -->
-                <div class="flex items-center justify-center gap-4 mt-4">
-                    <span class="text-3xl font-bold text-white">₹999</span>
-                    <span class="line-through text-gray-500 text-lg">₹1999</span>
-                    <span class="text-green-400 font-bold px-2 py-1 bg-green-400/10 rounded-lg text-xs">50% OFF</span>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8">
+                    <div class="text-sm text-gray-400 uppercase tracking-widest mb-1">One-time Investment</div>
+                    <div class="text-4xl font-black text-white" id="modal-price">₹0</div>
                 </div>
 
-                <!-- Urgency -->
-                <div class="text-sm text-red-400 mt-3 font-medium flex items-center justify-center gap-2">
-                    <i class="fas fa-clock"></i> Limited time offer
-                </div>
-
-                <div class="w-full h-[1px] bg-gray-700/50 my-6"></div>
-
-                <!-- Feature List -->
-                <div class="space-y-3 text-left mb-6">
-                    <div class="flex items-center gap-3 text-gray-300 text-sm">
-                        <i class="fas fa-check text-indigo-500"></i>
-                        <span>100+ Full-Length Mock Tests</span>
-                    </div>
-                    <div class="flex items-center gap-3 text-gray-300 text-sm">
-                        <i class="fas fa-check text-indigo-500"></i>
-                        <span>Live & Recorded Video Lectures</span>
-                    </div>
-                    <div class="flex items-center gap-3 text-gray-300 text-sm">
-                        <i class="fas fa-check text-indigo-500"></i>
-                        <span>Detailed Performance Analytics</span>
-                    </div>
-                    <div class="flex items-center gap-3 text-gray-300 text-sm">
-                        <i class="fas fa-check text-indigo-500"></i>
-                        <span>24/7 Expert Doubt Support</span>
-                    </div>
-                </div>
-
-                <!-- Trust Element -->
-                <div class="text-sm text-gray-400 mb-6 flex items-center justify-center gap-2">
-                    <span class="flex -space-x-2">
-                        <div class="w-6 h-6 rounded-full bg-indigo-500 border-2 border-[#1e293b]"></div>
-                        <div class="w-6 h-6 rounded-full bg-purple-500 border-2 border-[#1e293b]"></div>
-                        <div class="w-6 h-6 rounded-full bg-blue-500 border-2 border-[#1e293b]"></div>
-                    </span>
-                    <span class="ml-2 font-medium">10,000+ students enrolled</span>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="space-y-3">
-                    <a href="#" id="modal-cta" target="_blank" class="block w-full py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold shadow-lg shadow-indigo-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all text-center">
-                        Enroll Now 🚀
-                    </a>
-                    <button class="w-full py-3 rounded-xl border border-gray-600 text-gray-300 font-semibold hover:bg-gray-800 hover:border-gray-500 transition-all">
-                        View Full Details
-                    </button>
-                </div>
+                <!-- Action Button -->
+                <button id="modal-cta" class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold shadow-lg shadow-indigo-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all text-center text-lg">
+                    Confirm & Enroll Now 🚀
+                </button>
             </div>
         </div>
     </div>
@@ -547,8 +881,8 @@
                     <div class="text-center">
                         <h2 class="text-2xl font-bold text-white mb-1" id="payment-course-title">SBI Clerk 2024</h2>
                         <div class="flex items-center justify-center gap-3">
-                            <span class="text-3xl font-extrabold text-white">₹999</span>
-                            <span class="text-lg text-gray-500 line-through">₹1999</span>
+                            <span class="text-3xl font-extrabold text-white" id="payment-price">₹999</span>
+                            <span class="text-lg text-gray-500 line-through" id="payment-original-price">₹1999</span>
                         </div>
                         <p class="text-sm text-red-400 font-medium mt-1 italic">Limited time offer</p>
                     </div>
@@ -596,18 +930,13 @@
                         <p class="text-gray-400 mt-2" id="payment-success-msg">Welcome to SBI Clerk Batch 🎉</p>
                     </div>
                     <button id="payment-success-close" class="w-full py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all active:scale-95">
-                        Go to Dashboard
+                        Return to Dashboard
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Firebase Compat SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="auth.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>

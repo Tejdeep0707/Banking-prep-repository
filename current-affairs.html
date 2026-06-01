@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Affairs Hub | QUASIBANKING</title>
+    <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Premium Layout for Current Affairs Hub */
+        .ca-hub-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .ca-hub-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sidebar Styling */
+        .ca-hub-sidebar {
+            background: rgba(30, 37, 56, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            z-index: 10;
+        }
+
+        .sidebar-filter-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+        }
+
+        .ca-sidebar-filters {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ca-sidebar-filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+        }
+
+        .ca-sidebar-filter-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        .ca-sidebar-filter-btn.active {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+            border-color: rgba(129, 140, 248, 0.4);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .ca-sidebar-filter-btn .filter-icon {
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+        }
+
+        /* Feed Styling */
+        .ca-hub-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Detailed Article Card Design */
+        .ca-article-card {
+            background: rgba(30, 37, 56, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .ca-article-card:hover {
+            border-color: rgba(129, 140, 248, 0.3);
+            background: rgba(30, 37, 56, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .ca-card-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .badge-priority-high {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .badge-priority-medium {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .badge-priority-info {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .ca-article-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .ca-card-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Structured Why It Matters / Exam Relevance Blocks */
+        .card-details-block {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 3px solid rgba(129, 140, 248, 0.5);
+        }
+
+        .detail-item {
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .detail-item-title {
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .detail-item-content {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .card-relevance-pill {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.88rem;
+        }
+
+        .card-relevance-pill strong {
+            color: #e9d5ff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .card-relevance-pill span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Card footer action rows */
+        .ca-card-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 16px;
+        }
+
+        .card-actions-left {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Study Materials Design styling */
+        .materials-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .materials-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .materials-box {
+            background: rgba(30, 37, 56, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .materials-box-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .materials-box-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .capsules-grid-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .capsule-download-card-new {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .capsule-download-card-new:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .capsule-new-badge {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 65px;
+        }
+
+        .capsule-new-badge.monthly {
+            background: linear-gradient(135deg, #ec4899, #f43f5e);
+        }
+
+        .capsule-new-badge.static {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+
+        .capsule-new-badge.survey {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .capsule-new-badge.budget {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .capsule-new-details {
+            flex: 1;
+        }
+
+        .capsule-new-details h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0 0 4px 0;
+        }
+
+        .capsule-new-details p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+        }
+
+        .capsule-coming-soon-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .capsule-download-btn {
+            font-size: 0.8rem !important;
+            padding: 8px 14px !important;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Premium Dashboard Sidebar -->
+    <aside id="dashboard-sidebar" class="premium-sidebar">
+        <!-- TOP SECTION: Logo, Brand & Tagline -->
+        <div class="sidebar-top">
+            <a href="index.html" class="sidebar-logo-link">
+                <div class="sidebar-logo-container">
+                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="sidebar-logo">
+                </div>
+                <div class="sidebar-brand-wrapper">
+                    <span class="sidebar-brand-name">QUASIBANKING</span>
+                    <span class="sidebar-tagline">India's Premium Banking Platform</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- MAIN NAVIGATION: Premium Interactive Navigation Cards -->
+        <nav class="sidebar-nav">
+            <a href="index.html#user-stats" class="nav-card" id="nav-dashboard">
+                <div class="nav-card-icon"><i class="fas fa-home"></i></div>
+                <span class="nav-card-title">Dashboard</span>
+            </a>
+            <a href="index.html#courses" class="nav-card" id="nav-courses">
+                <div class="nav-card-icon"><i class="fas fa-book"></i></div>
+                <span class="nav-card-title">Courses</span>
+            </a>
+            <a href="#" class="nav-card" id="nav-mocks">
+                <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
+                <span class="nav-card-title">Mock Tests</span>
+            </a>
+            <a href="current-affairs.html" class="nav-card active" id="nav-affairs">
+                <div class="nav-card-icon"><i class="fas fa-newspaper"></i></div>
+                <span class="nav-card-title">Current Affairs</span>
+            </a>
+            <a href="resources.html" class="nav-card" id="nav-resources">
+                <div class="nav-card-icon"><i class="fas fa-folder-open"></i></div>
+                <span class="nav-card-title">Resources</span>
+            </a>
+            <a href="notifications.html" class="nav-card" id="nav-notifications">
+                <div class="nav-card-icon"><i class="fas fa-bell"></i></div>
+                <span class="nav-card-title">Notifications</span>
+                <span id="sidebar-notif-badge" class="notif-badge hidden">0</span>
+            </a>
+            <a href="interview.html" class="nav-card" id="nav-interview">
+                <div class="nav-card-icon"><i class="fas fa-bullseye"></i></div>
+                <span class="nav-card-title">Interview & GD</span>
+            </a>
+        </nav>
+
+        <!-- MIDDLE SECTION: Progress Widget & Quick Actions -->
+        <div class="sidebar-widgets-container">
+            <!-- Progress Widget -->
+            <div class="sidebar-widget progress-widget">
+                <div class="widget-header">
+                    <span class="widget-title">🎯 Target Exam</span>
+                    <span class="exam-value">IBPS PO 2026</span>
+                </div>
+                <div class="widget-content">
+                    <div class="widget-progress-bar-container">
+                        <div class="widget-progress-bar">
+                            <div id="sidebar-progress-fill" class="widget-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <span id="sidebar-progress-percent" class="progress-percent">0%</span>
+                    </div>
+                    <div class="widget-stats-grid">
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-courses">0</span>
+                            <span class="widget-stat-label">Enrolled</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-mocks">0</span>
+                            <span class="widget-stat-label">Mocks</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-accuracy">0%</span>
+                            <span class="widget-stat-label">Accuracy</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-streak">0 Days</span>
+                            <span class="widget-stat-label">Streak</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Section -->
+            <div class="sidebar-widget quick-actions-widget">
+                <span class="widget-title">Quick Actions</span>
+                <div class="quick-actions-grid">
+                    <a href="index.html#user-stats" class="quick-action-btn" id="qa-resume">
+                        <i class="fas fa-play"></i> Resume Learning
+                    </a>
+                    <a href="#" class="quick-action-btn" id="qa-mock">
+                        <i class="fas fa-stopwatch"></i> Take Mock Test
+                    </a>
+                    <a href="index.html#courses" class="quick-action-btn" id="qa-browse">
+                        <i class="fas fa-search"></i> Browse Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM SECTION: Profile, Theme Switcher & Logout -->
+        <div class="sidebar-bottom">
+            <div class="sidebar-profile-card" id="sidebar-profile">
+                <div class="profile-avatar" id="sidebar-avatar">G</div>
+                <div class="profile-info">
+                    <span class="profile-name" id="sidebar-username">Guest Aspirant</span>
+                    <span class="profile-role">Student</span>
+                </div>
+            </div>
+
+            <div class="sidebar-actions">
+                <button id="sidebar-theme-toggle" class="sidebar-action-btn" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+                <button id="sidebar-logout-btn" class="sidebar-action-btn logout-btn hidden" onclick="handleLogout()" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Sidebar overlay for mobile drawer backdrop -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <header class="sticky-header">
+        <!-- Top Notification Train (Always Visible Ticker) -->
+        <div class="top-notification-train" id="top-notification-train">
+            <div class="train-wrapper">
+                <div class="train-track" id="train-track-content">
+                    <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
+                    <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
+                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
+                    <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
+                    <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
+                    <!-- Duplicates for seamless loop -->
+                    <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
+                    <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
+                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
+                    <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
+                    <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
+                </div>
+            </div>
+            <!-- Live Status Widget -->
+            <div class="live-status-widget">
+                <span class="live-indicator">
+                    <span class="pulse-dot"></span>
+                    LIVE
+                </span>
+                <span class="live-count">12 Updates Today</span>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <div class="nav-left">
+                <button id="mobile-sidebar-toggle" class="mobile-toggle-btn" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="index.html" class="logo-link" aria-label="Go to Homepage">
+                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="nav-logo">
+                </a>
+            </div>
+            <div class="nav-right">
+                <!-- Premium Notification Bell and Dropdown -->
+                <div class="nav-notification-container" id="nav-notif-container">
+                    <button id="nav-notif-bell" class="nav-notif-bell-btn" aria-label="Toggle Notifications Dropdown">
+                        <i class="fas fa-bell"></i>
+                        <span id="nav-notif-bell-badge" class="notif-bell-badge hidden">0</span>
+                    </button>
+                    <div id="nav-notif-dropdown" class="nav-notif-dropdown-panel hidden">
+                        <div class="dropdown-header">
+                            <h3>Notifications</h3>
+                            <button id="mark-all-read-btn" class="mark-all-read-link">Mark all as read</button>
+                        </div>
+                        <div class="dropdown-tabs">
+                            <button class="dropdown-tab-btn active" data-priority="all">All</button>
+                            <button class="dropdown-tab-btn" data-priority="high">🚨 High</button>
+                            <button class="dropdown-tab-btn" data-priority="medium">⚡ Med</button>
+                            <button class="dropdown-tab-btn" data-priority="general">📢 Gen</button>
+                        </div>
+                        <div class="dropdown-list" id="dropdown-notif-list">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="notifications.html" class="see-all-link">See All Notifications &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="header-auth-btn">
+                    <a href="auth.html" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="section-container reveal">
+        <!-- Hero Section -->
+        <section class="support-hero">
+            <div class="hero-badge px-6 py-2 rounded-full inline-flex items-center gap-3 mb-6 border border-indigo-500/20 bg-indigo-500/5 backdrop-blur-md">
+                <i class="fas fa-newspaper text-indigo-400"></i>
+                <span class="text-sm font-bold tracking-wider uppercase text-indigo-300">Daily Knowledge Portal</span>
+            </div>
+            <h1 class="support-title">Current Affairs Hub</h1>
+            <p class="support-subtitle">Daily dynamic articles, topic relevance analyses, monthly study files, and quiz checkpoints tailored for future bankers.</p>
+        </section>
+
+
+        <!-- 🔥 TODAY'S MUST READ SECTION -->
+        <section class="must-read-section mb-[50px]" id="must-read-section">
+            <div class="must-read-header">
+                <h2 class="must-read-title"><i class="fas fa-fire text-amber-500"></i> Today's Must Read</h2>
+            </div>
+            <div class="must-read-card" id="must-read-container">
+                <!-- Populated dynamically by current-affairs.js -->
+                <div class="must-read-loader">Loading daily featured article...</div>
+            </div>
+        </section>
+
+        <!-- Current Affairs Premium Hub Section -->
+        <section class="ca-hub-section mb-[60px]">
+            <div class="ca-hub-layout">
+                <!-- Left Sidebar Category Filters -->
+                <aside class="ca-hub-sidebar">
+                    <h3 class="sidebar-filter-title"><i class="fas fa-filter"></i> Category Filters</h3>
+                    <div class="ca-sidebar-filters">
+                        <button class="ca-sidebar-filter-btn active" data-category="today-important">
+                            <span class="filter-icon">🌟</span>
+                            <span class="filter-text">Today's Important</span>
+                        </button>
+                        <button class="ca-sidebar-filter-btn" data-category="banking">
+                            <span class="filter-icon">📘</span>
+                            <span class="filter-text">Banking Affairs</span>
+                        </button>
+                        <button class="ca-sidebar-filter-btn" data-category="national">
+                            <span class="filter-icon">🇮🇳</span>
+                            <span class="filter-text">National Affairs</span>
+                        </button>
+                        <button class="ca-sidebar-filter-btn" data-category="international">
+                            <span class="filter-icon">🌍</span>
+                            <span class="filter-text">International Affairs</span>
+                        </button>
+                        <button class="ca-sidebar-filter-btn" data-category="business">
+                            <span class="filter-icon">📈</span>
+                            <span class="filter-text">Economy & Finance</span>
+                        </button>
+                        <button class="ca-sidebar-filter-btn" data-category="schemes">
+                            <span class="filter-icon">📋</span>
+                            <span class="filter-text">Government Schemes</span>
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- Right Feed Column -->
+                <div class="ca-hub-feed">
+                    <!-- Search Current Affairs -->
+                    <div class="ca-feed-search-wrapper">
+                        <div class="notif-search-container" style="margin-bottom: 0;">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="ca-search-input" class="notif-search-bar" placeholder="Search banking news, regulations, or scheme details...">
+                        </div>
+                    </div>
+
+                    <!-- Articles Shelf -->
+                    <div class="ca-articles-grid" id="ca-articles-list">
+                        <div class="ca-loader">Fetching latest current affairs...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
+    <footer class="premium-footer">
+        <div class="premium-footer-backdrop"></div>
+        <div class="premium-footer-content">
+            <div class="flex flex-col items-start">
+                <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="Logo" class="nav-logo" style="height: 60px; margin-bottom: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <h3 class="footer-brand-title">QUASIBANKING CLASSES</h3>
+                <p class="text-slate-400 text-sm mt-3 leading-relaxed">India’s Premium Banking Exam Preparation Platform</p>
+            </div>
+            <div>
+                <h4 class="footer-section-title">Quick Links</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html#courses" class="footer-nav-link">Courses</a></li>
+                    <li><a href="index.html#mock-tests" class="footer-nav-link">Mock Tests</a></li>
+                    <li><a href="current-affairs.html" class="footer-nav-link">Current Affairs</a></li>
+                    <li><a href="index.html#series" class="footer-nav-link">About Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-section-title">Resources</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="#" class="footer-nav-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-nav-link">Terms & Conditions</a></li>
+                    <li><a href="#" class="footer-nav-link">Refund Policy</a></li>
+                    <li><a href="contact.html" class="footer-nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-bottom-bar">
+            <span>&copy; 2026 QuasiBanking Classes. All Rights Reserved. Crafted for future bankers.</span>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/quasibankingclasses" target="_blank" rel="noopener noreferrer" class="social-glow-btn instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-glow-btn telegram" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="http://www.youtube.com/@QuasiBankingClasses-h4w" target="_blank" rel="noopener noreferrer" class="social-glow-btn youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-glow-btn linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Premium Summary Modal for Current Affairs -->
+    <div id="ca-summary-modal" class="modal-overlay hidden">
+        <div class="modal-content ca-modal-content">
+            <button class="modal-close-btn" id="ca-modal-close">&times;</button>
+            <div class="modal-header-notif">
+                <span class="badge" id="ca-modal-importance-badge">High Importance</span>
+                <span class="badge badge-category" id="ca-modal-category-badge">Banking</span>
+                <span class="modal-date-val" id="ca-modal-date"><i class="far fa-calendar-alt"></i> 2026-05-29</span>
+            </div>
+            <h2 id="ca-modal-title">Article Headline</h2>
+            <div class="modal-scroll-area">
+                <div class="modal-detail-section">
+                    <span class="modal-section-subtitle">Detailed Explanation</span>
+                    <p id="ca-modal-explanation">Loading detail explanation...</p>
+                </div>
+                <div class="modal-detail-section relevance-section">
+                    <span class="modal-section-subtitle"><i class="fas fa-graduation-cap"></i> Exam Relevance for Bankers</span>
+                    <p id="ca-modal-relevance">Loading relevance info...</p>
+                </div>
+                <div class="modal-detail-section keyfacts-section">
+                    <span class="modal-section-subtitle"><i class="fas fa-list-ul"></i> Key Facts to Remember</span>
+                    <ul id="ca-modal-keyfacts" class="modal-list-bullets">
+                        <!-- Populated dynamically -->
+                    </ul>
+                </div>
+                <div class="modal-detail-section memory-section">
+                    <span class="modal-section-subtitle"><i class="fas fa-brain"></i> Memory Shortcuts & Revision Points</span>
+                    <p id="ca-modal-memory">Loading memory points...</p>
+                </div>
+                <div class="modal-detail-section questions-section">
+                    <span class="modal-section-subtitle"><i class="fas fa-question-circle"></i> Possible Exam Questions</span>
+                    <ul id="ca-modal-questions" class="modal-list-bullets">
+                        <!-- Populated dynamically -->
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer-notif">
+                <a href="#" target="_blank" class="btn btn-primary" id="ca-modal-external-link">
+                    <span>Read Full Source Article</span> <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

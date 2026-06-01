@@ -6,7 +6,7 @@
     <title>SBI Series - QUASIBANKING EXAMS</title>
     <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .course-info-box {
             background: var(--glass-bg);
@@ -54,11 +54,165 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
+    <!-- Premium Dashboard Sidebar -->
+    <aside id="dashboard-sidebar" class="premium-sidebar">
+        <!-- TOP SECTION: Logo, Brand & Tagline -->
+        <div class="sidebar-top">
+            <a href="index.html" class="sidebar-logo-link">
+                <div class="sidebar-logo-container">
+                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="sidebar-logo">
+                </div>
+                <div class="sidebar-brand-wrapper">
+                    <span class="sidebar-brand-name">QUASIBANKING</span>
+                    <span class="sidebar-tagline">India's Premium Banking Platform</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- MAIN NAVIGATION: Premium Interactive Navigation Cards -->
+        <nav class="sidebar-nav">
+            <a href="index.html#user-stats" class="nav-card" id="nav-dashboard">
+                <div class="nav-card-icon"><i class="fas fa-home"></i></div>
+                <span class="nav-card-title">Dashboard</span>
+            </a>
+            <a href="index.html#courses" class="nav-card active" id="nav-courses">
+                <div class="nav-card-icon"><i class="fas fa-book"></i></div>
+                <span class="nav-card-title">Courses</span>
+            </a>
+            <a href="#" class="nav-card" id="nav-mocks">
+                <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
+                <span class="nav-card-title">Mock Tests</span>
+            </a>
+            <a href="current-affairs.html" class="nav-card" id="nav-affairs">
+                <div class="nav-card-icon"><i class="fas fa-newspaper"></i></div>
+                <span class="nav-card-title">Current Affairs</span>
+            </a>
+            <a href="resources.html" class="nav-card" id="nav-resources">
+                <div class="nav-card-icon"><i class="fas fa-folder-open"></i></div>
+                <span class="nav-card-title">Resources</span>
+            </a>
+            <a href="notifications.html" class="nav-card" id="nav-notifications">
+                <div class="nav-card-icon"><i class="fas fa-bell"></i></div>
+                <span class="nav-card-title">Notifications</span>
+                <span id="sidebar-notif-badge" class="notif-badge hidden">0</span>
+            </a>
+            <a href="interview.html" class="nav-card" id="nav-interview">
+                <div class="nav-card-icon"><i class="fas fa-bullseye"></i></div>
+                <span class="nav-card-title">Interview & GD</span>
+            </a>
+        </nav>
+
+        <!-- MIDDLE SECTION: Progress Widget & Quick Actions -->
+        <div class="sidebar-widgets-container">
+            <!-- Progress Widget -->
+            <div class="sidebar-widget progress-widget">
+                <div class="widget-header">
+                    <span class="widget-title">🎯 Target Exam</span>
+                    <span class="exam-value">IBPS PO 2026</span>
+                </div>
+                <div class="widget-content">
+                    <div class="widget-progress-bar-container">
+                        <div class="widget-progress-bar">
+                            <div id="sidebar-progress-fill" class="widget-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <span id="sidebar-progress-percent" class="progress-percent">0%</span>
+                    </div>
+                    <div class="widget-stats-grid">
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-courses">0</span>
+                            <span class="widget-stat-label">Enrolled</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-mocks">0</span>
+                            <span class="widget-stat-label">Mocks</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-accuracy">0%</span>
+                            <span class="widget-stat-label">Accuracy</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-streak">0 Days</span>
+                            <span class="widget-stat-label">Streak</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Section -->
+            <div class="sidebar-widget quick-actions-widget">
+                <span class="widget-title">Quick Actions</span>
+                <div class="quick-actions-grid">
+                    <a href="index.html#user-stats" class="quick-action-btn" id="qa-resume">
+                        <i class="fas fa-play"></i> Resume Learning
+                    </a>
+                    <a href="#" class="quick-action-btn" id="qa-mock">
+                        <i class="fas fa-stopwatch"></i> Take Mock Test
+                    </a>
+                    <a href="index.html#courses" class="quick-action-btn" id="qa-browse">
+                        <i class="fas fa-search"></i> Browse Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM SECTION: Profile, Theme Switcher & Logout -->
+        <div class="sidebar-bottom">
+            <div class="sidebar-profile-card" id="sidebar-profile">
+                <div class="profile-avatar" id="sidebar-avatar">G</div>
+                <div class="profile-info">
+                    <span class="profile-name" id="sidebar-username">Guest Aspirant</span>
+                    <span class="profile-role">Student</span>
+                </div>
+            </div>
+
+            <div class="sidebar-actions">
+                <button id="sidebar-theme-toggle" class="sidebar-action-btn" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+                <button id="sidebar-logout-btn" class="sidebar-action-btn logout-btn hidden" onclick="handleLogout()" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Sidebar overlay for mobile drawer backdrop -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
     <header class="sticky-header">
+        <!-- Top Notification Train (Always Visible Ticker) -->
+        <div class="top-notification-train" id="top-notification-train">
+            <div class="train-wrapper">
+                <div class="train-track" id="train-track-content">
+                    <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
+                    <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
+                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
+                    <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
+                    <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
+                    <!-- Duplicates for seamless loop -->
+                    <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
+                    <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
+                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
+                    <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
+                    <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
+                </div>
+            </div>
+            <!-- Live Status Widget -->
+            <div class="live-status-widget">
+                <span class="live-indicator">
+                    <span class="pulse-dot"></span>
+                    LIVE
+                </span>
+                <span class="live-count">12 Updates Today</span>
+            </div>
+        </div>
+
         <nav class="nav-bar">
             <div class="nav-left">
-                <button id="sidebar-toggle" class="sidebar-btn" style="padding: 10px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--glass-border); color: var(--text-main); cursor: pointer;">
+                <button id="mobile-sidebar-toggle" class="mobile-toggle-btn" aria-label="Toggle Navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <a href="index.html" class="logo-link">
@@ -66,6 +220,32 @@
                 </a>
             </div>
             <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+                <!-- Premium Notification Bell and Dropdown -->
+                <div class="nav-notification-container" id="nav-notif-container">
+                    <button id="nav-notif-bell" class="nav-notif-bell-btn" aria-label="Toggle Notifications Dropdown">
+                        <i class="fas fa-bell"></i>
+                        <span id="nav-notif-bell-badge" class="notif-bell-badge hidden">0</span>
+                    </button>
+                    <div id="nav-notif-dropdown" class="nav-notif-dropdown-panel hidden">
+                        <div class="dropdown-header">
+                            <h3>Notifications</h3>
+                            <button id="mark-all-read-btn" class="mark-all-read-link">Mark all as read</button>
+                        </div>
+                        <div class="dropdown-tabs">
+                            <button class="dropdown-tab-btn active" data-priority="all">All</button>
+                            <button class="dropdown-tab-btn" data-priority="high">🚨 High</button>
+                            <button class="dropdown-tab-btn" data-priority="medium">⚡ Med</button>
+                            <button class="dropdown-tab-btn" data-priority="general">📢 Gen</button>
+                        </div>
+                        <div class="dropdown-list" id="dropdown-notif-list">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="notifications.html" class="see-all-link">See All Notifications &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="header-auth-btn">
                     <a href="auth.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem; border-radius: 12px;">Login</a>
                 </div>
@@ -73,44 +253,7 @@
         </nav>
     </header>
 
-    <!-- Sidebar Navigation -->
-    <div id="sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <h3>Quick Access</h3>
-            <button id="sidebar-close" class="close-btn">&times;</button>
-        </div>
-        <div class="sidebar-content">
-            <div class="sidebar-section">
-                <h4>Core Features</h4>
-                <ul>
-                    <li><a href="mock-test.html"><i class="fas fa-laptop-code"></i> Mock Tests</a></li>
-                    <li><a href="index.html#features"><i class="fas fa-brain"></i> Quiz Practice</a></li>
-                    <li><a href="index.html#features"><i class="fas fa-chart-line"></i> Performance Tracking</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-section">
-                <h4>Course Series</h4>
-                <ul>
-                    <li><a href="course-ibps.html"><i class="fas fa-university"></i> IBPS Series</a></li>
-                    <li><a href="course-sbi.html"><i class="fas fa-landmark"></i> SBI Series</a></li>
-                    <li><a href="course-rbi.html"><i class="fas fa-piggy-bank"></i> RBI Series</a></li>
-                </ul>
-            </div>
-            <div class="sidebar-section">
-                <h4>PDF STORE</h4>
-                <ul>
-                    <li><a href="RESOURCES/BOOK1.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Book 1</a></li>
-                    <li><a href="RESOURCES/BOOK 2.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Book 2</a></li>
-                    <li><a href="RESOURCES/BOOK 3.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Book 3</a></li>
-                    <li><a href="RESOURCES/BOOK 4.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Book 4</a></li>
-                </ul>
-            </div>
-            <div id="sidebar-auth-section" class="sidebar-section" style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--glass-border);">
-                <a href="auth.html" class="btn btn-primary" style="width: 100%;"><i class="fas fa-sign-in-alt"></i> Login</a>
-            </div>
-        </div>
-    </div>
-    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
 
     <main class="container">
         <div class="course-info-box animate-up">
@@ -142,15 +285,6 @@
                         <i class="fas fa-check-circle" style="color: var(--success-color);"></i> Advanced-level problem solving
                     </div>
                     <div class="stat-box" style="text-align: left;">
-                        <i class="fas fa-check-circle" style="color: var(--success-color);"></i> High-quality mock tests (SBI pattern)
-                    </div>
-                    <div class="stat-box" style="text-align: left;">
-                        <i class="fas fa-check-circle" style="color: var(--success-color);"></i> Case-based reasoning & DI sets
-                    </div>
-                    <div class="stat-box" style="text-align: left;">
-                        <i class="fas fa-check-circle" style="color: var(--success-color);"></i> Interview preparation (for PO)
-                    </div>
-                    <div class="stat-box" style="text-align: left;">
                         <i class="fas fa-check-circle" style="color: var(--success-color);"></i> Comprehensive Banking Notes
                     </div>
                 </div>
@@ -160,8 +294,8 @@
                 <h3 style="color: var(--secondary-color);"><i class="fas fa-bullseye"></i> Best Strategy</h3>
                 <ul class="info-list">
                     <li>Focus on high-level puzzles & DI</li>
-                    <li>Attempt mocks in exam-like conditions</li>
-                    <li>Analyze every mock deeply</li>
+                    <li>Regular practice with conceptual clarity</li>
+                    <li>Deep analysis of practice sets</li>
                 </ul>
             </div>
 
@@ -181,10 +315,6 @@
         <p>&copy; 2024 QuasiBanking Academy. All Rights Reserved.</p>
     </footer>
     <!-- Firebase Compat SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="auth.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>

@@ -3,56 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RBI Series - QUASIBANKING EXAMS</title>
+    <title>Contact Us & Support | QUASIBANKING</title>
     <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        .course-info-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            padding: 60px;
-            border-radius: 32px;
-            box-shadow: var(--shadow-premium);
-            margin-top: 40px;
-        }
-        .info-header {
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 25px;
-            margin-bottom: 40px;
-        }
-        .info-header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-        .info-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .info-list {
-            list-style: none;
-            margin: 20px 0;
-        }
-        .info-list li {
-            margin-bottom: 18px;
-            font-size: 1.1rem;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .info-list li::before {
-            content: "\f058";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--success-color, #10b981);
-        }
-    </style>
 </head>
 <body data-theme="dark">
     <!-- Premium Dashboard Sidebar -->
@@ -76,7 +30,7 @@
                 <div class="nav-card-icon"><i class="fas fa-home"></i></div>
                 <span class="nav-card-title">Dashboard</span>
             </a>
-            <a href="index.html#courses" class="nav-card active" id="nav-courses">
+            <a href="index.html#courses" class="nav-card" id="nav-courses">
                 <div class="nav-card-icon"><i class="fas fa-book"></i></div>
                 <span class="nav-card-title">Courses</span>
             </a>
@@ -253,72 +207,187 @@
         </nav>
     </header>
 
-
-
     <main class="section-container reveal">
-        <div class="course-info-box">
-            <div class="info-header">
-                <h2 style="font-size: 2.5rem; font-weight: 800;">RBI Series</h2>
-                <p>Strategic preparation for India's most prestigious central bank exams.</p>
+        <!-- Hero Section -->
+        <section class="support-hero">
+            <div class="hero-badge px-6 py-2 rounded-full inline-flex items-center gap-3 mb-6 border border-indigo-500/20 bg-indigo-500/5 backdrop-blur-md">
+                <i class="fas fa-headset text-indigo-400"></i>
+                <span class="text-sm font-bold tracking-wider uppercase text-indigo-300">Support Center</span>
             </div>
+            <h1 class="support-title">Need Help?</h1>
+            <p class="support-subtitle">Our team is here to support your banking preparation journey. Get in touch with us today.</p>
+        </section>
 
-            <div class="info-section">
-                <h3><i class="fas fa-info-circle text-indigo-500"></i> Series Overview</h3>
-                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">Our RBI Series is designed specifically for aspirants targeting Grade B (General/DEPR/DSIM) and Assistant positions. We focus on the unique descriptive nature of Phase 2 while ensuring a rock-solid foundation for Phase 1.</p>
+        <!-- Contact Cards Grid -->
+        <section class="contact-grid mb-[80px]">
+            <div class="contact-card">
+                <div class="contact-icon text-indigo-500"><i class="fas fa-envelope"></i></div>
+                <h3>Email Support</h3>
+                <p class="contact-detail">support@quasibanking.com</p>
+                <p class="contact-desc">We respond to email queries within 24 hours.</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon text-cyan-500"><i class="fas fa-phone-alt"></i></div>
+                <h3>Phone Support</h3>
+                <p class="contact-detail">+91 98765 43210</p>
+                <p class="contact-desc">Available for voice calls during office hours.</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon text-amber-500"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Office Address</h3>
+                <p class="contact-detail">New Delhi, India</p>
+                <p class="contact-desc">Visit our mentoring head office for career counseling.</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon text-emerald-500"><i class="fas fa-clock"></i></div>
+                <h3>Working Hours</h3>
+                <p class="contact-detail">Mon - Sat: 9 AM - 6 PM</p>
+                <p class="contact-desc">Closed on national holidays and Sundays.</p>
+            </div>
+        </section>
+
+        <!-- Form & FAQ Container -->
+        <section class="support-wrapper">
+            <!-- Support Form -->
+            <div class="support-form-card">
+                <h2>Send Us a Message</h2>
+                <p class="form-instruction">Please fill in your details and choose a category. We will route your message to the correct support team.</p>
                 
-                <h3 style="margin-top: 40px;"><i class="fas fa-list-check text-indigo-500"></i> What's Included</h3>
-                <ul class="info-list">
-                    <li>Phase 2 Descriptive Writing Practice with Expert Feedback</li>
-                    <li>Specialized ESI & FM Modules based on latest circulars</li>
-                    <li>Current Affairs & Financial Awareness deep-dives</li>
-                    <li>Full-length Mock Tests for Assistant & Grade B</li>
-                    <li>Exclusive Interview Guidance from retired RBI Officers</li>
-                </ul>
+                <form id="contact-form" class="support-form" novalidate>
+                    <div id="contact-success" class="contact-toast hidden success-msg">
+                        <i class="fas fa-check-circle"></i> Message Sent! Our team will get back to you within 24 hours.
+                    </div>
+                    <div id="contact-error" class="contact-toast hidden error-msg">
+                        <i class="fas fa-exclamation-circle"></i> Please fill in all required fields correctly.
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Full Name *</label>
+                            <input type="text" id="contact-name" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email Address *</label>
+                            <input type="email" id="contact-email" name="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-category">Category *</label>
+                        <select id="contact-category" name="category" required>
+                            <option value="" disabled selected>Select Query Category</option>
+                            <option value="technical">Technical Issue</option>
+                            <option value="course">Course Query</option>
+                            <option value="payment">Payment Issue</option>
+                            <option value="mocktest">Mock Test Issue</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-subject">Subject *</label>
+                        <input type="text" id="contact-subject" name="subject" placeholder="What is this regarding?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message">Message *</label>
+                        <textarea id="contact-message" name="message" rows="6" placeholder="Write your detailed query here..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <span>Send Message</span> <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
 
-            <div style="margin-top: 60px; display: flex; gap: 20px;">
-                <a href="index.html#courses" class="btn btn-primary">Browse RBI Batches</a>
-                <a href="index.html" class="btn btn-outline">Back to Dashboard</a>
-            </div>
-        </div>
-    </main>
+            <!-- FAQs accordion -->
+            <div class="faq-accordion-card">
+                <h2>Frequently Asked Questions</h2>
+                <p class="form-instruction">Before reaching out, check out some of our quick answers to common support queries.</p>
 
-    <footer class="footer-bg" style="background: rgba(15, 23, 42, 0.95); padding-top: 100px;">
-        <div class="footer-content">
-            <div>
-                <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="Logo" class="nav-logo" style="height: 60px; margin-bottom: 25px;">
-                <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">QuasiBanking Academy is India's leading research-driven Edutech platform for banking aspirants. We combine technology with expert pedagogy to make quality education accessible to everyone.</p>
-                <div class="flex gap-4">
-                    <a href="http://www.youtube.com/@QuasiBankingClasses-h4w" target="_blank" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-telegram"></i></a>
-                    <a href="https://www.instagram.com/quasibankingclasses?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-instagram"></i></a>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do I enroll in a course?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>To enroll, simply scroll down to our course grid, select the batch you are interested in, click "Enroll Now", and complete the mock transaction simulator using Cards or UPI. You will gain instant access!</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Are mock tests free?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We provide 3 free full-length mock tests to all guest users. Premium subscribers get access to over 50+ topic-specific mock tests and comprehensive syllabus coverage mock tests.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I access courses on mobile?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, QuasiBanking is fully responsive! The dashboard layout adapts beautifully to your mobile, tablet, and desktop views. Video content and PDFs load smoothly across all touch devices.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do I request a refund?</span>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We offer a hassle-free 7-day refund policy. If you are not satisfied with your batch, please raise a ticket under the "Payment Issue" category above, and our support team will process it within 48 hours.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent"></div>
+
+    <footer class="premium-footer">
+        <div class="premium-footer-backdrop"></div>
+        <div class="premium-footer-content">
+            <div class="flex flex-col items-start">
+                <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="Logo" class="nav-logo" style="height: 60px; margin-bottom: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+                <h3 class="footer-brand-title">QUASIBANKING CLASSES</h3>
+                <p class="text-slate-400 text-sm mt-3 leading-relaxed">India’s Premium Banking Exam Preparation Platform</p>
+            </div>
             <div>
-                <h4 style="color: white; margin-bottom: 25px; font-size: 1.1rem; font-weight: 700;">Our Series</h4>
-                <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px;">
-                    <li><a href="course-ibps.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">IBPS Series</a></li>
-                    <li><a href="course-sbi.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">SBI Series</a></li>
-                    <li><a href="course-rbi.html" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">RBI Series</a></li>
-                    <li><a href="index.html#courses" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">RRB Series</a></li>
+                <h4 class="footer-section-title">Quick Links</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html#courses" class="footer-nav-link">Courses</a></li>
+                    <li><a href="index.html#mock-tests" class="footer-nav-link">Mock Tests</a></li>
+                    <li><a href="course-ibps.html" class="footer-nav-link">Current Affairs</a></li>
+                    <li><a href="index.html#series" class="footer-nav-link">About Us</a></li>
                 </ul>
             </div>
             <div>
-                <h4 style="color: white; margin-bottom: 25px; font-size: 1.1rem; font-weight: 700;">Support</h4>
-                <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px;">
-                    <li><a href="#" style="color: var(--text-muted); text-decoration: none;">Student Portal</a></li>
-                    <li><a href="#" style="color: var(--text-muted); text-decoration: none;">Refund Policy</a></li>
-                    <li><a href="#" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a></li>
-                    <li><a href="mailto:support@quasibanking.com" style="color: var(--text-muted); text-decoration: none;">Email Support</a></li>
+                <h4 class="footer-section-title">Resources</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="#" class="footer-nav-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-nav-link">Terms & Conditions</a></li>
+                    <li><a href="#" class="footer-nav-link">Refund Policy</a></li>
+                    <li><a href="contact.html" class="footer-nav-link">Contact</a></li>
                 </ul>
             </div>
         </div>
-        <div style="max-width: 1300px; margin: 80px auto 0; padding: 30px 24px; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-            &copy; 2024 QuasiBanking Academy Private Limited. All Rights Reserved. Crafted for future Bankers.
+        <div class="footer-divider"></div>
+        <div class="footer-bottom-bar">
+            <span>&copy; 2026 QuasiBanking Classes. All Rights Reserved. Crafted for future bankers.</span>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/quasibankingclasses" target="_blank" rel="noopener noreferrer" class="social-glow-btn instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-glow-btn telegram" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="http://www.youtube.com/@QuasiBankingClasses-h4w" target="_blank" rel="noopener noreferrer" class="social-glow-btn youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-glow-btn linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
     </footer>
 
-    <!-- Firebase Compat SDKs -->
     <script type="module" src="main.js"></script>
 </body>
 </html>
