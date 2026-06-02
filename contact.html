@@ -259,10 +259,20 @@
                         <div class="form-group">
                             <label for="contact-name">Full Name *</label>
                             <input type="text" id="contact-name" name="name" placeholder="John Doe" required>
+                            <span class="inline-error hidden"></span>
                         </div>
+                    </div>
+
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="contact-email">Email Address *</label>
                             <input type="email" id="contact-email" name="email" placeholder="john@example.com" required>
+                            <span class="inline-error hidden"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number *</label>
+                            <input type="tel" id="contact-phone" name="phone" placeholder="9876543210" required>
+                            <span class="inline-error hidden"></span>
                         </div>
                     </div>
 
@@ -276,21 +286,29 @@
                             <option value="mocktest">Mock Test Issue</option>
                             <option value="general">General Inquiry</option>
                         </select>
+                        <span class="inline-error hidden"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="contact-subject">Subject *</label>
                         <input type="text" id="contact-subject" name="subject" placeholder="What is this regarding?" required>
+                        <span class="inline-error hidden"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="contact-message">Message *</label>
                         <textarea id="contact-message" name="message" rows="6" placeholder="Write your detailed query here..." required></textarea>
+                        <span class="inline-error hidden"></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary submit-btn">
-                        <span>Send Message</span> <i class="fas fa-paper-plane"></i>
-                    </button>
+                    <div class="form-actions" style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+                        <button type="submit" class="btn btn-primary submit-btn">
+                            <span>Send Message</span> <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <a href="https://wa.me/918520929943?text=Hi%20QuasiBanking%2C%20I%20have%20an%20inquiry." target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 8px; border-radius: 12px; font-weight: 700; padding: 12px 24px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: white; text-decoration: none; font-size: 0.95rem;">
+                            <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1.15rem;"></i> Chat on WhatsApp
+                        </a>
+                    </div>
                 </form>
             </div>
 

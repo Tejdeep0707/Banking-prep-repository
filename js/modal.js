@@ -1,5 +1,6 @@
 import { auth } from '../firebase-app.js';
 import { fetchUserStats } from './dashboard.js';
+import { EMAIL_CONFIG, loadEmailJS } from './emailjs-loader.js';
 
 // DOM Elements Cache
 const elements = {};
@@ -309,93 +310,317 @@ async function triggerRazorpayPayment() {
     }
 }
 
+function ensureCourseModalHTML() {
+    if (document.getElementById('course-modal')) return;
+
+    const modalHTML = `
+    <div id="course-modal" class="modal-overlay">
+        <div class="modal-content bg-[#1e293b] border border-gray-700 rounded-[32px] p-10 max-w-[450px] w-[90%] relative shadow-2xl transition-all duration-300">
+            <button class="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl transition" id="modal-close">&times;</button>
+            
+            <!-- Lead Capture Form Step -->
+            <div id="enroll-form-container">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-extrabold text-white mb-2" id="modal-title">Enroll in Course</h2>
+                    <div class="w-16 h-1 bg-indigo-500 mx-auto mb-4 rounded-full"></div>
+                    <p class="text-gray-400 text-sm">Please fill in your details to start the enrollment process. Our admissions team will reach out immediately.</p>
+                </div>
+
+                <form id="enroll-lead-form" class="space-y-4 text-left" novalidate>
+                    <div id="enroll-success-toast" class="contact-toast hidden success-msg mb-4">
+                        <i class="fas fa-check-circle"></i> Enrollment Inquiry Submitted Successfully
+                    </div>
+                    <div id="enroll-error-toast" class="contact-toast hidden error-msg mb-4">
+                        <i class="fas fa-exclamation-circle"></i> Unable to send message right now. Please try again.
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="enroll-name" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Full Name *</label>
+                        <input type="text" id="enroll-name" name="name" placeholder="John Doe" required class="bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 w-full focus:border-indigo-500 focus:outline-none" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; color: white; width: 100%; box-sizing: border-box;">
+                        <span class="inline-error hidden"></span>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="enroll-phone" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Phone Number *</label>
+                        <input type="tel" id="enroll-phone" name="phone" placeholder="9876543210" required class="bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 w-full focus:border-indigo-500 focus:outline-none" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; color: white; width: 100%; box-sizing: border-box;">
+                        <span class="inline-error hidden"></span>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="enroll-email" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Email Address *</label>
+                        <input type="email" id="enroll-email" name="email" placeholder="john@example.com" required class="bg-white/5 border border-white/10 text-white rounded-xl px-4 py-3 w-full focus:border-indigo-500 focus:outline-none" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; color: white; width: 100%; box-sizing: border-box;">
+                        <span class="inline-error hidden"></span>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label for="enroll-course-name" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Interested Course</label>
+                        <input type="text" id="enroll-course-name" name="course_name" readonly class="bg-white/5 border border-white/10 text-slate-300 rounded-xl px-4 py-3 w-full cursor-not-allowed font-semibold focus:outline-none" value="" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; color: #cbd5e1; width: 100%; box-sizing: border-box;">
+                    </div>
+
+                    <button type="submit" id="enroll-submit-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold shadow-lg shadow-indigo-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all text-center text-lg mt-6" style="border: none; cursor: pointer;">
+                        <span>Submit Inquiry & Enroll</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Lead Capture Success Step -->
+            <div id="enroll-success-container" class="hidden text-center py-6">
+                <div class="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6" style="width: 64px; height: 64px; background: rgba(16,185,129,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                    <i class="fas fa-check text-3xl text-green-500" style="color: #10b981; font-size: 1.8rem;"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2" style="font-size: 1.25rem; font-weight: 800; color: white; margin-bottom: 8px;">✓ Enrollment Inquiry Submitted</h3>
+                <p class="text-slate-400 text-sm mb-8" style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 32px;">Our counseling team will contact you shortly.</p>
+                
+                <div class="flex flex-col gap-3" style="display: flex; flex-direction: column; gap: 12px;">
+                    <a href="https://wa.me/918520929943?text=Hi%20QuasiBanking%2C%20I%20want%20details%20about%20your%20banking%20courses." target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-[#25d366] text-white font-bold rounded-xl shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 text-sm decoration-none" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: #25d366; color: white; border-radius: 12px; font-weight: 700; text-decoration: none; border: none; font-size: 0.9rem; cursor: pointer;">
+                        <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Chat on WhatsApp
+                    </a>
+                    <button id="enroll-success-close-btn" class="w-full py-3 bg-white/5 border border-white/10 text-white font-bold rounded-xl hover:bg-white/10 transition-all active:scale-[0.98] text-sm" style="padding: 12px; background: rgba(255,255,255,0.03); color: white; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); font-weight: 700; font-size: 0.9rem; cursor: pointer;">
+                        Continue Browsing
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = modalHTML;
+    document.body.appendChild(tempDiv.firstElementChild);
+}
+
 function initModals() {
+    ensureCourseModalHTML();
     initElements();
-    const { courseModal, modalClose, modalCTA, paymentClose, paymentSuccessClose, payNowBtn } = elements;
+    
+    // Trigger dynamic loading of EmailJS SDK
+    loadEmailJS();
 
-    // Attach Enroll listeners to all course-card and popular-slide items
-    const attachEnrollListeners = (selector, titleSelector, descSelector) => {
-        document.querySelectorAll(selector).forEach(card => {
-            const enrollBtn = card.querySelector('.enroll-btn');
-            if (!enrollBtn) return;
+    const openEnrollmentLeadModal = (title) => {
+        const enrollForm = document.getElementById('enroll-lead-form');
+        const enrollFormContainer = document.getElementById('enroll-form-container');
+        const enrollSuccessContainer = document.getElementById('enroll-success-container');
+        
+        if (enrollForm) enrollForm.reset();
+        if (enrollFormContainer) enrollFormContainer.classList.remove('hidden');
+        if (enrollSuccessContainer) enrollSuccessContainer.classList.add('hidden');
+        
+        const successToast = document.getElementById('enroll-success-toast');
+        const errorToast = document.getElementById('enroll-error-toast');
+        if (successToast) successToast.classList.add('hidden');
+        if (errorToast) errorToast.classList.add('hidden');
 
-            enrollBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                const titleEl = card.querySelector(titleSelector);
-                const descEl = card.querySelector(descSelector);
-                if (!titleEl || !descEl) return;
-
-                const title = titleEl.innerText;
-                const desc = descEl.innerText;
-                const price = enrollBtn.getAttribute('data-price') || '999';
-
-                if (elements.modalTitle) elements.modalTitle.innerText = title;
-                if (elements.modalDesc) elements.modalDesc.innerText = desc;
-                if (elements.modalPrice) elements.modalPrice.innerText = `₹${price}`;
-
-                if (courseModal) {
-                    courseModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
+        // Clear validation styles
+        const enrollNameEl = document.getElementById('enroll-name');
+        const enrollPhoneEl = document.getElementById('enroll-phone');
+        const enrollEmailEl = document.getElementById('enroll-email');
+        [enrollNameEl, enrollPhoneEl, enrollEmailEl].forEach(el => {
+            if (el) {
+                el.classList.remove('error-input');
+                const inlineErr = el.parentElement.querySelector('.inline-error');
+                if (inlineErr) inlineErr.classList.add('hidden');
+            }
         });
+
+        // Auto-fill course name
+        const courseNameInput = document.getElementById('enroll-course-name');
+        if (courseNameInput) courseNameInput.value = title;
+
+        const courseModal = document.getElementById('course-modal');
+        if (courseModal) {
+            courseModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     };
 
-    attachEnrollListeners('.course-card', '.course-title', '.course-subtitle');
-    attachEnrollListeners('.popular-slide', '.course-main-title', '.feature-list');
-
-    // Close preview modal functions
     const closePreviewModal = () => {
+        const courseModal = document.getElementById('course-modal');
         if (courseModal) {
             courseModal.classList.remove('active');
             document.body.style.overflow = '';
         }
     };
 
-    if (modalClose) {
-        modalClose.addEventListener('click', closePreviewModal);
-    }
+    // Global click interceptor for course enrollment triggers
+    document.addEventListener('click', (e) => {
+        // 1. Enrollment trigger click
+        const target = e.target.closest('button, a');
+        if (target) {
+            const text = target.textContent.trim().toLowerCase();
+            const matchesText = text === 'enroll now' || text === 'join batch' || text === 'register now' || target.classList.contains('enroll-btn');
+            
+            // Exclude payment modal trigger "pay now" and sidebar links
+            if (matchesText && target.id !== 'pay-now-btn' && !target.closest('#payment-modal')) {
+                e.preventDefault();
+                e.stopPropagation();
 
-    if (courseModal) {
-        courseModal.addEventListener('click', (e) => {
-            if (e.target === courseModal) closePreviewModal();
-        });
-    }
+                let courseTitle = "";
+                
+                // Try to find course title
+                if (target.dataset.courseName) {
+                    courseTitle = target.dataset.courseName;
+                } else {
+                    const card = target.closest('.course-card, .popular-slide, .series-card, .course-info-box');
+                    if (card) {
+                        const titleEl = card.querySelector('.course-title, .course-main-title, h2, h3');
+                        if (titleEl) {
+                            courseTitle = titleEl.innerText.trim();
+                        }
+                    }
+                }
 
-    // Modal CTA (Confirm & Enroll) -> opens payment modal
-    if (modalCTA) {
-        modalCTA.addEventListener('click', () => {
-            const title = elements.modalTitle?.innerText || 'SBI Clerk';
-            const price = elements.modalPrice?.innerText?.replace('₹', '') || '999';
+                if (!courseTitle) {
+                    courseTitle = "General Banking Batch";
+                }
+
+                openEnrollmentLeadModal(courseTitle);
+                return;
+            }
+        }
+
+        // 2. Modal close buttons click
+        if (e.target.id === 'modal-close' || e.target.id === 'enroll-success-close-btn') {
             closePreviewModal();
-            openPaymentModal(title, price);
+            return;
+        }
+
+        // 3. Click outside modal content to close
+        const courseModal = document.getElementById('course-modal');
+        if (e.target === courseModal) {
+            closePreviewModal();
+        }
+    });
+
+    // Clear validation error highlights as user types
+    document.addEventListener('input', (e) => {
+        const id = e.target.id;
+        if (id === 'enroll-name' || id === 'enroll-phone' || id === 'enroll-email') {
+            e.target.classList.remove('error-input');
+            const inlineErr = e.target.parentElement.querySelector('.inline-error');
+            if (inlineErr) inlineErr.classList.add('hidden');
+        }
+    });
+
+    // Handle enrollment form submission
+    document.addEventListener('submit', async (e) => {
+        if (e.target.id !== 'enroll-lead-form') return;
+        e.preventDefault();
+
+        const enrollForm = e.target;
+        const enrollFormContainer = document.getElementById('enroll-form-container');
+        const enrollSuccessContainer = document.getElementById('enroll-success-container');
+        const successToast = document.getElementById('enroll-success-toast');
+        const errorToast = document.getElementById('enroll-error-toast');
+        const submitBtn = document.getElementById('enroll-submit-btn');
+        const submitBtnText = submitBtn ? submitBtn.querySelector('span') : null;
+
+        if (successToast) successToast.classList.add('hidden');
+        if (errorToast) errorToast.classList.add('hidden');
+
+        const enrollNameEl = document.getElementById('enroll-name');
+        const enrollPhoneEl = document.getElementById('enroll-phone');
+        const enrollEmailEl = document.getElementById('enroll-email');
+        const enrollCourseNameEl = document.getElementById('enroll-course-name');
+
+        const inputsToValidate = [
+            { el: enrollNameEl, validate: val => val.length >= 2, errorMsg: "Name must be at least 2 characters." },
+            { el: enrollPhoneEl, validate: val => /^\d{10,}$/.test(val.replace(/\D/g, '')), errorMsg: "Phone number must be at least 10 digits." },
+            { el: enrollEmailEl, validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), errorMsg: "Please enter a valid email address." }
+        ];
+
+        let isValid = true;
+        inputsToValidate.forEach(input => {
+            if (!input.el) return;
+            const value = input.el.value.trim();
+            const inlineErr = input.el.parentElement.querySelector('.inline-error');
+            
+            if (!input.validate(value)) {
+                isValid = false;
+                input.el.classList.add('error-input');
+                if (inlineErr) {
+                    inlineErr.textContent = input.errorMsg;
+                    inlineErr.classList.remove('hidden');
+                }
+            } else {
+                input.el.classList.remove('error-input');
+                if (inlineErr) {
+                    inlineErr.classList.add('hidden');
+                }
+            }
         });
-    }
 
-    // Payment Modal closing logic
-    if (paymentClose) {
-        paymentClose.addEventListener('click', closePaymentModal);
-    }
+        if (!isValid) return;
 
-    if (elements.paymentModal) {
-        elements.paymentModal.addEventListener('click', (e) => {
-            if (e.target === elements.paymentModal) closePaymentModal();
-        });
-    }
+        const name = enrollNameEl.value.trim();
+        const phone = enrollPhoneEl.value.trim();
+        const email = enrollEmailEl.value.trim();
+        const courseName = enrollCourseNameEl.value;
+        
+        const timestamp = new Date().toLocaleString();
+        const templateParams = {
+            name: name,
+            phone: phone,
+            email: email,
+            course_name: courseName,
+            subject: `New Enrollment Inquiry - ${courseName}`,
+            page_url: window.location.href,
+            inquiry_source: `Course Enrollment Lead`,
+            timestamp: timestamp
+        };
 
-    if (paymentSuccessClose) {
-        paymentSuccessClose.addEventListener('click', () => {
-            closePaymentModal();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
+        // Disable submit button & show sending state
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            if (submitBtnText) submitBtnText.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+        }
 
-    // Pay Now triggers Razorpay
-    if (payNowBtn) {
-        payNowBtn.addEventListener('click', triggerRazorpayPayment);
-    }
+        const handleFailure = (err) => {
+            let failedList = [];
+            try {
+                failedList = JSON.parse(localStorage.getItem('quasibanking_failed_inquiries') || '[]');
+            } catch(e) {}
+            failedList.push({
+                name: name,
+                phone: phone,
+                email: email,
+                course_name: courseName,
+                page_url: window.location.href,
+                timestamp: timestamp
+            });
+            localStorage.setItem('quasibanking_failed_inquiries', JSON.stringify(failedList));
+
+            if (errorToast) {
+                const errMsg = err ? (err.message || err.text || JSON.stringify(err)) : "EmailJS config missing or SDK failed to load";
+                errorToast.innerHTML = `<i class="fas fa-exclamation-circle"></i> Unable to send message right now. (Detail: ${errMsg}). Please try again or contact us via WhatsApp.`;
+                errorToast.classList.remove('hidden');
+            }
+        };
+
+        try {
+            const emailjs = await loadEmailJS();
+            const keysConfigured = EMAIL_CONFIG.SERVICE_ID && EMAIL_CONFIG.TEMPLATE_ID && EMAIL_CONFIG.PUBLIC_KEY;
+            
+            if (emailjs && keysConfigured) {
+                await emailjs.send(EMAIL_CONFIG.SERVICE_ID, EMAIL_CONFIG.TEMPLATE_ID, templateParams, {
+                    publicKey: EMAIL_CONFIG.PUBLIC_KEY
+                });
+                // Hide form container and show success container
+                if (enrollFormContainer) enrollFormContainer.classList.add('hidden');
+                if (enrollSuccessContainer) enrollSuccessContainer.classList.remove('hidden');
+                enrollForm.reset();
+            } else {
+                console.warn("EmailJS not configured or failed to load. Saving lead to localStorage.");
+                handleFailure("EmailJS SDK not loaded or keys are missing.");
+            }
+        } catch (err) {
+            console.error("EmailJS lead capture failed:", err);
+            handleFailure(err);
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                if (submitBtnText) submitBtnText.innerHTML = 'Submit Inquiry & Enroll';
+            }
+        }
+    });
 }
 
 if (document.readyState === 'loading') {

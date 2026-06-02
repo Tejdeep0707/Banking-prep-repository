@@ -1,4 +1,5 @@
 // QuasiBanking Premium Sidebar & Pages Controller
+import { EMAIL_CONFIG, loadEmailJS } from './emailjs-loader.js';
 
 const CONFIG = {
     APPX_URL: "YOUR_APPX_BATCH_LINK_HERE",
@@ -306,30 +307,68 @@ function initCountdownTimer() {
     const timerInterval = setInterval(updateTimer, 1000);
 }
 
-// 9. Contact form validator and real AJAX submission to FormSubmit.co
+// 9. Contact form validator and real EmailJS submission
 function initSupportForm() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
 
-    contactForm.addEventListener('submit', (e) => {
+    // Trigger EmailJS dynamic script loading in the background
+    loadEmailJS();
+
+    const successToast = document.getElementById('contact-success');
+    const errorToast = document.getElementById('contact-error');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const submitBtnText = submitBtn ? submitBtn.querySelector('span') : null;
+
+    const inputs = [
+        { el: document.getElementById('contact-name'), validate: val => val.length >= 2, errorMsg: "Name must be at least 2 characters." },
+        { el: document.getElementById('contact-email'), validate: val => validateEmail(val), errorMsg: "Please enter a valid email address." },
+        { el: document.getElementById('contact-phone'), validate: val => /^\d{10,}$/.test(val.replace(/\D/g, '')), errorMsg: "Phone number must be at least 10 digits." },
+        { el: document.getElementById('contact-category'), validate: val => val !== "" && val !== null, errorMsg: "Please select a query category." },
+        { el: document.getElementById('contact-subject'), validate: val => val.length > 0, errorMsg: "Subject is required." },
+        { el: document.getElementById('contact-message'), validate: val => val.length >= 10, errorMsg: "Message must be at least 10 characters." }
+    ];
+
+    // Clear validation errors on user typing
+    inputs.forEach(input => {
+        if (!input.el) return;
+        const inlineErr = input.el.parentElement.querySelector('.inline-error');
+        const clearError = () => {
+            input.el.classList.remove('error-input');
+            if (inlineErr) inlineErr.classList.add('hidden');
+        };
+        input.el.addEventListener('input', clearError);
+        input.el.addEventListener('change', clearError);
+    });
+
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const successToast = document.getElementById('contact-success');
-        const errorToast = document.getElementById('contact-error');
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const submitBtnText = submitBtn ? submitBtn.querySelector('span') : null;
-        
         if (successToast) successToast.classList.add('hidden');
         if (errorToast) errorToast.classList.add('hidden');
 
-        // Validation
-        const name = document.getElementById('contact-name').value.trim();
-        const email = document.getElementById('contact-email').value.trim();
-        const category = document.getElementById('contact-category').value;
-        const subject = document.getElementById('contact-subject').value.trim();
-        const message = document.getElementById('contact-message').value.trim();
+        let isValid = true;
+        inputs.forEach(input => {
+            if (!input.el) return;
+            const value = input.el.value.trim();
+            const inlineErr = input.el.parentElement.querySelector('.inline-error');
+            
+            if (!input.validate(value)) {
+                isValid = false;
+                input.el.classList.add('error-input');
+                if (inlineErr) {
+                    inlineErr.textContent = input.errorMsg;
+                    inlineErr.classList.remove('hidden');
+                }
+            } else {
+                input.el.classList.remove('error-input');
+                if (inlineErr) {
+                    inlineErr.classList.add('hidden');
+                }
+            }
+        });
 
-        if (!name || !email || !category || !subject || !message || !validateEmail(email)) {
+        if (!isValid) {
             if (errorToast) {
                 errorToast.innerHTML = `<i class="fas fa-exclamation-circle"></i> Please fill in all required fields correctly.`;
                 errorToast.classList.remove('hidden');
@@ -337,55 +376,83 @@ function initSupportForm() {
             return;
         }
 
-        // Disable button & show sending state
+        // Get submission params
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const phone = document.getElementById('contact-phone').value.trim();
+        const category = document.getElementById('contact-category').value;
+        const subject = document.getElementById('contact-subject').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+        
+        const inquirySource = window.location.pathname.includes('contact.html') ? "Contact Page" : "Homepage Contact Form";
+        const timestamp = new Date().toLocaleString();
+        
+        const templateParams = {
+            name: name,
+            email: email,
+            phone: phone,
+            category: category,
+            subject: subject,
+            message: message,
+            inquiry_source: inquirySource,
+            page_url: window.location.href,
+            timestamp: timestamp
+        };
+
+        // Disable button & show sending state with spinner
         if (submitBtn) {
             submitBtn.disabled = true;
-            if (submitBtnText) submitBtnText.textContent = 'Sending...';
+            if (submitBtnText) submitBtnText.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
         }
 
-        // Send AJAX request to FormSubmit.co
-        fetch("https://formsubmit.co/ajax/tejzzz0707@gmail.com", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
+        const handleFailure = (err) => {
+            let failedList = [];
+            try {
+                failedList = JSON.parse(localStorage.getItem('quasibanking_failed_inquiries') || '[]');
+            } catch(e) {}
+            failedList.push({
                 name: name,
                 email: email,
+                phone: phone,
                 category: category,
                 subject: subject,
-                message: message,
-                _subject: `New Contact Query: ${subject} (${name})`,
-                _template: "table"
-            })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (successToast) {
-                successToast.classList.remove('hidden');
-            }
-            contactForm.reset();
-        })
-        .catch(error => {
-            console.error("FormSubmit Error:", error);
+                timestamp: timestamp
+            });
+            localStorage.setItem('quasibanking_failed_inquiries', JSON.stringify(failedList));
+
             if (errorToast) {
-                errorToast.innerHTML = `<i class="fas fa-exclamation-circle"></i> Connection error. If this is your first submission, please check the inbox for <strong>tejzzz0707@gmail.com</strong> to activate the form, then try again.`;
+                const errMsg = err ? (err.message || err.text || JSON.stringify(err)) : "EmailJS config missing or SDK failed to load";
+                errorToast.innerHTML = `Unable to send message right now. (Detail: ${errMsg}). Please try again or contact us via <a href="https://wa.me/918520929943?text=Hi%20QuasiBanking%2C%20I%20have%20an%20inquiry." target="_blank" rel="noopener noreferrer" style="color: #34d399; font-weight: 700; text-decoration: underline;">WhatsApp</a>.`;
                 errorToast.classList.remove('hidden');
             }
-        })
-        .finally(() => {
-            // Restore button state
+        };
+
+        try {
+            const emailjs = await loadEmailJS();
+            const keysConfigured = EMAIL_CONFIG.SERVICE_ID && EMAIL_CONFIG.TEMPLATE_ID && EMAIL_CONFIG.PUBLIC_KEY;
+            
+            if (emailjs && keysConfigured) {
+                await emailjs.send(EMAIL_CONFIG.SERVICE_ID, EMAIL_CONFIG.TEMPLATE_ID, templateParams, {
+                    publicKey: EMAIL_CONFIG.PUBLIC_KEY
+                });
+                if (successToast) {
+                    successToast.innerHTML = `<i class="fas fa-check-circle"></i> <strong>✓ Message Sent Successfully</strong><br>We've received your inquiry and will get back to you shortly.`;
+                    successToast.classList.remove('hidden');
+                }
+                contactForm.reset();
+            } else {
+                console.warn("EmailJS not configured or failed to load. Saving to localStorage.");
+                handleFailure("EmailJS SDK not loaded or keys are missing.");
+            }
+        } catch (err) {
+            console.error("EmailJS sending failed:", err);
+            handleFailure(err);
+        } finally {
             if (submitBtn) {
                 submitBtn.disabled = false;
-                if (submitBtnText) submitBtnText.textContent = 'Send Message';
+                if (submitBtnText) submitBtnText.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
             }
-        });
+        }
     });
 }
 
