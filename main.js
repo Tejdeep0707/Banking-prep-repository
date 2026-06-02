@@ -9,4 +9,5 @@ import './js/modal.js';
 import './js/sidebar.js';
 import './js/notifications.js';
 import './js/current-affairs.js';
+import './js/mock-simulator.js';
 

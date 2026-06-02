@@ -684,29 +684,18 @@ function updateTrackerUI(topics, mocks, caPct, targetName, aggregate = 0) {
 function bindMockSimulators() {
     const mockButtons = ['onboard-mock-btn', 'cc-mock-btn'];
     
-    const handleMockCompletion = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        let currentMocks = parseInt(localStorage.getItem('quasibanking_mocks_completed') || '0', 10);
-        currentMocks += 1;
-        localStorage.setItem('quasibanking_mocks_completed', currentMocks.toString());
-        
-        const newAccuracy = Math.floor(Math.random() * 20) + 75;
-        localStorage.setItem('quasibanking_accuracy', `${newAccuracy}%`);
-        localStorage.setItem('quasibanking_quiz_accuracy', `${newAccuracy}%`);
-
-        logActivity(`📝 Completed mock exam: SBI PO Mock Test #${currentMocks} (Accuracy: ${newAccuracy}%)`);
-        
-        alert(`🎉 Mock Exam Completed Successfully!\nAccuracy: ${newAccuracy}%\nDashboard and stats updated in the Command Center.`);
-
-        fetchUserStats();
-    };
-
     mockButtons.forEach(btnId => {
         const btn = document.getElementById(btnId);
         if (btn) {
-            btn.onclick = handleMockCompletion;
+            btn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (typeof window.openMockSimulator === 'function') {
+                    window.openMockSimulator();
+                } else {
+                    console.warn("window.openMockSimulator not loaded yet. Attempting default behavior.");
+                }
+            };
         }
     });
 }

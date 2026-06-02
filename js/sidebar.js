@@ -306,7 +306,7 @@ function initCountdownTimer() {
     const timerInterval = setInterval(updateTimer, 1000);
 }
 
-// 9. Contact form validator and simulated response
+// 9. Contact form validator and real AJAX submission to FormSubmit.co
 function initSupportForm() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
@@ -316,6 +316,9 @@ function initSupportForm() {
 
         const successToast = document.getElementById('contact-success');
         const errorToast = document.getElementById('contact-error');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const submitBtnText = submitBtn ? submitBtn.querySelector('span') : null;
+        
         if (successToast) successToast.classList.add('hidden');
         if (errorToast) errorToast.classList.add('hidden');
 
@@ -327,12 +330,62 @@ function initSupportForm() {
         const message = document.getElementById('contact-message').value.trim();
 
         if (!name || !email || !category || !subject || !message || !validateEmail(email)) {
-            if (errorToast) errorToast.classList.remove('hidden');
+            if (errorToast) {
+                errorToast.innerHTML = `<i class="fas fa-exclamation-circle"></i> Please fill in all required fields correctly.`;
+                errorToast.classList.remove('hidden');
+            }
             return;
         }
 
-        if (successToast) successToast.classList.remove('hidden');
-        contactForm.reset();
+        // Disable button & show sending state
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            if (submitBtnText) submitBtnText.textContent = 'Sending...';
+        }
+
+        // Send AJAX request to FormSubmit.co
+        fetch("https://formsubmit.co/ajax/tejzzz0707@gmail.com", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                category: category,
+                subject: subject,
+                message: message,
+                _subject: `New Contact Query: ${subject} (${name})`,
+                _template: "table"
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (successToast) {
+                successToast.classList.remove('hidden');
+            }
+            contactForm.reset();
+        })
+        .catch(error => {
+            console.error("FormSubmit Error:", error);
+            if (errorToast) {
+                errorToast.innerHTML = `<i class="fas fa-exclamation-circle"></i> Connection error. If this is your first submission, please check the inbox for <strong>tejzzz0707@gmail.com</strong> to activate the form, then try again.`;
+                errorToast.classList.remove('hidden');
+            }
+        })
+        .finally(() => {
+            // Restore button state
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                if (submitBtnText) submitBtnText.textContent = 'Send Message';
+            }
+        });
     });
 }
 
