@@ -1,4 +1,6 @@
 // QUASIBANKING Notification Controller - Premium Refined Version
+import { db } from '../firebase-app.js';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 const DEFAULT_NOTIFICATIONS = [
     // === EXAM CATEGORY (5 announcements) ===
@@ -349,10 +351,79 @@ if (!notifications || notifications.length === 0) {
     localStorage.setItem('quasibanking_notifications', JSON.stringify(notifications));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+async function loadFirestoreNotifications() {
+    try {
+        const q = query(collection(db, 'notifications'), orderBy('createdAt', 'desc'));
+        const snap = await getDocs(q);
+        
+        let cached = [];
+        try {
+            cached = JSON.parse(localStorage.getItem('quasibanking_notifications')) || [];
+        } catch (e) {
+            cached = [];
+        }
+
+        const liveNotifs = snap.docs.map(doc => {
+            const data = doc.data();
+            const id = doc.id;
+            
+            const cachedItem = cached.find(item => item.id === id);
+            const isRead = cachedItem ? !!cachedItem.read : false;
+            
+            let dateStr = new Date().toISOString().split('T')[0];
+            if (data.createdAt) {
+                const d = typeof data.createdAt.toDate === 'function' ? data.createdAt.toDate() : new Date(data.createdAt);
+                dateStr = d.toISOString().split('T')[0];
+            }
+
+            return {
+                id: id,
+                title: data.title || "",
+                description: data.desc || "",
+                detailedSummary: data.desc || data.title || "",
+                date: dateStr,
+                category: data.category || "system",
+                priority: data.priority || "general",
+                read: isRead,
+                fullArticleUrl: data.link || "",
+                importance: data.priority === 'high' ? 'Highly critical for banking career candidates.' : 'General announcement.',
+                recommendedPrep: 'Please check the official link and prepare accordingly.'
+            };
+        });
+
+        if (liveNotifs.length > 0) {
+            const merged = [...liveNotifs];
+            
+            DEFAULT_NOTIFICATIONS.forEach(defNotif => {
+                if (!merged.some(n => n.id === defNotif.id)) {
+                    const cachedItem = cached.find(item => item.id === defNotif.id);
+                    if (cachedItem) {
+                        defNotif.read = !!cachedItem.read;
+                    }
+                    merged.push(defNotif);
+                }
+            });
+
+            notifications = merged;
+            localStorage.setItem('quasibanking_notifications', JSON.stringify(notifications));
+            updateNotificationBadges();
+            
+            if (document.getElementById('notif-sections-wrapper')) {
+                renderNotificationCenterReal();
+            }
+        }
+    } catch (e) {
+        console.error("Error loading notifications from Firestore:", e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
     initBellDropdown();
     initNotificationCenter();
     updateNotificationBadges();
+    
+    // Asynchronously fetch live notifications from Firestore
+    await loadFirestoreNotifications();
 });
 
 // Toggle dropdown panel & populate items

@@ -1,4 +1,6 @@
 // QUASIBANKING Current Affairs & Daily Quiz Controller - Premium Version
+import { db } from '../firebase-app.js';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 const DAILY_QUIZ_QUESTIONS = [
     {
@@ -102,6 +104,50 @@ if (document.readyState === 'loading') {
     initApp();
 }
 
+async function loadFirestoreCurrentAffairs() {
+    try {
+        const q = query(collection(db, 'current_affairs'), orderBy('createdAt', 'desc'));
+        const snap = await getDocs(q);
+        
+        const liveArticles = snap.docs.map(doc => {
+            const data = doc.data();
+            const id = doc.id;
+            
+            let dateStr = new Date().toISOString().split('T')[0];
+            if (data.createdAt) {
+                const d = typeof data.createdAt.toDate === 'function' ? data.createdAt.toDate() : new Date(data.createdAt);
+                dateStr = d.toISOString().split('T')[0];
+            }
+
+            return {
+                id: id,
+                category: data.category || "banking",
+                title: data.title || "",
+                summary: data.summary || "",
+                why_it_matters: "Critical updates for general awareness and preparation.",
+                detailed_explanation: data.summary || "",
+                exam_relevance: data.exam ? `Specifically relevant for ${data.exam}.` : "Relevant for all major banking exams.",
+                key_facts: [data.summary || ""],
+                memory_points: "Focus on key dates and macro facts.",
+                exam_questions: ["What was the main topic outlined in this article?"],
+                date: dateStr,
+                importance: "high",
+                reading_time: "3 Min Read",
+                fullArticleUrl: data.source || "https://www.rbi.org.in",
+                ibps_stars: 4,
+                sbi_stars: 4,
+                rbi_stars: 4,
+                is_must_read: false
+            };
+        });
+
+        const uniqueLive = liveArticles.filter(la => !caArticles.some(a => a.id === la.id));
+        caArticles = [...uniqueLive, ...caArticles];
+    } catch (e) {
+        console.error("Error loading current affairs from Firestore:", e);
+    }
+}
+
 // Fetch current affairs articles from data/current-affairs.json
 function loadCurrentAffairsData() {
     const listContainer = document.getElementById('ca-articles-list');
@@ -124,9 +170,13 @@ function loadCurrentAffairsData() {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
         })
-        .then(data => {
-            isLoading = false;
+        .then(async (data) => {
             caArticles = data.articles;
+            
+            // Load live articles from Firestore and prepend them
+            await loadFirestoreCurrentAffairs();
+            
+            isLoading = false;
             renderMustRead();
             
             // Render currently active category

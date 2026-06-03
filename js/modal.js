@@ -316,14 +316,16 @@ function ensureCourseModalHTML() {
     const modalHTML = `
     <div id="course-modal" class="modal-overlay">
         <div class="modal-content bg-[#1e293b] border border-gray-700 rounded-[32px] p-10 max-w-[450px] w-[90%] relative shadow-2xl transition-all duration-300">
-            <button class="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl transition" id="modal-close">&times;</button>
+            <button class="absolute top-4 right-4 w-10 h-10 rounded-full text-gray-400 hover:text-white hover:bg-white/10 flex items-center justify-center transition" id="modal-close" style="background: rgba(255, 255, 255, 0.05); border: none; cursor: pointer;">
+                <i class="fas fa-times text-lg"></i>
+            </button>
             
             <!-- Lead Capture Form Step -->
             <div id="enroll-form-container">
                 <div class="text-center mb-6">
                     <h2 class="text-2xl font-extrabold text-white mb-2" id="modal-title">Enroll in Course</h2>
                     <div class="w-16 h-1 bg-indigo-500 mx-auto mb-4 rounded-full"></div>
-                    <p class="text-gray-400 text-sm">Please fill in your details to start the enrollment process. Our admissions team will reach out immediately.</p>
+                    <p class="text-gray-400 text-sm px-6">Please fill in your details to start the enrollment process. Our admissions team will reach out immediately.</p>
                 </div>
 
                 <form id="enroll-lead-form" class="space-y-4 text-left" novalidate>
@@ -369,7 +371,7 @@ function ensureCourseModalHTML() {
                     <i class="fas fa-check text-3xl text-green-500" style="color: #10b981; font-size: 1.8rem;"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2" style="font-size: 1.25rem; font-weight: 800; color: white; margin-bottom: 8px;">✓ Enrollment Inquiry Submitted</h3>
-                <p class="text-slate-400 text-sm mb-8" style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 32px;">Our counseling team will contact you shortly.</p>
+                <p id="enroll-success-desc" class="text-slate-400 text-sm mb-8" style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 32px;">Redirecting you to the course portal...</p>
                 
                 <div class="flex flex-col gap-3" style="display: flex; flex-direction: column; gap: 12px;">
                     <a href="https://wa.me/918520929943?text=Hi%20QuasiBanking%2C%20I%20want%20details%20about%20your%20banking%20courses." target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-[#25d366] text-white font-bold rounded-xl shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 text-sm decoration-none" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: #25d366; color: white; border-radius: 12px; font-weight: 700; text-decoration: none; border: none; font-size: 0.9rem; cursor: pointer;">
@@ -595,6 +597,25 @@ function initModals() {
             }
         };
 
+        const triggerSuccessAndRedirect = () => {
+            // Hide form container and show success container
+            if (enrollFormContainer) enrollFormContainer.classList.add('hidden');
+            if (enrollSuccessContainer) enrollSuccessContainer.classList.remove('hidden');
+            
+            const successDesc = document.getElementById('enroll-success-desc');
+            if (successDesc) {
+                successDesc.textContent = "Redirecting you to the course portal...";
+            }
+            
+            enrollForm.reset();
+
+            // Set delay (e.g. 1200ms) before opening the course link in a new tab and closing the modal
+            setTimeout(() => {
+                window.open("https://www.quasibankingclasses.com/new-courses/2?source=website", "_blank");
+                closePreviewModal();
+            }, 1200);
+        };
+
         try {
             const emailjs = await loadEmailJS();
             const keysConfigured = EMAIL_CONFIG.SERVICE_ID && EMAIL_CONFIG.TEMPLATE_ID && EMAIL_CONFIG.PUBLIC_KEY;
@@ -603,17 +624,16 @@ function initModals() {
                 await emailjs.send(EMAIL_CONFIG.SERVICE_ID, EMAIL_CONFIG.TEMPLATE_ID, templateParams, {
                     publicKey: EMAIL_CONFIG.PUBLIC_KEY
                 });
-                // Hide form container and show success container
-                if (enrollFormContainer) enrollFormContainer.classList.add('hidden');
-                if (enrollSuccessContainer) enrollSuccessContainer.classList.remove('hidden');
-                enrollForm.reset();
+                triggerSuccessAndRedirect();
             } else {
                 console.warn("EmailJS not configured or failed to load. Saving lead to localStorage.");
                 handleFailure("EmailJS SDK not loaded or keys are missing.");
+                triggerSuccessAndRedirect();
             }
         } catch (err) {
             console.error("EmailJS lead capture failed:", err);
             handleFailure(err);
+            triggerSuccessAndRedirect();
         } finally {
             if (submitBtn) {
                 submitBtn.disabled = false;
