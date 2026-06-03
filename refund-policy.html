@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Policy | QuasiBanking Classes</title>
+    <meta name="description" content="Refund Policy for QuasiBanking Classes - India's Premium Banking Exam Preparation Platform">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #16162a;
+            --bg-card: #1a1a2e;
+            --border: #2a2a4a;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --amber: #f59e0b;
+            --green: #10b981;
+            --red: #ef4444;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+        }
+
+        .pp-header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .pp-header a {
+            color: var(--accent-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .pp-header a:hover { color: white; }
+        .pp-header-title { font-weight: 700; font-size: 16px; color: var(--text-primary); }
+
+        .pp-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16162a 50%, #0f0f1a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 60px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pp-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 40%; height: 200%;
+            background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%);
+        }
+
+        .pp-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245,158,11,0.1);
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--amber);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .pp-hero h1 {
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .pp-hero p { color: var(--text-secondary); font-size: 15px; max-width: 500px; margin: 0 auto; }
+
+        .pp-hero .effective-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            background: rgba(245,158,11,0.1);
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 13px;
+            color: var(--amber);
+        }
+
+        .pp-container { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+
+        .pp-toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+        }
+
+        .pp-toc h3 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-light);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pp-toc ol {
+            list-style: none;
+            counter-reset: toc;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 8px;
+        }
+
+        .pp-toc ol li { counter-increment: toc; }
+
+        .pp-toc ol li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 0;
+            transition: color 0.2s;
+        }
+
+        .pp-toc ol li a::before {
+            content: counter(toc, decimal-leading-zero);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--amber);
+            background: rgba(245,158,11,0.1);
+            border-radius: 4px;
+            padding: 2px 6px;
+            flex-shrink: 0;
+        }
+
+        .pp-toc ol li a:hover { color: white; }
+
+        .pp-section { margin-bottom: 48px; scroll-margin-top: 80px; }
+
+        .pp-section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pp-section-num {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--amber);
+            background: rgba(245,158,11,0.1);
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: 6px;
+            padding: 3px 8px;
+            flex-shrink: 0;
+        }
+
+        .pp-section h2 { font-size: 20px; font-weight: 700; color: white; }
+        .pp-section p { color: var(--text-secondary); font-size: 15px; margin-bottom: 14px; }
+        .pp-section p:last-child { margin-bottom: 0; }
+
+        .pp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+
+        .pp-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pp-data-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+        .pp-data-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .pp-data-list li::before {
+            content: '›';
+            color: var(--amber);
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        .pp-highlight {
+            background: rgba(99,102,241,0.06);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 10px 10px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .pp-warning {
+            background: rgba(245,158,11,0.06);
+            border-left: 3px solid var(--amber);
+            border-radius: 0 10px 10px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .pp-success {
+            background: rgba(16,185,129,0.06);
+            border-left: 3px solid var(--green);
+            border-radius: 0 10px 10px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Process Steps */
+        .steps { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+
+        .step-num {
+            width: 32px; height: 32px;
+            background: rgba(245,158,11,0.15);
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--amber);
+            flex-shrink: 0;
+        }
+
+        .step-content { flex: 1; }
+        .step-title { font-size: 14px; font-weight: 700; color: white; margin-bottom: 4px; }
+        .step-desc { font-size: 13px; color: var(--text-secondary); }
+
+        /* Status grid */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .status-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .status-item i { font-size: 22px; margin-bottom: 8px; display: block; }
+        .status-item .s-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+        .status-item .s-val { font-size: 13px; font-weight: 700; color: white; }
+
+        .eligible i { color: var(--green); }
+        .not-eligible i { color: var(--red); }
+
+        .pp-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .pp-contact-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pp-contact-item i { font-size: 22px; color: var(--amber); margin-bottom: 10px; display: block; }
+        .pp-contact-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 6px; }
+        .pp-contact-item .value { font-size: 14px; font-weight: 600; color: white; }
+        .pp-contact-item a { color: var(--accent-light); text-decoration: none; }
+
+        .pp-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .pp-footer a { color: var(--accent-light); text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .pp-toc ol { grid-template-columns: 1fr; }
+            .status-grid { grid-template-columns: 1fr 1fr; }
+            .pp-contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="pp-header">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <span style="color: var(--border)">|</span>
+        <span class="pp-header-title">QuasiBanking Classes</span>
+    </header>
+
+    <div class="pp-hero">
+        <div class="pp-hero-badge"><i class="fas fa-undo-alt"></i> Legal Document</div>
+        <h1>Refund Policy</h1>
+        <p>Our refund policy is handled on a case-by-case basis with fairness to every student.</p>
+        <div class="effective-date">
+            <i class="fas fa-calendar-alt"></i>
+            Effective Date: June 1, 2026 &nbsp;|&nbsp; Last Updated: June 1, 2026
+        </div>
+    </div>
+
+    <div class="pp-container">
+
+        <div class="pp-toc">
+            <h3><i class="fas fa-list"></i> Table of Contents</h3>
+            <ol>
+                <li><a href="#s1">Overview</a></li>
+                <li><a href="#s2">Eligibility for Refund</a></li>
+                <li><a href="#s3">Non-Refundable Cases</a></li>
+                <li><a href="#s4">How to Request a Refund</a></li>
+                <li><a href="#s5">Review Process</a></li>
+                <li><a href="#s6">Refund Timeline</a></li>
+                <li><a href="#s7">Partial Refunds</a></li>
+                <li><a href="#s8">Contact Us</a></li>
+            </ol>
+        </div>
+
+        <div class="pp-warning">
+            <strong>Important:</strong> QuasiBanking Classes does not offer automatic refunds. All refund requests are reviewed individually and decided fairly based on the circumstances. Please read this policy carefully before making a purchase.
+        </div>
+
+        <!-- S1 -->
+        <div class="pp-section" id="s1">
+            <div class="pp-section-header">
+                <span class="pp-section-num">01</span>
+                <h2>Overview</h2>
+            </div>
+            <p>At QuasiBanking Classes, we are committed to delivering high-quality banking exam preparation. We understand that situations may arise where a refund is warranted, and we handle every such case individually with fairness and transparency.</p>
+            <p>Our refund policy applies to all course purchases made through our platform or via our authorized payment partner (Appx). Refund decisions are made at the sole discretion of QuasiBanking Classes management after reviewing each case.</p>
+        </div>
+
+        <!-- S2 -->
+        <div class="pp-section" id="s2">
+            <div class="pp-section-header">
+                <span class="pp-section-num">02</span>
+                <h2>Eligibility for Refund</h2>
+            </div>
+            <p>You may be eligible for a refund in the following situations:</p>
+
+            <div class="status-grid">
+                <div class="status-item eligible">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="s-label">Duplicate Payment</div>
+                    <div class="s-val">Charged twice for the same course</div>
+                </div>
+                <div class="status-item eligible">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="s-label">Technical Failure</div>
+                    <div class="s-val">Payment deducted but access not granted</div>
+                </div>
+                <div class="status-item eligible">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="s-label">Wrong Course</div>
+                    <div class="s-val">Enrolled in incorrect course by error</div>
+                </div>
+                <div class="status-item eligible">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="s-label">Course Cancelled</div>
+                    <div class="s-val">QuasiBanking cancels or discontinues batch</div>
+                </div>
+            </div>
+
+            <div class="pp-success">
+                All eligible refund requests are reviewed within <strong>5–7 business days</strong>. We will contact you via your registered email with our decision.
+            </div>
+        </div>
+
+        <!-- S3 -->
+        <div class="pp-section" id="s3">
+            <div class="pp-section-header">
+                <span class="pp-section-num">03</span>
+                <h2>Non-Refundable Cases</h2>
+            </div>
+            <p>Refunds will <strong>not</strong> be issued in the following circumstances:</p>
+
+            <div class="status-grid">
+                <div class="status-item not-eligible">
+                    <i class="fas fa-times-circle"></i>
+                    <div class="s-label">Change of Mind</div>
+                    <div class="s-val">No longer wish to prepare for the exam</div>
+                </div>
+                <div class="status-item not-eligible">
+                    <i class="fas fa-times-circle"></i>
+                    <div class="s-label">Course Accessed</div>
+                    <div class="s-val">Content has been partially or fully viewed</div>
+                </div>
+                <div class="status-item not-eligible">
+                    <i class="fas fa-times-circle"></i>
+                    <div class="s-label">Exam Not Cleared</div>
+                    <div class="s-val">Not selecting in the exam is not grounds for refund</div>
+                </div>
+                <div class="status-item not-eligible">
+                    <i class="fas fa-times-circle"></i>
+                    <div class="s-label">Late Requests</div>
+                    <div class="s-val">Requests submitted after 30 days of purchase</div>
+                </div>
+                <div class="status-item not-eligible">
+                    <i class="fas fa-times-circle"></i>
+                    <div class="s-label">Combo Offers</div>
+                    <div class="s-val">Discounted combo/bundle purchases</div>
+                </div>
+                <div class="status-item not-eligible">
+                    <i class="fas fa-times-circle"></i>
+                    <div class="s-label">Mock Test Packs</div>
+                    <div class="s-val">Once mock test access is activated</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- S4 -->
+        <div class="pp-section" id="s4">
+            <div class="pp-section-header">
+                <span class="pp-section-num">04</span>
+                <h2>How to Request a Refund</h2>
+            </div>
+            <p>To raise a refund request, follow these steps:</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <div class="step-content">
+                        <div class="step-title">Email Us</div>
+                        <div class="step-desc">Send an email to <a href="mailto:Quasiclassee@gmail.com" style="color:var(--accent-light)">Quasiclassee@gmail.com</a> with the subject line: <strong>"Refund Request – [Your Name] – [Course Name]"</strong></div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <div class="step-content">
+                        <div class="step-title">Include Required Details</div>
+                        <div class="step-desc">Registered email address, course name, date of purchase, transaction/order ID, and reason for refund request.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <div class="step-content">
+                        <div class="step-title">Attach Proof (if applicable)</div>
+                        <div class="step-desc">Screenshot of double charge, failed payment confirmation, or any relevant proof to support your request.</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">04</div>
+                    <div class="step-content">
+                        <div class="step-title">Wait for Review</div>
+                        <div class="step-desc">Our team will review your case and respond within 5–7 business days with a decision or request for more information.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pp-highlight">
+                You can also reach us via WhatsApp at <a href="https://wa.me/918520929943" style="color:var(--accent-light)">+91 85209 29943</a> for faster communication. However, a formal email is required to initiate any refund process.
+            </div>
+        </div>
+
+        <!-- S5 -->
+        <div class="pp-section" id="s5">
+            <div class="pp-section-header">
+                <span class="pp-section-num">05</span>
+                <h2>Review Process</h2>
+            </div>
+            <p>Every refund request goes through the following review process:</p>
+            <ul class="pp-data-list">
+                <li>Our support team acknowledges your request within 24–48 hours</li>
+                <li>We verify your purchase, access history, and reason for the request</li>
+                <li>The management team makes a final decision based on the circumstances</li>
+                <li>You are notified via email of the outcome — approved, partially approved, or declined</li>
+                <li>If approved, refund is processed through the original payment method</li>
+            </ul>
+            <div class="pp-warning" style="margin-top:16px">
+                QuasiBanking Classes reserves the right to decline any refund request that does not meet our policy criteria. Our decision in all refund matters is final.
+            </div>
+        </div>
+
+        <!-- S6 -->
+        <div class="pp-section" id="s6">
+            <div class="pp-section-header">
+                <span class="pp-section-num">06</span>
+                <h2>Refund Timeline</h2>
+            </div>
+            <p>Once a refund is approved, the amount will be credited as follows:</p>
+
+            <div class="pp-card">
+                <div class="pp-card-title"><i class="fas fa-clock"></i> Expected Credit Time</div>
+                <ul class="pp-data-list">
+                    <li><strong>UPI / Net Banking</strong> — 3 to 5 business days</li>
+                    <li><strong>Credit / Debit Card</strong> — 5 to 7 business days</li>
+                    <li><strong>Wallets (Paytm, PhonePe, etc.)</strong> — 2 to 3 business days</li>
+                </ul>
+            </div>
+
+            <p>Timelines may vary depending on your bank or payment provider. QuasiBanking Classes is not responsible for delays caused by third-party payment processors once the refund has been initiated from our end.</p>
+        </div>
+
+        <!-- S7 -->
+        <div class="pp-section" id="s7">
+            <div class="pp-section-header">
+                <span class="pp-section-num">07</span>
+                <h2>Partial Refunds</h2>
+            </div>
+            <p>In certain cases, QuasiBanking Classes may offer a partial refund at our discretion. This may apply when:</p>
+            <ul class="pp-data-list" style="margin-top:8px">
+                <li>A portion of the course has been accessed but significant content remains unused</li>
+                <li>A technical issue affected only part of the course delivery</li>
+                <li>A batch was modified significantly after enrollment without prior notice</li>
+            </ul>
+            <p style="margin-top:14px">The partial refund amount will be calculated based on the unused portion of the course and communicated to the student prior to processing.</p>
+        </div>
+
+        <!-- S8 -->
+        <div class="pp-section" id="s8">
+            <div class="pp-section-header">
+                <span class="pp-section-num">08</span>
+                <h2>Contact Us</h2>
+            </div>
+            <p>For any refund-related queries, please reach out to us through the following channels:</p>
+            <div class="pp-contact-grid">
+                <div class="pp-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="label">Email</div>
+                    <div class="value"><a href="mailto:Quasiclassee@gmail.com">Quasiclassee@gmail.com</a></div>
+                </div>
+                <div class="pp-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="label">WhatsApp</div>
+                    <div class="value"><a href="https://wa.me/918520929943">+91 85209 29943</a></div>
+                </div>
+                <div class="pp-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="label">Office</div>
+                    <div class="value">Hyderabad, Telangana</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="pp-footer">
+        <p>© 2026 QuasiBanking Classes. All Rights Reserved.</p>
+        <p style="margin-top: 8px;">
+            <a href="index.html">Home</a> &nbsp;·&nbsp;
+            <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+            <a href="terms.html">Terms & Conditions</a> &nbsp;·&nbsp;
+            <a href="refund-policy.html">Refund Policy</a>
+        </p>
+    </footer>
+
+</body>
+</html>

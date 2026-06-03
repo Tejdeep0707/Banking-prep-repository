@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /RESOURCES/admin.html
+Disallow: /RESOURCES/COURSE ref/
+
+Sitemap: https://quasibanking.com/sitemap.xml
