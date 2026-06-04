@@ -1041,8 +1041,8 @@ function onFirebaseReady(cb) {
 }
 
 onFirebaseReady(() => {
-  const { onAuthStateChanged } = window._firebase;
-  onAuthStateChanged(window._auth, user => {
+  const { onAuthStateChanged, signOut } = window._firebase;
+  onAuthStateChanged(window._auth, async user => {
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
       loadingScreen.style.opacity = '0';
@@ -1052,7 +1052,13 @@ onFirebaseReady(() => {
     }
 
     if (user) {
-      showApp(user);
+      if (user.email && user.email.toLowerCase() === 'quasiclasses@gmail.com') {
+        showApp(user);
+      } else {
+        await signOut(window._auth);
+        showLogin();
+        showLoginError('Access denied: Unauthorized admin account.');
+      }
     } else {
       showLogin();
     }

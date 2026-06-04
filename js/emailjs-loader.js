@@ -1,7 +1,7 @@
 export const EMAIL_CONFIG = {
-  SERVICE_ID: "service_kdg0i1t",
-  TEMPLATE_ID: "template_kupe06a",
-  PUBLIC_KEY: "TLR5if82dog7Sd7XS"
+  SERVICE_ID: "service_kmac21m",
+  TEMPLATE_ID: "template_eujenbs",
+  PUBLIC_KEY: "UcBnIGAfB_WFi3XUi"
 };
 
 export function loadEmailJS() {

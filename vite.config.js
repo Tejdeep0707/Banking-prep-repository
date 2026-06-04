@@ -41,6 +41,12 @@ module.exports = {
           resolve(__dirname, 'data'),
           resolve(__dirname, 'dist', 'data')
         );
+        if (fs.existsSync(resolve(__dirname, 'robots.txt'))) {
+          fs.copyFileSync(resolve(__dirname, 'robots.txt'), resolve(__dirname, 'dist', 'robots.txt'));
+        }
+        if (fs.existsSync(resolve(__dirname, 'sitemap.xml'))) {
+          fs.copyFileSync(resolve(__dirname, 'sitemap.xml'), resolve(__dirname, 'dist', 'sitemap.xml'));
+        }
       },
     },
   ],
