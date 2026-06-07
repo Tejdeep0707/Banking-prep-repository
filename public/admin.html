@@ -826,6 +826,10 @@ body {
         <i class="fas fa-bell"></i> Notifications
         <span class="nav-badge" id="notif-badge">0</span>
       </div>
+      <div class="nav-item" onclick="switchTab('announcements', this)">
+        <i class="fas fa-bullhorn"></i> Announcements
+        <span class="nav-badge" id="ann-badge">0</span>
+      </div>
       <div class="nav-item" onclick="switchTab('current-affairs', this)">
         <i class="fas fa-newspaper"></i> Current Affairs
         <span class="nav-badge" id="ca-badge">0</span>
@@ -924,6 +928,53 @@ body {
             <div class="card-body" style="padding:14px">
               <div class="items-list" id="notif-list">
                 <div class="empty-state"><i class="fas fa-bell-slash"></i><p>No notifications yet</p></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ─── ANNOUNCEMENTS TAB ─── -->
+      <div class="tab-page" id="tab-announcements">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Announcements</div>
+            <div class="page-sub">These appear in the top notification train ticker on your site</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
+
+          <!-- Add Form -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i class="fas fa-plus-circle"></i> Add Announcement</div>
+            </div>
+            <div class="card-body">
+              <div class="form-row">
+                <label class="form-label">Emoji (e.g. 🚨, 📢) *</label>
+                <input type="text" class="form-input" id="ann-emoji" placeholder="e.g. 🚨">
+              </div>
+              <div class="form-row">
+                <label class="form-label">Announcement Text *</label>
+                <input type="text" class="form-input" id="ann-text" placeholder="e.g. SBI PO Notification Released">
+              </div>
+              <button class="btn btn-primary" style="width:100%" onclick="addAnnouncement()">
+                <i class="fas fa-paper-plane"></i> Publish Announcement
+              </button>
+            </div>
+          </div>
+
+          <!-- List -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title"><i class="fas fa-list"></i> Live Announcements</div>
+              <span style="font-size:12px;color:var(--muted);font-family:var(--mono)" id="ann-count">0 items</span>
+            </div>
+            <div class="card-body" style="padding:14px">
+              <div class="items-list" id="ann-list">
+                <div class="empty-state"><i class="fas fa-bullhorn"></i><p>No announcements yet</p></div>
               </div>
             </div>
           </div>
@@ -1033,6 +1084,7 @@ let caPendingDelete = null;
 let notifPendingDelete = null;
 let notifications = [];
 let currentAffairs = [];
+let announcements = [];
 
 // ─── WAIT FOR FIREBASE ───
 function onFirebaseReady(cb) {
@@ -1123,6 +1175,7 @@ function showApp(user) {
   document.getElementById('admin-app').style.display = 'block';
   document.getElementById('admin-email-display').textContent = user.email.split('@')[0];
   loadNotifications();
+  loadAnnouncements();
   loadCurrentAffairs();
 }
 
@@ -1139,7 +1192,7 @@ function switchTab(tab, el) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   el.classList.add('active');
-  const titles = { 'notifications': 'Notifications', 'current-affairs': 'Current Affairs' };
+  const titles = { 'notifications': 'Notifications', 'announcements': 'Announcements', 'current-affairs': 'Current Affairs' };
   document.getElementById('topbar-title').textContent = titles[tab] || tab;
   closeSidebar();
 }
@@ -1281,6 +1334,96 @@ function deleteNotification(id) {
       notifications = notifications.filter(n => n.id !== id);
       renderNotifications();
       toast('Notification deleted.');
+    } catch(e) {
+      toast('Delete failed.', 'error');
+    }
+  });
+}
+
+// ─── ANNOUNCEMENTS ───
+async function loadAnnouncements() {
+  try {
+    const { collection, getDocs, query, orderBy } = window._firebase;
+    const q = query(collection(window._db, 'announcements'), orderBy('createdAt', 'desc'));
+    const snap = await getDocs(q);
+    announcements = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderAnnouncements();
+  } catch(e) {
+    console.log('Announcements load error:', e);
+    renderAnnouncements();
+  }
+}
+
+function renderAnnouncements() {
+  const list = document.getElementById('ann-list');
+  const count = announcements.length;
+  document.getElementById('ann-count').textContent = count + ' item' + (count !== 1 ? 's' : '');
+  document.getElementById('ann-badge').textContent = count;
+
+  if (!count) {
+    list.innerHTML = '<div class="empty-state"><i class="fas fa-bullhorn"></i><p>No announcements yet. Add your first one!</p></div>';
+    return;
+  }
+
+  list.innerHTML = announcements.map(a => `
+    <div class="item-card">
+      <div style="font-size: 18px; margin-top: 2px; flex-shrink: 0;">${escHtml(a.emoji || '📢')}</div>
+      <div class="item-content">
+        <div class="item-title">${escHtml(a.text)}</div>
+        <div class="item-meta">
+          <span class="item-date">${formatDate(a.createdAt)}</span>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="icon-btn del" onclick="deleteAnnouncement('${a.id}')" title="Delete">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function addAnnouncement() {
+  const emoji = document.getElementById('ann-emoji').value.trim();
+  const text = document.getElementById('ann-text').value.trim();
+
+  if (!text) { toast('Please enter the announcement text.', 'error'); return; }
+
+  const btn = event.target.closest('button');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Publishing...';
+
+  try {
+    const { collection, addDoc, serverTimestamp } = window._firebase;
+    const docRef = await addDoc(collection(window._db, 'announcements'), {
+      emoji: emoji || '📢',
+      text,
+      createdAt: serverTimestamp()
+    });
+
+    announcements.unshift({ id: docRef.id, emoji: emoji || '📢', text, createdAt: null });
+    renderAnnouncements();
+
+    document.getElementById('ann-emoji').value = '';
+    document.getElementById('ann-text').value = '';
+    toast('✅ Announcement published live!');
+  } catch(e) {
+    toast('Failed to publish. Check Firebase config.', 'error');
+    console.error(e);
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish Announcement';
+}
+
+function deleteAnnouncement(id) {
+  confirmDelete(async () => {
+    try {
+      const { doc, deleteDoc } = window._firebase;
+      await deleteDoc(doc(window._db, 'announcements', id));
+      announcements = announcements.filter(a => a.id !== id);
+      renderAnnouncements();
+      toast('Announcement deleted.');
     } catch(e) {
       toast('Delete failed.', 'error');
     }

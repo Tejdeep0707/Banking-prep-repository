@@ -151,55 +151,6 @@
     <!-- Sidebar overlay for mobile drawer backdrop -->
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-    <!-- Premium Featured Offers Ticker -->
-    <div class="featured-offers-bar">
-        <div class="offers-wrapper">
-            <div class="offers-track">
-                <a href="course-sbi.html" class="offer-pill">
-                    <span class="offer-emoji">🎯</span>
-                    <span class="offer-title">SBI Victory Batch 2026</span>
-                    <span class="offer-badge badge-trending">Trending</span>
-                </a>
-                <a href="course-rbi.html" class="offer-pill">
-                    <span class="offer-emoji">🎯</span>
-                    <span class="offer-title">RBI Assistant Complete Course</span>
-                    <span class="offer-badge badge-popular">Popular</span>
-                </a>
-                <a href="course-ibps.html" class="offer-pill">
-                    <span class="offer-emoji">🎯</span>
-                    <span class="offer-title">IBPS Clerk Crash Course</span>
-                    <span class="offer-badge badge-live">Live Batch</span>
-                </a>
-                <a href="#courses" class="offer-pill">
-                    <span class="offer-emoji">🎯</span>
-                    <span class="offer-title">Premium Combo Offer</span>
-                    <span class="offer-badge badge-save">Save 50%</span>
-                </a>
-                
-                <!-- Duplicates for seamless loop -->
-                <a href="course-sbi.html" class="offer-pill">
-                    <span class="offer-emoji">🎯</span>
-                    <span class="offer-title">SBI Victory Batch 2026</span>
-                    <span class="offer-badge badge-trending">Trending</span>
-                </a>
-                <a href="course-rbi.html" class="offer-pill">
-                    <span class="offer-emoji">🎯</span>
-                    <span class="offer-title">RBI Assistant Complete Course</span>
-                    <span class="offer-badge badge-popular">Popular</span>
-                </a>
-                <a href="course-ibps.html" class="offer-pill">
-                    <span class="offer-emoji">🎯</span>
-                    <span class="offer-title">IBPS Clerk Crash Course</span>
-                    <span class="offer-badge badge-live">Live Batch</span>
-                </a>
-                <a href="#courses" class="offer-pill">
-                    <span class="offer-emoji">🎯</span>
-                    <span class="offer-title">Premium Combo Offer</span>
-                    <span class="offer-badge badge-save">Save 50%</span>
-                </a>
-            </div>
-        </div>
-    </div>
 
     <header class="sticky-header">
         <!-- Top Notification Train (Always Visible Ticker) -->
@@ -300,12 +251,12 @@
 
                 <div class="hero-cta-group">
                     <a href="#courses" class="btn-hero-primary">
-                        <span>Start Learning</span>
+                        <span>Explore Video Courses</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                     <a href="#series" class="btn-hero-secondary">
                         <i class="fas fa-play-circle"></i>
-                        <span>Explore Series</span>
+                        <span>Explore Test Series</span>
                     </a>
                 </div>
 
@@ -1104,7 +1055,7 @@
                 <!-- STEP 1: SELECTION -->
                 <div id="payment-step-select" class="space-y-6">
                     <div class="text-center">
-                        <h2 class="text-2xl font-bold text-white mb-1" id="payment-course-title">SBI Clerk 2024</h2>
+                        <h2 class="text-2xl font-bold text-white mb-1" id="payment-course-title">SBI Clerk 2026</h2>
                         <div class="flex items-center justify-center gap-3">
                             <span class="text-3xl font-extrabold text-white" id="payment-price">₹999</span>
                             <span class="text-lg text-gray-500 line-through" id="payment-original-price">₹1999</span>
@@ -1166,5 +1117,48 @@
     <div id="mock-simulator-container" class="hidden"></div>
 
     <script type="module" src="main.js"></script>
+    <script type="module">
+        import { db } from './firebase-app.js';
+        import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+
+        async function loadDynamicAnnouncements() {
+            const track = document.getElementById('train-track-content');
+            if (!track) return;
+
+            try {
+                const q = query(collection(db, 'announcements'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                
+                if (!snap.empty) {
+                    const announcements = [];
+                    snap.forEach(doc => {
+                        announcements.push(doc.data());
+                    });
+                    
+                    if (announcements.length > 0) {
+                        const itemsHTML = announcements.map(a => {
+                            const emoji = a.emoji || '📢';
+                            const text = a.text || '';
+                            const escapedEmoji = emoji.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+                            const escapedText = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+                            return `<a href="notifications.html" class="train-item">${escapedEmoji} ${escapedText}</a>`;
+                        }).join('');
+                        
+                        // Duplicate for seamless marquee loop
+                        track.innerHTML = itemsHTML + itemsHTML;
+                    }
+                }
+            } catch (error) {
+                console.error("Error loading dynamic announcements from Firestore:", error);
+            }
+        }
+
+        // Initialize fetching on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadDynamicAnnouncements);
+        } else {
+            loadDynamicAnnouncements();
+        }
+    </script>
 </body>
 </html>
