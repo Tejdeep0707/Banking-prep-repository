@@ -8,8 +8,19 @@ function copyDir(src, dest) {
   for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
-    if (entry.isDirectory()) copyDir(srcPath, destPath);
-    else fs.copyFileSync(srcPath, destPath);
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath);
+    } else {
+      try {
+        fs.copyFileSync(srcPath, destPath);
+      } catch (err) {
+        if (err.code === 'EBUSY') {
+          console.warn(`Warning: file busy, skipped copying ${srcPath}`);
+        } else {
+          throw err;
+        }
+      }
+    }
   }
 }
 
@@ -63,8 +74,7 @@ module.exports = {
         contact: resolve(__dirname, 'contact.html'),
         interview: resolve(__dirname, 'interview.html'),
         notifications: resolve(__dirname, 'notifications.html'),
-        currentAffairs: resolve(__dirname, 'current-affairs.html'),
-        resources: resolve(__dirname, 'resources.html'),
+        mockTests: resolve(__dirname, 'mock-tests.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         terms: resolve(__dirname, 'terms.html'),
         refundPolicy: resolve(__dirname, 'refund-policy.html'),

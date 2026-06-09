@@ -2,12 +2,13 @@
 import { EMAIL_CONFIG, loadEmailJS } from './emailjs-loader.js';
 
 const CONFIG = {
-    APPX_URL: "YOUR_APPX_BATCH_LINK_HERE",
+    APPX_URL: "https://www.quasibankingclasses.com/new-courses/2?source=website",
     UNREAD_NOTIFICATIONS: 0 // Starts at zero
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
+    initDropdowns();
     initMobileToggle();
     initActiveNav();
     initMocksRedirect();
@@ -78,10 +79,15 @@ function initMobileToggle() {
 
     overlay.addEventListener('click', () => toggleMenu(false));
 
-    // Close mobile drawer when clicking a link inside it
-    const sidebarLinks = sidebar.querySelectorAll('.nav-card');
+    // Close mobile drawer when clicking a link inside it (but not dropdown triggers)
+    const sidebarLinks = sidebar.querySelectorAll('.nav-card, .dropdown-item');
     sidebarLinks.forEach(link => {
-        link.addEventListener('click', () => toggleMenu(false));
+        link.addEventListener('click', (e) => {
+            if (link.classList.contains('dropdown-trigger')) {
+                return; // Do not close drawer when expanding dropdown
+            }
+            toggleMenu(false);
+        });
     });
 }
 
@@ -89,10 +95,8 @@ function initMobileToggle() {
 function initActiveNav() {
     const navCards = {
         dashboard: document.getElementById('nav-dashboard'),
-        courses: document.getElementById('nav-courses'),
-        mocks: document.getElementById('nav-mocks'),
-        affairs: document.getElementById('nav-affairs'),
-        resources: document.getElementById('nav-resources'),
+        courses: document.getElementById('nav-courses-trigger') || document.getElementById('nav-courses'),
+        mocks: document.getElementById('nav-mocks-trigger') || document.getElementById('nav-mocks'),
         notifications: document.getElementById('nav-notifications'),
         interview: document.getElementById('nav-interview'),
         contact: document.getElementById('nav-contact')
@@ -107,12 +111,34 @@ function initActiveNav() {
             if (card) card.classList.remove('active');
         });
 
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        dropdownItems.forEach(item => item.classList.remove('active'));
+
         if (path.includes('course-ibps.html') || path.includes('course-rbi.html') || path.includes('course-sbi.html')) {
             if (navCards.courses) navCards.courses.classList.add('active');
-        } else if (path.includes('current-affairs.html')) {
-            if (navCards.affairs) navCards.affairs.classList.add('active');
-        } else if (path.includes('resources.html')) {
-            if (navCards.resources) navCards.resources.classList.add('active');
+            if (path.includes('course-sbi.html')) {
+                const item = document.getElementById('nav-sbi-courses');
+                if (item) item.classList.add('active');
+            } else if (path.includes('course-rbi.html')) {
+                const item = document.getElementById('nav-rbi-courses');
+                if (item) item.classList.add('active');
+            } else if (path.includes('course-ibps.html')) {
+                const item = document.getElementById('nav-ibps-courses');
+                if (item) item.classList.add('active');
+            }
+        } else if (path.includes('mock-tests.html')) {
+            if (navCards.mocks) navCards.mocks.classList.add('active');
+            if (hash.includes('sbi')) {
+                const item = document.getElementById('nav-sbi-mocks');
+                if (item) item.classList.add('active');
+            } else if (hash.includes('rbi')) {
+                const item = document.getElementById('nav-rbi-mocks');
+                if (item) item.classList.add('active');
+            } else if (hash.includes('ibps')) {
+                const item = document.getElementById('nav-ibps-mocks');
+                if (item) item.classList.add('active');
+            }
+
         } else if (path.includes('notifications.html')) {
             if (navCards.notifications) navCards.notifications.classList.add('active');
         } else if (path.includes('contact.html')) {
@@ -152,12 +178,80 @@ function initMocksRedirect() {
         window.open(CONFIG.APPX_URL, '_blank');
     };
 
-    if (navMocks) {
+    if (navMocks && !navMocks.classList.contains('dropdown-trigger')) {
         navMocks.addEventListener('click', handleRedirect);
     }
     if (qaMock) {
         qaMock.addEventListener('click', handleRedirect);
     }
+}
+
+// 4.5 Dropdowns Controller
+function initDropdowns() {
+    const coursesTrigger = document.getElementById('nav-courses-trigger');
+    const mocksTrigger = document.getElementById('nav-mocks-trigger');
+    const coursesMenu = document.getElementById('courses-dropdown');
+    const mocksMenu = document.getElementById('mocks-dropdown');
+
+    if (!coursesTrigger || !mocksTrigger || !coursesMenu || !mocksMenu) return;
+
+    const toggleDropdown = (trigger, menu, forceOpen) => {
+        const isOpen = trigger.classList.contains('open');
+        const shouldOpen = forceOpen !== undefined ? forceOpen : !isOpen;
+
+        if (shouldOpen) {
+            // Close other dropdowns
+            [coursesTrigger, mocksTrigger].forEach(t => {
+                if (t && t !== trigger) {
+                    t.classList.remove('open');
+                    t.setAttribute('aria-expanded', 'false');
+                    const arrow = t.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = '';
+                }
+            });
+            [coursesMenu, mocksMenu].forEach(m => {
+                if (m && m !== menu) {
+                    m.classList.remove('open');
+                    m.style.maxHeight = null;
+                }
+            });
+
+            trigger.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+            menu.classList.add('open');
+            menu.style.maxHeight = menu.scrollHeight + 'px';
+        } else {
+            trigger.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('open');
+            menu.style.maxHeight = null;
+        }
+    };
+
+    coursesTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleDropdown(coursesTrigger, coursesMenu);
+    });
+
+    mocksTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleDropdown(mocksTrigger, mocksMenu);
+    });
+
+    // Auto-open on page load
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+
+    const autoOpen = () => {
+        if (path.includes('course-ibps.html') || path.includes('course-rbi.html') || path.includes('course-sbi.html')) {
+            toggleDropdown(coursesTrigger, coursesMenu, true);
+        } else if (path.includes('mock-tests.html')) {
+            toggleDropdown(mocksTrigger, mocksMenu, true);
+        }
+    };
+
+    autoOpen();
+    window.addEventListener('hashchange', autoOpen);
 }
 
 // 5. Unread notification badge visibility

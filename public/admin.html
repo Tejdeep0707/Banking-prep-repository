@@ -732,6 +732,7 @@ body {
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
   import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
   // ⚠️ REPLACE WITH YOUR FIREBASE CONFIG
   const firebaseConfig = {
@@ -748,11 +749,14 @@ body {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
+  const storage = getStorage(app);
 
   // ─── EXPOSE TO GLOBAL ───
   window._auth = auth;
   window._db = db;
+  window._storage = storage;
   window._firebase = { signInWithEmailAndPassword, signOut, onAuthStateChanged, collection, addDoc, getDocs, deleteDoc, doc, query, orderBy, serverTimestamp };
+  window._firebaseStorage = { ref, uploadBytesResumable, getDownloadURL, deleteObject };
   window._firebaseReady = true;
   document.dispatchEvent(new Event('firebaseReady'));
 </script>
@@ -830,9 +834,9 @@ body {
         <i class="fas fa-bullhorn"></i> Announcements
         <span class="nav-badge" id="ann-badge">0</span>
       </div>
-      <div class="nav-item" onclick="switchTab('current-affairs', this)">
-        <i class="fas fa-newspaper"></i> Current Affairs
-        <span class="nav-badge" id="ca-badge">0</span>
+      <div class="nav-item" onclick="switchTab('results', this)">
+        <i class="fas fa-trophy"></i> Results
+        <span class="nav-badge" id="results-badge">0</span>
       </div>
     </nav>
 
@@ -903,7 +907,6 @@ body {
                 <label class="form-label">Category</label>
                 <select class="form-select" id="notif-category">
                   <option value="exam">📢 Exam Alert</option>
-                  <option value="affairs">📰 Current Affairs</option>
                   <option value="course">📚 Course Update</option>
                   <option value="mock">⏱️ Mock Tests</option>
                   <option value="system" selected>⚙️ System Update</option>
@@ -982,12 +985,12 @@ body {
         </div>
       </div>
 
-      <!-- ─── CURRENT AFFAIRS TAB ─── -->
-      <div class="tab-page" id="tab-current-affairs">
+      <!-- ─── RESULTS TAB ─── -->
+      <div class="tab-page" id="tab-results">
         <div class="page-header">
           <div>
-            <div class="page-title">Current Affairs</div>
-            <div class="page-sub">Appears on the Current Affairs page of your site</div>
+            <div class="page-title">Results</div>
+            <div class="page-sub">Add and manage student results displayed on the site</div>
           </div>
         </div>
 
@@ -996,47 +999,53 @@ body {
           <!-- Add Form -->
           <div class="card">
             <div class="card-header">
-              <div class="card-title"><i class="fas fa-plus-circle"></i> Add Article</div>
+              <div class="card-title"><i class="fas fa-plus-circle"></i> Add Student Result</div>
             </div>
             <div class="card-body">
               <div class="form-row">
-                <label class="form-label">Headline *</label>
-                <input type="text" class="form-input" id="ca-title" placeholder="e.g. RBI raises repo rate by 25 bps">
+                <label class="form-label">Student Name *</label>
+                <input type="text" class="form-input" id="result-name" placeholder="e.g. John Doe">
               </div>
               <div class="form-row">
-                <label class="form-label">Summary *</label>
-                <textarea class="form-textarea" id="ca-summary" placeholder="Write a brief summary of the current affair..."></textarea>
-              </div>
-              <div class="form-grid">
-                <div class="form-row">
-                  <label class="form-label">Category</label>
-                  <select class="form-select" id="ca-category">
-                    <option value="banking">🏦 Banking</option>
-                    <option value="economy">📈 Economy</option>
-                    <option value="government">🏛️ Government</option>
-                    <option value="international">🌏 International</option>
-                    <option value="sports">🏅 Sports</option>
-                    <option value="science">🔬 Science & Tech</option>
-                    <option value="awards">🏆 Awards</option>
-                  </select>
-                </div>
-                <div class="form-row">
-                  <label class="form-label">Exam Relevance</label>
-                  <select class="form-select" id="ca-exam">
-                    <option value="SBI PO">SBI PO</option>
-                    <option value="IBPS PO">IBPS PO</option>
-                    <option value="RBI Grade B">RBI Grade B</option>
-                    <option value="All Exams">All Exams</option>
-                    <option value="IBPS Clerk">IBPS Clerk</option>
-                  </select>
-                </div>
+                <label class="form-label">Exam Category *</label>
+                <select class="form-select" id="result-category">
+                  <option value="SBI PO">SBI PO</option>
+                  <option value="SBI Clerk">SBI Clerk</option>
+                  <option value="IBPS PO">IBPS PO</option>
+                  <option value="IBPS Clerk">IBPS Clerk</option>
+                  <option value="RBI Grade B">RBI Grade B</option>
+                  <option value="RBI Assistant">RBI Assistant</option>
+                  <option value="RRB PO">RRB PO</option>
+                  <option value="RRB Clerk">RRB Clerk</option>
+                </select>
               </div>
               <div class="form-row">
-                <label class="form-label">Source Link (optional)</label>
-                <input type="url" class="form-input" id="ca-source" placeholder="https://rbi.org.in/...">
+                <label class="form-label">Score/Marks *</label>
+                <input type="text" class="form-input" id="result-score" placeholder="e.g. 156/200">
               </div>
-              <button class="btn btn-primary" style="width:100%" onclick="addCurrentAffair()">
-                <i class="fas fa-newspaper"></i> Publish Article
+              <div class="form-row">
+                <label class="form-label">Student Photo *</label>
+                <input type="file" id="result-image-file" accept="image/png, image/jpeg, image/webp" style="display:none" onchange="previewImage(this, 'result-preview', 'result-preview-container', 'result-filename')">
+                <button class="btn btn-ghost" onclick="document.getElementById('result-image-file').click()" style="width:100%; justify-content:center;">
+                  <i class="fas fa-image"></i> Select Image
+                </button>
+                
+                <!-- Preview -->
+                <div id="result-preview-container" style="margin-top:12px; display:none; align-items:center; gap:12px;">
+                  <img id="result-preview" src="" style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:1px solid var(--border2);">
+                  <span style="font-size:13px; color:var(--muted2);" id="result-filename"></span>
+                </div>
+                
+                <!-- Progress -->
+                <div id="result-progress-container" style="margin-top:12px; display:none;">
+                  <div style="height:6px; background:var(--bg4); border-radius:3px; overflow:hidden;">
+                    <div id="result-progress-bar" style="height:100%; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 0.1s;"></div>
+                  </div>
+                  <span style="font-size:11px; color:var(--muted2); font-family:var(--mono); margin-top:4px; display:block;" id="result-progress-text">0%</span>
+                </div>
+              </div>
+              <button class="btn btn-primary" style="width:100%" id="publish-result-btn" onclick="addResult()">
+                <i class="fas fa-paper-plane"></i> Publish Result
               </button>
             </div>
           </div>
@@ -1044,18 +1053,20 @@ body {
           <!-- List -->
           <div class="card">
             <div class="card-header">
-              <div class="card-title"><i class="fas fa-list"></i> Published Articles</div>
-              <span style="font-size:12px;color:var(--muted);font-family:var(--mono)" id="ca-count">0 items</span>
+              <div class="card-title"><i class="fas fa-list"></i> Published Results</div>
+              <span style="font-size:12px;color:var(--muted);font-family:var(--mono)" id="results-count">0 items</span>
             </div>
             <div class="card-body" style="padding:14px">
-              <div class="items-list" id="ca-list">
-                <div class="empty-state"><i class="fas fa-newspaper"></i><p>No articles yet</p></div>
+              <div class="items-list" id="results-list">
+                <div class="empty-state"><i class="fas fa-trophy"></i><p>No results yet</p></div>
               </div>
             </div>
           </div>
 
         </div>
       </div>
+
+
 
     </div><!-- /content -->
   </div><!-- /main -->
@@ -1080,11 +1091,10 @@ body {
 <script>
 // ─── STATE ───
 let notifPriority = 'high';
-let caPendingDelete = null;
 let notifPendingDelete = null;
 let notifications = [];
-let currentAffairs = [];
 let announcements = [];
+let results = [];
 
 // ─── WAIT FOR FIREBASE ───
 function onFirebaseReady(cb) {
@@ -1176,7 +1186,7 @@ function showApp(user) {
   document.getElementById('admin-email-display').textContent = user.email.split('@')[0];
   loadNotifications();
   loadAnnouncements();
-  loadCurrentAffairs();
+  loadResults();
 }
 
 // Enter key login
@@ -1192,7 +1202,11 @@ function switchTab(tab, el) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   el.classList.add('active');
-  const titles = { 'notifications': 'Notifications', 'announcements': 'Announcements', 'current-affairs': 'Current Affairs' };
+  const titles = { 
+    'notifications': 'Notifications', 
+    'announcements': 'Announcements', 
+    'results': 'Results'
+  };
   document.getElementById('topbar-title').textContent = titles[tab] || tab;
   closeSidebar();
 }
@@ -1430,108 +1444,198 @@ function deleteAnnouncement(id) {
   });
 }
 
-// ─── CURRENT AFFAIRS ───
-async function loadCurrentAffairs() {
+// ─── IMAGE PREVIEW & UPLOAD HELPERS ───
+function previewImage(input, imgId, containerId, filenameId) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) {
+    toast('⚠️ Image size exceeds 2MB limit.', 'error');
+    input.value = '';
+    document.getElementById(containerId).style.display = 'none';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById(imgId).src = e.target.result;
+    document.getElementById(containerId).style.display = 'flex';
+    document.getElementById(filenameId).textContent = file.name;
+  };
+  reader.readAsDataURL(file);
+}
+
+function uploadImage(file, path, progressBarId, progressTextId, progressContainerId) {
+  return new Promise((resolve, reject) => {
+    const { ref, uploadBytesResumable, getDownloadURL } = window._firebaseStorage;
+    const storageRef = ref(window._storage, path);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    
+    const container = document.getElementById(progressContainerId);
+    const bar = document.getElementById(progressBarId);
+    const text = document.getElementById(progressTextId);
+    
+    container.style.display = 'block';
+    bar.style.width = '0%';
+    text.textContent = '0%';
+    
+    uploadTask.on('state_changed', 
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        bar.style.width = progress + '%';
+        text.textContent = progress + '%';
+      }, 
+      (error) => {
+        container.style.display = 'none';
+        reject(error);
+      }, 
+      async () => {
+        try {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          container.style.display = 'none';
+          resolve(downloadURL);
+        } catch (err) {
+          reject(err);
+        }
+      }
+    );
+  });
+}
+
+// ─── RESULTS ───
+async function loadResults() {
   try {
     const { collection, getDocs, query, orderBy } = window._firebase;
-    const q = query(collection(window._db, 'current_affairs'), orderBy('createdAt', 'desc'));
+    const q = query(collection(window._db, 'results'), orderBy('createdAt', 'desc'));
     const snap = await getDocs(q);
-    currentAffairs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    renderCurrentAffairs();
+    results = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderResults();
   } catch(e) {
-    console.log('CA load error:', e);
-    renderCurrentAffairs();
+    console.log('Results load error:', e);
+    renderResults();
   }
 }
 
-const catMap = {
-  banking: { label: '🏦 Banking', cls: 'badge-banking' },
-  economy: { label: '📈 Economy', cls: 'badge-economy' },
-  government: { label: '🏛️ Govt', cls: 'badge-govt' },
-  international: { label: '🌏 Intl', cls: 'badge-intl' },
-  sports: { label: '🏅 Sports', cls: 'badge-general' },
-  science: { label: '🔬 Sci & Tech', cls: 'badge-banking' },
-  awards: { label: '🏆 Awards', cls: 'badge-economy' },
-};
-
-function renderCurrentAffairs() {
-  const list = document.getElementById('ca-list');
-  const count = currentAffairs.length;
-  document.getElementById('ca-count').textContent = count + ' item' + (count !== 1 ? 's' : '');
-  document.getElementById('ca-badge').textContent = count;
+function renderResults() {
+  const list = document.getElementById('results-list');
+  const count = results.length;
+  document.getElementById('results-count').textContent = count + ' item' + (count !== 1 ? 's' : '');
+  document.getElementById('results-badge').textContent = count;
 
   if (!count) {
-    list.innerHTML = '<div class="empty-state"><i class="fas fa-newspaper"></i><p>No articles yet. Add your first one!</p></div>';
+    list.innerHTML = '<div class="empty-state"><i class="fas fa-trophy"></i><p>No results yet. Add your first one!</p></div>';
     return;
   }
 
-  list.innerHTML = currentAffairs.map(a => {
-    const cat = catMap[a.category] || { label: a.category, cls: 'badge-general' };
-    return `
+  list.innerHTML = results.map(r => `
     <div class="item-card">
-      <div class="item-priority-dot" style="background:var(--accent2);box-shadow:0 0 6px var(--accent2);margin-top:5px"></div>
+      <img src="${escHtml(r.imageUrl)}" style="width:60px; height:60px; object-fit:cover; border-radius:50%; border:1px solid var(--border2); flex-shrink:0;">
       <div class="item-content">
-        <div class="item-title">${escHtml(a.title)}</div>
+        <div class="item-title">${escHtml(r.studentName)}</div>
         <div class="item-meta">
-          <span class="item-badge ${cat.cls}">${cat.label}</span>
-          <span class="item-badge badge-general">${escHtml(a.exam || 'All Exams')}</span>
-          <span class="item-date">${formatDate(a.createdAt)}</span>
-          ${a.source ? `<a href="${escHtml(a.source)}" target="_blank" style="color:var(--accent3);font-size:11px;font-family:var(--mono)"><i class="fas fa-external-link-alt"></i> Source</a>` : ''}
+          <span class="item-badge badge-banking">${escHtml(r.examCategory)}</span>
+          <span class="item-badge badge-general" style="background:var(--bg4);border-color:var(--border2);color:var(--text)">Score: ${escHtml(r.score)}</span>
+          <span class="item-date">${formatDate(r.createdAt)}</span>
         </div>
       </div>
       <div class="item-actions">
-        <button class="icon-btn del" onclick="deleteCurrentAffair('${a.id}')" title="Delete">
+        <button class="icon-btn del" onclick="deleteResult('${r.id}')" title="Delete">
           <i class="fas fa-trash"></i>
         </button>
       </div>
-    </div>`;
-  }).join('');
+    </div>
+  `).join('');
 }
 
-async function addCurrentAffair() {
-  const title = document.getElementById('ca-title').value.trim();
-  const summary = document.getElementById('ca-summary').value.trim();
-  const category = document.getElementById('ca-category').value;
-  const exam = document.getElementById('ca-exam').value;
-  const source = document.getElementById('ca-source').value.trim();
+async function addResult() {
+  const name = document.getElementById('result-name').value.trim();
+  const category = document.getElementById('result-category').value;
+  const score = document.getElementById('result-score').value.trim();
+  const fileInput = document.getElementById('result-image-file');
+  const file = fileInput.files[0];
 
-  if (!title || !summary) { toast('Headline and summary are required.', 'error'); return; }
+  if (!name) { toast('Please enter student name.', 'error'); return; }
+  if (!score) { toast('Please enter score.', 'error'); return; }
+  if (!file) { toast('Please select a student photo.', 'error'); return; }
 
-  const btn = event.target.closest('button');
+  const btn = document.getElementById('publish-result-btn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Publishing...';
 
+  const storagePath = `results/${Date.now()}_${file.name}`;
+  let uploadedUrl = null;
+
+  try {
+    uploadedUrl = await uploadImage(file, storagePath, 'result-progress-bar', 'result-progress-text', 'result-progress-container');
+  } catch (e) {
+    toast('Failed to upload image. Check Firebase Storage rules.', 'error');
+    console.error(e);
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish Result';
+    return;
+  }
+
   try {
     const { collection, addDoc, serverTimestamp } = window._firebase;
-    const docRef = await addDoc(collection(window._db, 'current_affairs'), {
-      title, summary, category, exam, source,
+    const docRef = await addDoc(collection(window._db, 'results'), {
+      imageUrl: uploadedUrl,
+      storagePath: storagePath,
+      studentName: name,
+      examCategory: category,
+      score: score,
       createdAt: serverTimestamp()
     });
 
-    currentAffairs.unshift({ id: docRef.id, title, summary, category, exam, source, createdAt: null });
-    renderCurrentAffairs();
+    results.unshift({
+      id: docRef.id,
+      imageUrl: uploadedUrl,
+      storagePath: storagePath,
+      studentName: name,
+      examCategory: category,
+      score: score,
+      createdAt: null
+    });
+    renderResults();
 
-    document.getElementById('ca-title').value = '';
-    document.getElementById('ca-summary').value = '';
-    document.getElementById('ca-source').value = '';
-    toast('✅ Article published live!');
-  } catch(e) {
-    toast('Failed to publish. Check Firebase config.', 'error');
-    console.error(e);
+    document.getElementById('result-name').value = '';
+    document.getElementById('result-score').value = '';
+    fileInput.value = '';
+    document.getElementById('result-preview-container').style.display = 'none';
+    toast('✅ Result published live!');
+  } catch (e) {
+    console.error('Firestore save failed, cleaning up Storage:', e);
+    try {
+      const { ref, deleteObject } = window._firebaseStorage;
+      const storageRef = ref(window._storage, storagePath);
+      await deleteObject(storageRef);
+    } catch (storageErr) {
+      console.error('Storage cleanup failed:', storageErr);
+    }
+    toast('Failed to save result to Firestore.', 'error');
   }
 
   btn.disabled = false;
-  btn.innerHTML = '<i class="fas fa-newspaper"></i> Publish Article';
+  btn.innerHTML = '<i class="fas fa-paper-plane"></i> Publish Result';
 }
 
-function deleteCurrentAffair(id) {
+function deleteResult(id) {
   confirmDelete(async () => {
     try {
+      const item = results.find(r => r.id === id);
+      if (item && item.storagePath) {
+        try {
+          const { ref, deleteObject } = window._firebaseStorage;
+          const storageRef = ref(window._storage, item.storagePath);
+          await deleteObject(storageRef);
+        } catch (err) {
+          console.warn('Storage image deletion failed or already deleted:', err);
+        }
+      }
+      
       const { doc, deleteDoc } = window._firebase;
-      await deleteDoc(doc(window._db, 'current_affairs', id));
-      currentAffairs = currentAffairs.filter(a => a.id !== id);
-      renderCurrentAffairs();
-      toast('Article deleted.');
+      await deleteDoc(doc(window._db, 'results', id));
+      
+      results = results.filter(r => r.id !== id);
+      renderResults();
+      toast('Result deleted.');
     } catch(e) {
       toast('Delete failed.', 'error');
     }

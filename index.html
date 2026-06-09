@@ -11,7 +11,7 @@
     <meta property="og:title" content="QuasiBanking | Banking Exam Preparation">
     <meta property="og:description" content="India's best banking exam preparation platform.">
     <meta property="og:type" content="website">
-    <link rel="canonical" href="https://quasibanking.com/">
+    <link rel="canonical" href="https://quasibankingclasses.com/">
     
     <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
     <link rel="stylesheet" href="styles.css">
@@ -45,22 +45,43 @@
                 <div class="nav-card-icon"><i class="fas fa-home"></i></div>
                 <span class="nav-card-title">Dashboard</span>
             </a>
-            <a href="index.html#courses" class="nav-card" id="nav-courses">
-                <div class="nav-card-icon"><i class="fas fa-book"></i></div>
-                <span class="nav-card-title">Courses</span>
-            </a>
-            <a href="#" class="nav-card" id="nav-mocks">
-                <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
-                <span class="nav-card-title">Mock Tests</span>
-            </a>
-            <a href="current-affairs.html" class="nav-card" id="nav-affairs">
-                <div class="nav-card-icon"><i class="fas fa-newspaper"></i></div>
-                <span class="nav-card-title">Current Affairs</span>
-            </a>
-            <a href="resources.html" class="nav-card" id="nav-resources">
-                <div class="nav-card-icon"><i class="fas fa-folder-open"></i></div>
-                <span class="nav-card-title">Resources</span>
-            </a>
+            <div class="sidebar-dropdown-container">
+                <button class="nav-card dropdown-trigger" id="nav-courses-trigger" aria-expanded="false">
+                    <div class="nav-card-icon"><i class="fas fa-book"></i></div>
+                    <span class="nav-card-title">Courses</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </button>
+                <div class="dropdown-menu" id="courses-dropdown">
+                    <a href="course-sbi.html" class="dropdown-item" id="nav-sbi-courses">
+                        <span class="bullet">&bull;</span> SBI Courses
+                    </a>
+                    <a href="course-rbi.html" class="dropdown-item" id="nav-rbi-courses">
+                        <span class="bullet">&bull;</span> RBI Courses
+                    </a>
+                    <a href="course-ibps.html" class="dropdown-item" id="nav-ibps-courses">
+                        <span class="bullet">&bull;</span> IBPS Courses
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-dropdown-container">
+                <button class="nav-card dropdown-trigger" id="nav-mocks-trigger" aria-expanded="false">
+                    <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
+                    <span class="nav-card-title">Mock Tests</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </button>
+                <div class="dropdown-menu" id="mocks-dropdown">
+                    <a href="mock-tests.html#sbi" class="dropdown-item" id="nav-sbi-mocks">
+                        <span class="bullet">&bull;</span> SBI Mock Tests
+                    </a>
+                    <a href="mock-tests.html#rbi" class="dropdown-item" id="nav-rbi-mocks">
+                        <span class="bullet">&bull;</span> RBI Mock Tests
+                    </a>
+                    <a href="mock-tests.html#ibps" class="dropdown-item" id="nav-ibps-mocks">
+                        <span class="bullet">&bull;</span> IBPS Mock Tests
+                    </a>
+                </div>
+            </div>
+
             <a href="notifications.html" class="nav-card" id="nav-notifications">
                 <div class="nav-card-icon"><i class="fas fa-bell"></i></div>
                 <span class="nav-card-title">Notifications</span>
@@ -115,7 +136,7 @@
                     <a href="index.html#user-stats" class="quick-action-btn" id="qa-resume">
                         <i class="fas fa-play"></i> Resume Learning
                     </a>
-                    <a href="#" class="quick-action-btn" id="qa-mock">
+                    <a href="mock-tests.html" class="quick-action-btn" id="qa-mock">
                         <i class="fas fa-stopwatch"></i> Take Mock Test
                     </a>
                     <a href="index.html#courses" class="quick-action-btn" id="qa-browse">
@@ -159,13 +180,11 @@
                 <div class="train-track" id="train-track-content">
                     <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
                     <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
-                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
                     <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
                     <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
                     <!-- Duplicates for seamless loop -->
                     <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
                     <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
-                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
                     <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
                     <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
                 </div>
@@ -274,8 +293,8 @@
                         <span class="hero-stat-label">Mentorship</span>
                     </div>
                     <div class="hero-stat-item">
-                        <span class="hero-stat-value">Daily</span>
-                        <span class="hero-stat-label">Current Affairs</span>
+                        <span class="hero-stat-value">GD/PI</span>
+                        <span class="hero-stat-label">Training</span>
                     </div>
                 </div>
             </div>
@@ -299,8 +318,8 @@
                 </div>
                 <div class="modern-card feature-card">
                     <div class="series-icon text-cyan-500"><i class="fas fa-globe"></i></div>
-                    <h3>Daily Current Affairs</h3>
-                    <p>Curated banking & economy news digests, monthly summaries, and daily interactive quizzes to boost your general awareness.</p>
+                    <h3>Sectional Mock Tests</h3>
+                    <p>Subject-specific and sectional quizzes focusing on Quantitative Aptitude, Reasoning Ability, and English Language.</p>
                 </div>
                 <div class="modern-card feature-card">
                     <div class="series-icon text-amber-500"><i class="fas fa-user-tie"></i></div>
@@ -430,9 +449,9 @@
                     <p style="color: var(--text-muted);">Premium training for Grade B & Assistant with descriptive writing practice.</p>
                     <span style="color: var(--accent-color); font-weight: 600; margin-top: auto;">Explore Path &rarr;</span>
                 </a>
-                <a href="#courses" class="series-card modern-card">
+                <a href="course-sbi.html" class="series-card modern-card">
                     <div class="series-logo-wrap" style="width: 80px; height: 80px; border-radius: 20px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--glass-border); background: white; padding: 10px; display: flex; align-items: center; justify-content: center;">
-                        <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="RRB" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="RESOURCES/COURSES PIC/RBI.jpg" alt="RRB" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <h3 style="font-size: 1.5rem;">RRB Series</h3>
                     <p style="color: var(--text-muted);">Targeted resources for Regional Rural Banks (PO, Clerk & Officer Scale).</p>
@@ -806,6 +825,61 @@
             </div>
         </section>
 
+        <!-- Expert Faculty Section -->
+        <section id="expert-faculty" class="section-tight reveal">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-chalkboard-teacher text-indigo-500"></i> Meet Our Expert Faculty</h2>
+                <p class="section-subtitle">Learn from former senior bank managers and elite educationists with decades of experience.</p>
+            </div>
+            
+            <div class="faculty-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin: 40px auto 0; max-width: 1200px;">
+                <!-- Faculty 1: B. Sudha Rani -->
+                <div class="modern-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; min-height: 280px; flex: 1 1 calc(33.333% - 22px); min-width: 280px; max-width: 360px; box-sizing: border-box;">
+                    <div style="position: relative; width: 140px; height: 140px; margin-bottom: 20px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);">
+                        <img src="RESOURCES/BANNER/faculty_sudha_rani.jpg" alt="B. Sudha Rani" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #0f172a;">
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: white; margin-bottom: 8px;">B. Sudha Rani</h3>
+                    <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-color); background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); padding: 5px 14px; border-radius: 50px;">Coordinator</span>
+                </div>
+
+                <!-- Faculty 2: Munilal Nayak -->
+                <div class="modern-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; min-height: 280px; flex: 1 1 calc(33.333% - 22px); min-width: 280px; max-width: 360px; box-sizing: border-box;">
+                    <div style="position: relative; width: 140px; height: 140px; margin-bottom: 20px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);">
+                        <img src="RESOURCES/BANNER/faculty_munilal_nayak.jpg" alt="Munilal Nayak" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #0f172a;">
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: white; margin-bottom: 8px;">Munilal Nayak</h3>
+                    <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-color); background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); padding: 5px 14px; border-radius: 50px;">Reasoning</span>
+                </div>
+
+                <!-- Faculty 3: BJagan B -->
+                <div class="modern-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; min-height: 280px; flex: 1 1 calc(33.333% - 22px); min-width: 280px; max-width: 360px; box-sizing: border-box;">
+                    <div style="position: relative; width: 140px; height: 140px; margin-bottom: 20px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);">
+                        <img src="RESOURCES/BANNER/faculty_jagan.jpg" alt="BJagan B" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #0f172a;">
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: white; margin-bottom: 8px;">BJagan B</h3>
+                    <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-color); background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); padding: 5px 14px; border-radius: 50px;">Quantitative Aptitude</span>
+                </div>
+
+                <!-- Faculty 4: B G.Hari Krishna -->
+                <div class="modern-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; min-height: 280px; flex: 1 1 calc(33.333% - 22px); min-width: 280px; max-width: 360px; box-sizing: border-box;">
+                    <div style="position: relative; width: 140px; height: 140px; margin-bottom: 20px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);">
+                        <img src="RESOURCES/BANNER/faculty_hari_krishna.jpg" alt="B G.Hari Krishna" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #0f172a;">
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: white; margin-bottom: 8px;">B G.Hari Krishna</h3>
+                    <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-color); background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); padding: 5px 14px; border-radius: 50px;">Banking Awareness and Static GK</span>
+                </div>
+
+                <!-- Faculty 5: G.Pratyusha Rao -->
+                <div class="modern-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; justify-content: center; min-height: 280px; flex: 1 1 calc(33.333% - 22px); min-width: 280px; max-width: 360px; box-sizing: border-box;">
+                    <div style="position: relative; width: 140px; height: 140px; margin-bottom: 20px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);">
+                        <img src="RESOURCES/BANNER/faculty_pratyusha_rao.jpg" alt="G.Pratyusha Rao" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #0f172a;">
+                    </div>
+                    <h3 style="font-size: 1.35rem; font-weight: 800; color: white; margin-bottom: 8px;">G.Pratyusha Rao</h3>
+                    <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary-color); background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); padding: 5px 14px; border-radius: 50px;">English Language</span>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact & Support Section -->
         <section id="contact-support-section" class="section-tight reveal">
             <div class="section-header">
@@ -931,9 +1005,8 @@
                 <h4 class="footer-section-title">Quick Links</h4>
                 <ul class="footer-nav-list">
                     <li><a href="#courses" class="footer-nav-link">Courses</a></li>
-                    <li><a href="#courses" class="footer-nav-link">Mock Tests</a></li>
-                    <li><a href="course-ibps.html" class="footer-nav-link">Current Affairs</a></li>
-                    <li><a href="#series" class="footer-nav-link">About Us</a></li>
+                    <li><a href="mock-tests.html" class="footer-nav-link">Mock Tests</a></li>
+                    <li><a href="#why-choose-us" class="footer-nav-link">About Us</a></li>
                 </ul>
             </div>
 

@@ -26,10 +26,6 @@ const drawerHtml = `
                     <div class="step-icon"><i class="fas fa-file-signature"></i></div>
                     <span>Attempt Your First Mock</span>
                 </a>
-                <a href="current-affairs.html" class="onboarding-step-item">
-                    <div class="step-icon"><i class="fas fa-newspaper"></i></div>
-                    <span>Read Today's Current Affairs</span>
-                </a>
             </div>
         </div>
 
@@ -199,7 +195,7 @@ const drawerHtml = `
                 </div>
                 <div class="insights-action-box">
                     <span class="action-label"><i class="fas fa-arrow-circle-right text-indigo-400 mr-1"></i> Recommended Next Action</span>
-                    <a href="current-affairs.html" class="insights-action-btn" id="insights-action-recommendation">Attempt Current Affairs Quiz #12</a>
+                    <a href="mock-tests.html" class="insights-action-btn" id="insights-action-recommendation">Attempt Daily Mock Test</a>
                 </div>
             </div>
         </div>
@@ -614,17 +610,17 @@ function initChartTabs() {
 // Course metadata for rendering Continue Learning
 const courseMetadata = {
     "SBI Victory Batch 2026: Prelims + Mains": {
-        link: "course-sbi.html",
+        link: "index.html#courses",
         progress: 45,
         topics: "11 / 25 Topics Completed"
     },
     "RBI Zenith Batch (Grade B) Phase 1 + 2": {
-        link: "course-rbi.html",
+        link: "index.html#courses",
         progress: 30,
         topics: "7 / 25 Topics Completed"
     },
     "IBPS PO 2026": {
-        link: "course-ibps.html",
+        link: "index.html#courses",
         progress: 60,
         topics: "15 / 25 Topics Completed"
     }
@@ -771,11 +767,11 @@ function updateAIInsights() {
         if (strongestSubjEl) strongestSubjEl.textContent = "Undetermined";
         if (weakestSubjEl) weakestSubjEl.textContent = "Undetermined";
         if (recommendEl) {
-            recommendEl.textContent = "Attempt Daily Quiz Checkpoint";
+            recommendEl.textContent = "Attempt Daily Mock Test";
             recommendEl.onclick = (e) => {
                 e.preventDefault();
                 closeDashboardDrawer();
-                window.location.href = "current-affairs.html";
+                window.location.href = "mock-tests.html";
             };
         }
     }
@@ -851,7 +847,7 @@ export async function fetchUserStats(userId) {
         let meta = courseMetadata[activeCourseTitle];
         if (!meta) {
             meta = {
-                link: activeCourseTitle.includes('RBI') ? 'course-rbi.html' : (activeCourseTitle.includes('SBI') ? 'course-sbi.html' : 'course-ibps.html'),
+                link: 'index.html#courses',
                 progress: 35,
                 topics: "9 / 25 Topics Completed"
             };

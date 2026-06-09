@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Test Series - QUASIBANKING EXAMS</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="Attempt exam-ready banking mock tests crafted by experts. SBI PO, SBI Clerk, RBI Grade B, IBPS PO, and IBPS Clerk mock test series.">
+    <meta name="keywords" content="Banking mock tests, SBI PO mocks, RBI Grade B mock test, IBPS PO test series, banking practice tests">
+    <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .section-anchor {
+            scroll-margin-top: 130px;
+        }
+        .section-header-wrap {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .section-underline {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+            margin-top: 8px;
+        }
+        /* Custom styles for mock test cards to align with course cards */
+        .mock-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .mock-card:hover {
+            transform: scale(1.02) translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-premium);
+        }
+        .mock-banner {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mock-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .mock-card:hover .mock-banner img {
+            transform: scale(1.1);
+        }
+        .mock-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 10;
+            padding: 4px 12px;
+            background: var(--primary-color);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+        }
+        .mock-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mock-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .mock-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .mock-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .mock-bullets {
+            list-style: none;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .mock-bullets li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mock-bullets li i {
+            color: var(--success-color);
+            font-size: 0.9rem;
+        }
+        .mock-card-footer {
+            padding: 20px 24px 24px;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.01);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .mock-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .mock-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .mock-original-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+        .mock-discount {
+            color: var(--success-color);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .mock-btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .mock-btn-group .btn {
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Premium Dashboard Sidebar -->
+    <aside id="dashboard-sidebar" class="premium-sidebar">
+        <!-- TOP SECTION: Logo, Brand & Tagline -->
+        <div class="sidebar-top">
+            <a href="index.html" class="sidebar-logo-link">
+                <div class="sidebar-logo-container">
+                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="sidebar-logo">
+                </div>
+                <div class="sidebar-brand-wrapper">
+                    <span class="sidebar-brand-name">QUASIBANKING</span>
+                    <span class="sidebar-tagline">India's Premium Banking Platform</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- MAIN NAVIGATION: Premium Interactive Navigation Cards -->
+        <nav class="sidebar-nav">
+            <a href="index.html#user-stats" class="nav-card" id="nav-dashboard">
+                <div class="nav-card-icon"><i class="fas fa-home"></i></div>
+                <span class="nav-card-title">Dashboard</span>
+            </a>
+            
+            <div class="sidebar-dropdown-container">
+                <button class="nav-card dropdown-trigger" id="nav-courses-trigger" aria-expanded="false">
+                    <div class="nav-card-icon"><i class="fas fa-book"></i></div>
+                    <span class="nav-card-title">Courses</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </button>
+                <div class="dropdown-menu" id="courses-dropdown">
+                    <a href="course-sbi.html" class="dropdown-item" id="nav-sbi-courses">
+                        <span class="bullet">&bull;</span> SBI Courses
+                    </a>
+                    <a href="course-rbi.html" class="dropdown-item" id="nav-rbi-courses">
+                        <span class="bullet">&bull;</span> RBI Courses
+                    </a>
+                    <a href="course-ibps.html" class="dropdown-item" id="nav-ibps-courses">
+                        <span class="bullet">&bull;</span> IBPS Courses
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-dropdown-container">
+                <button class="nav-card dropdown-trigger" id="nav-mocks-trigger" aria-expanded="false">
+                    <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
+                    <span class="nav-card-title">Mock Tests</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </button>
+                <div class="dropdown-menu" id="mocks-dropdown">
+                    <a href="mock-tests.html#sbi" class="dropdown-item" id="nav-sbi-mocks">
+                        <span class="bullet">&bull;</span> SBI Mock Tests
+                    </a>
+                    <a href="mock-tests.html#rbi" class="dropdown-item" id="nav-rbi-mocks">
+                        <span class="bullet">&bull;</span> RBI Mock Tests
+                    </a>
+                    <a href="mock-tests.html#ibps" class="dropdown-item" id="nav-ibps-mocks">
+                        <span class="bullet">&bull;</span> IBPS Mock Tests
+                    </a>
+                </div>
+            </div>
+
+
+            <a href="notifications.html" class="nav-card" id="nav-notifications">
+                <div class="nav-card-icon"><i class="fas fa-bell"></i></div>
+                <span class="nav-card-title">Notifications</span>
+                <span id="sidebar-notif-badge" class="notif-badge hidden">0</span>
+            </a>
+            <a href="interview.html" class="nav-card" id="nav-interview">
+                <div class="nav-card-icon"><i class="fas fa-bullseye"></i></div>
+                <span class="nav-card-title">Interview & GD</span>
+            </a>
+        </nav>
+
+        <!-- MIDDLE SECTION: Progress Widget & Quick Actions -->
+        <div class="sidebar-widgets-container">
+            <!-- Progress Widget -->
+            <div class="sidebar-widget progress-widget">
+                <div class="widget-header">
+                    <span class="widget-title">🎯 Target Exam</span>
+                    <span class="exam-value">IBPS PO 2026</span>
+                </div>
+                <div class="widget-content">
+                    <div class="widget-progress-bar-container">
+                        <div class="widget-progress-bar">
+                            <div id="sidebar-progress-fill" class="widget-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <span id="sidebar-progress-percent" class="progress-percent">0%</span>
+                    </div>
+                    <div class="widget-stats-grid">
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-courses">0</span>
+                            <span class="widget-stat-label">Enrolled</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-mocks">0</span>
+                            <span class="widget-stat-label">Mocks</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-accuracy">0%</span>
+                            <span class="widget-stat-label">Accuracy</span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-num" id="sidebar-stat-streak">0 Days</span>
+                            <span class="widget-stat-label">Streak</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Section -->
+            <div class="sidebar-widget quick-actions-widget">
+                <span class="widget-title">Quick Actions</span>
+                <div class="quick-actions-grid">
+                    <a href="index.html#user-stats" class="quick-action-btn" id="qa-resume">
+                        <i class="fas fa-play"></i> Resume Learning
+                    </a>
+                    <a href="index.html?triggerMock=true" class="quick-action-btn" id="qa-mock">
+                        <i class="fas fa-stopwatch"></i> Take Mock Test
+                    </a>
+                    <a href="index.html#courses" class="quick-action-btn" id="qa-browse">
+                        <i class="fas fa-search"></i> Browse Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM SECTION: Profile, Theme Switcher & Logout -->
+        <div class="sidebar-bottom">
+            <div class="sidebar-profile-card" id="sidebar-profile">
+                <div class="profile-avatar" id="sidebar-avatar">G</div>
+                <div class="profile-info">
+                    <span class="profile-name" id="sidebar-username">Guest Aspirant</span>
+                    <span class="profile-role">Student</span>
+                </div>
+            </div>
+
+            <div class="sidebar-actions">
+                <button id="sidebar-theme-toggle" class="sidebar-action-btn" title="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+                <button id="sidebar-logout-btn" class="sidebar-action-btn logout-btn hidden" onclick="handleLogout()" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Sidebar overlay for mobile drawer backdrop -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <header class="sticky-header">
+        <!-- Top Notification Train (Always Visible Ticker) -->
+        <div class="top-notification-train" id="top-notification-train">
+            <div class="train-wrapper">
+                <div class="train-track" id="train-track-content">
+                    <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
+                    <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
+                    <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
+                    <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
+                    <!-- Duplicates for seamless loop -->
+                    <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
+                    <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
+                    <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
+                    <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
+                </div>
+            </div>
+            <!-- Live Status Widget -->
+            <div class="live-status-widget">
+                <span class="live-indicator">
+                    <span class="pulse-dot"></span>
+                    LIVE
+                </span>
+                <span class="live-count">12 Updates Today</span>
+            </div>
+        </div>
+
+        <nav class="nav-bar">
+            <div class="nav-left">
+                <button id="mobile-sidebar-toggle" class="mobile-toggle-btn" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="index.html" class="logo-link">
+                    <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="nav-logo">
+                </a>
+            </div>
+            <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+                <!-- Premium Notification Bell and Dropdown -->
+                <div class="nav-notification-container" id="nav-notif-container">
+                    <button id="nav-notif-bell" class="nav-notif-bell-btn" aria-label="Toggle Notifications Dropdown">
+                        <i class="fas fa-bell"></i>
+                        <span id="nav-notif-bell-badge" class="notif-bell-badge hidden">0</span>
+                    </button>
+                    <div id="nav-notif-dropdown" class="nav-notif-dropdown-panel hidden">
+                        <div class="dropdown-header">
+                            <h3>Notifications</h3>
+                            <button id="mark-all-read-btn" class="mark-all-read-link">Mark all as read</button>
+                        </div>
+                        <div class="dropdown-tabs">
+                            <button class="dropdown-tab-btn active" data-priority="all">All</button>
+                            <button class="dropdown-tab-btn" data-priority="high">🚨 High</button>
+                            <button class="dropdown-tab-btn" data-priority="medium">⚡ Med</button>
+                            <button class="dropdown-tab-btn" data-priority="general">📢 Gen</button>
+                        </div>
+                        <div class="dropdown-list" id="dropdown-notif-list">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                        <div class="dropdown-footer">
+                            <a href="notifications.html" class="see-all-link">See All Notifications &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="header-auth-btn">
+                    <a href="auth.html" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem; border-radius: 12px;">Login</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="section-container reveal active" style="margin-top: 40px;">
+        <!-- Page Header -->
+        <div class="section-header" style="margin-bottom: 60px;">
+            <h1 class="text-4xl md:text-5xl font-black text-white mb-4 flex items-center gap-4">
+                <i class="fas fa-file-invoice-dollar text-indigo-500"></i> Mock Test Series
+            </h1>
+            <p class="section-subtitle">Attempt exam-ready mock tests crafted by industry experts to ace your exams.</p>
+        </div>
+
+        <!-- SBI SECTION -->
+        <section id="sbi" class="section-anchor mb-16">
+            <div class="section-header-wrap mb-8">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-3">
+                    <i class="fas fa-university text-indigo-500"></i> SBI Mock Tests
+                </h2>
+                <div class="section-underline"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: SBI PO -->
+                <div class="mock-card animate-up">
+                    <div class="mock-banner">
+                        <span class="mock-badge">Premium</span>
+                        <img src="RESOURCES/COURSES PIC/SBI CLERK MAIN.jpg" alt="SBI PO Logo">
+                    </div>
+                    <div class="mock-content">
+                        <h3 class="mock-title">SBI PO Mock Test Series</h3>
+                        <div class="mock-meta">
+                            <span class="mock-meta-item"><i class="far fa-clock"></i> Full syllabus</span>
+                            <span class="mock-meta-item"><i class="fas fa-language"></i> Bilingual</span>
+                        </div>
+                        <ul class="mock-bullets">
+                            <li><i class="fas fa-check-circle"></i> 25 Full Length Mock Tests</li>
+                            <li><i class="fas fa-check-circle"></i> Previous Year Questions</li>
+                            <li><i class="fas fa-check-circle"></i> Detailed Solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Performance Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="mock-card-footer">
+                        <div class="mock-price-row">
+                            <div class="mock-price">
+                                ₹549 <span class="mock-original-price">₹1299</span>
+                            </div>
+                            <span class="mock-discount">58% OFF</span>
+                        </div>
+                        <div class="mock-btn-group">
+                            <a href="https://www.quasibankingclasses.com/new-courses/2?source=website" target="_blank" rel="noopener noreferrer" class="btn btn-primary justify-center">Attempt Now</a>
+                            <a href="index.html#courses" class="btn btn-outline justify-center">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: SBI Clerk -->
+                <div class="mock-card animate-up">
+                    <div class="mock-banner">
+                        <span class="mock-badge">Bestseller</span>
+                        <img src="RESOURCES/COURSES PIC/SBI CLERK MAIN.jpg" alt="SBI Clerk Logo">
+                    </div>
+                    <div class="mock-content">
+                        <h3 class="mock-title">SBI Clerk Mock Test Series</h3>
+                        <div class="mock-meta">
+                            <span class="mock-meta-item"><i class="far fa-clock"></i> Full syllabus</span>
+                            <span class="mock-meta-item"><i class="fas fa-language"></i> Bilingual</span>
+                        </div>
+                        <ul class="mock-bullets">
+                            <li><i class="fas fa-check-circle"></i> 20 Full Length Mock Tests</li>
+                            <li><i class="fas fa-check-circle"></i> Previous Year Questions</li>
+                            <li><i class="fas fa-check-circle"></i> Detailed Solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Performance Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="mock-card-footer">
+                        <div class="mock-price-row">
+                            <div class="mock-price">
+                                ₹499 <span class="mock-original-price">₹1199</span>
+                            </div>
+                            <span class="mock-discount">58% OFF</span>
+                        </div>
+                        <div class="mock-btn-group">
+                            <a href="https://www.quasibankingclasses.com/new-courses/2?source=website" target="_blank" rel="noopener noreferrer" class="btn btn-primary justify-center">Attempt Now</a>
+                            <a href="index.html#courses" class="btn btn-outline justify-center">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RBI SECTION -->
+        <section id="rbi" class="section-anchor mb-16">
+            <div class="section-header-wrap mb-8">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-3">
+                    <i class="fas fa-university text-cyan-500"></i> RBI Mock Tests
+                </h2>
+                <div class="section-underline" style="background: linear-gradient(to right, var(--secondary-color), var(--primary-color));"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 3: RBI Grade B -->
+                <div class="mock-card animate-up">
+                    <div class="mock-banner">
+                        <span class="mock-badge" style="background: var(--secondary-color); box-shadow: 0 4px 10px rgba(6, 182, 212, 0.4);">Elite</span>
+                        <img src="RESOURCES/COURSES PIC/RBI.jpg" alt="RBI Grade B Logo">
+                    </div>
+                    <div class="mock-content">
+                        <h3 class="mock-title">RBI Grade B Mock Test Series</h3>
+                        <div class="mock-meta">
+                            <span class="mock-meta-item"><i class="far fa-clock"></i> Phase 1 & 2</span>
+                            <span class="mock-meta-item"><i class="fas fa-language"></i> English</span>
+                        </div>
+                        <ul class="mock-bullets">
+                            <li><i class="fas fa-check-circle"></i> 15 Full Length Mock Tests</li>
+                            <li><i class="fas fa-check-circle"></i> Previous Year Questions</li>
+                            <li><i class="fas fa-check-circle"></i> Detailed Solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Performance Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="mock-card-footer">
+                        <div class="mock-price-row">
+                            <div class="mock-price">
+                                ₹599 <span class="mock-original-price">₹1499</span>
+                            </div>
+                            <span class="mock-discount">60% OFF</span>
+                        </div>
+                        <div class="mock-btn-group">
+                            <a href="https://www.quasibankingclasses.com/new-courses/2?source=website" target="_blank" rel="noopener noreferrer" class="btn btn-primary justify-center">Attempt Now</a>
+                            <a href="index.html#courses" class="btn btn-outline justify-center">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IBPS SECTION -->
+        <section id="ibps" class="section-anchor mb-16">
+            <div class="section-header-wrap mb-8">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-white flex items-center gap-3">
+                    <i class="fas fa-university text-amber-500"></i> IBPS Mock Tests
+                </h2>
+                <div class="section-underline" style="background: linear-gradient(to right, var(--accent-color), var(--primary-color));"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 4: IBPS PO -->
+                <div class="mock-card animate-up">
+                    <div class="mock-banner">
+                        <span class="mock-badge" style="background: var(--accent-color); box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);">Premium</span>
+                        <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS PO Logo">
+                    </div>
+                    <div class="mock-content">
+                        <h3 class="mock-title">IBPS PO Mock Test Series</h3>
+                        <div class="mock-meta">
+                            <span class="mock-meta-item"><i class="far fa-clock"></i> Full syllabus</span>
+                            <span class="mock-meta-item"><i class="fas fa-language"></i> Bilingual</span>
+                        </div>
+                        <ul class="mock-bullets">
+                            <li><i class="fas fa-check-circle"></i> 25 Full Length Mock Tests</li>
+                            <li><i class="fas fa-check-circle"></i> Previous Year Questions</li>
+                            <li><i class="fas fa-check-circle"></i> Detailed Solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Performance Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="mock-card-footer">
+                        <div class="mock-price-row">
+                            <div class="mock-price">
+                                ₹549 <span class="mock-original-price">₹1299</span>
+                            </div>
+                            <span class="mock-discount">58% OFF</span>
+                        </div>
+                        <div class="mock-btn-group">
+                            <a href="https://www.quasibankingclasses.com/new-courses/2?source=website" target="_blank" rel="noopener noreferrer" class="btn btn-primary justify-center">Attempt Now</a>
+                            <a href="index.html#courses" class="btn btn-outline justify-center">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: IBPS Clerk -->
+                <div class="mock-card animate-up">
+                    <div class="mock-banner">
+                        <span class="mock-badge" style="background: var(--success-color); box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);">New Batch</span>
+                        <img src="RESOURCES/COURSES PIC/IBPS.JPG" alt="IBPS Clerk Logo">
+                    </div>
+                    <div class="mock-content">
+                        <h3 class="mock-title">IBPS Clerk Mock Test Series</h3>
+                        <div class="mock-meta">
+                            <span class="mock-meta-item"><i class="far fa-clock"></i> Full syllabus</span>
+                            <span class="mock-meta-item"><i class="fas fa-language"></i> Bilingual</span>
+                        </div>
+                        <ul class="mock-bullets">
+                            <li><i class="fas fa-check-circle"></i> 20 Full Length Mock Tests</li>
+                            <li><i class="fas fa-check-circle"></i> Previous Year Questions</li>
+                            <li><i class="fas fa-check-circle"></i> Detailed Solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Performance Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="mock-card-footer">
+                        <div class="mock-price-row">
+                            <div class="mock-price">
+                                ₹499 <span class="mock-original-price">₹1199</span>
+                            </div>
+                            <span class="mock-discount">58% OFF</span>
+                        </div>
+                        <div class="mock-btn-group">
+                            <a href="https://www.quasibankingclasses.com/new-courses/2?source=website" target="_blank" rel="noopener noreferrer" class="btn btn-primary justify-center">Attempt Now</a>
+                            <a href="index.html#courses" class="btn btn-outline justify-center">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-bg" style="background: rgba(15, 23, 42, 0.95); padding-top: 100px; margin-top: 100px;">
+        <div class="footer-content">
+            <div>
+                <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="Logo" class="nav-logo" style="height: 60px; margin-bottom: 25px;">
+                <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px;">QuasiBanking Academy is India's leading research-driven Edutech platform for banking aspirants. We combine technology with expert pedagogy to make quality education accessible to everyone.</p>
+                <div class="flex gap-4">
+                    <a href="http://www.youtube.com/@QuasiBankingClasses-h4w" target="_blank" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.instagram.com/quasibankingclasses?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="btn btn-outline" style="width: 44px; height: 44px; border-radius: 50%; padding: 0;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 25px; font-size: 1.1rem; font-weight: 700;">Our Series</h4>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px;">
+                    <li><a href="index.html#courses" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">IBPS Series</a></li>
+                    <li><a href="index.html#courses" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">SBI Series</a></li>
+                    <li><a href="index.html#courses" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">RBI Series</a></li>
+                    <li><a href="index.html#courses" style="color: var(--text-muted); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--text-muted)'">RRB Series</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 25px; font-size: 1.1rem; font-weight: 700;">Support</h4>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px;">
+                    <li><a href="#" style="color: var(--text-muted); text-decoration: none;">Student Portal</a></li>
+                    <li><a href="refund-policy.html" style="color: var(--text-muted); text-decoration: none;">Refund Policy</a></li>
+                    <li><a href="terms.html" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a></li>
+                    <li><a href="mailto:Quasiclasses@gmail.com" style="color: var(--text-muted); text-decoration: none;">Email Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="max-width: 1300px; margin: 80px auto 0; padding: 30px 24px; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+            &copy; 2026 QuasiBanking Classes. All Rights Reserved. Crafted for future Bankers.
+        </div>
+    </footer>
+
+    <!-- Firebase Compat SDKs & Scripts -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>

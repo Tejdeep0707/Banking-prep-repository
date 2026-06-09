@@ -70,72 +70,7 @@ const DEFAULT_NOTIFICATIONS = [
         recommendedPrep: "Review state agricultural guidelines. Practice writing and speaking tasks in the registered regional state language."
     },
 
-    // === CURRENT AFFAIRS CATEGORY (5 announcements) ===
-    {
-        id: "notif-affairs-1",
-        title: "Monthly Current Affairs Capsule Uploaded",
-        description: "May 2026 comprehensive news events, economic tables, and international indices compiled in PDF.",
-        detailedSummary: "Our exam panel has compiled the monthly current affairs capsule for May 2026. The study booklet organizes financial highlights, national policy schemes, sports awards, and bilateral military drills into structured study modules.",
-        date: "2026-05-29",
-        category: "affairs",
-        priority: "medium",
-        read: false,
-        fullArticleUrl: "https://economictimes.indiatimes.com",
-        importance: "General Awareness sections hold 40% marks weightage in main papers. Consistent monthly revision guarantees better scores.",
-        recommendedPrep: "Download the PDF capsule, mark critical macro numbers, and take the 5-MCQ daily quiz to benchmark retention indices."
-    },
-    {
-        id: "notif-affairs-2",
-        title: "RBI Monetary Policy Summary Published",
-        description: "Policy repo rate maintained steady at 6.5%. Accommodation withdrawal stance continued.",
-        detailedSummary: "The RBI Monetary Policy Committee voted unanimously to keep the policy repo rate unchanged at 6.50% to ensure CPI inflation aligns progressively with the medium-term targets while supporting GDP expansion guidelines.",
-        date: "2026-05-28",
-        category: "affairs",
-        priority: "high",
-        read: false,
-        fullArticleUrl: "https://www.rbi.org.in",
-        importance: "Fundamental concept in banking awareness. Questions on rates, MPC structure, and banking inflation policies appear in both mains and interviews.",
-        recommendedPrep: "Memorize current policy rates (Repo, Reverse Repo, MSF, Bank Rate) and study the role of the NSO in calculating inflation metrics."
-    },
-    {
-        id: "notif-affairs-3",
-        title: "Economic Survey Notes Added",
-        description: "Chapter-wise notes compiling GDP indicators, capital outputs, and agrarian developments.",
-        detailedSummary: "Our educational teams have distilled the massive government Economic Survey report into chapter summaries, focusing on GDP estimates, industrial indices, and digital trade statistics.",
-        date: "2026-05-26",
-        category: "affairs",
-        priority: "medium",
-        read: true,
-        fullArticleUrl: "https://economictimes.indiatimes.com",
-        importance: "Highly relevant for RBI Grade B phase 2 papers, specifically the Economic and Social Issues (ESI) descriptive and MCQ segments.",
-        recommendedPrep: "Focus on sector-wise capital investments and targets. Create summary sheets of government expenditure values."
-    },
-    {
-        id: "notif-affairs-4",
-        title: "Budget Highlights Capsule Released",
-        description: "Revisions in tax tax brackets, sector allocations, and infrastructure guidelines summarized.",
-        detailedSummary: "The Union Budget highlights study guide is now available in the portal. It summarizes direct tax revisions, capital investments in expressways, and financial targets for green energy projects.",
-        date: "2026-05-25",
-        category: "affairs",
-        priority: "high",
-        read: false,
-        fullArticleUrl: "https://economictimes.indiatimes.com",
-        importance: "Highly frequent question segment. Expected questions include tax rebate boundaries and budget codes for rural programs.",
-        recommendedPrep: "Read the 10-page budget PDF. Practice comparing historical budget deficits to current fiscal year projections."
-    },
-    {
-        id: "notif-affairs-5",
-        title: "Banking Awareness Weekly Digest Uploaded",
-        description: "Weekly brief tracking bank mergers, NPA resolution mandates, and fintech guidelines.",
-        detailedSummary: "The weekly banking digest has been released. It documents RBI's PCA updates, SARFAESI Act enforcement guidelines, and digital bank credit lines.",
-        date: "2026-05-24",
-        category: "affairs",
-        priority: "general",
-        read: true,
-        fullArticleUrl: "https://www.rbi.org.in",
-        importance: "Builds a base in commercial banking operations. Highly valuable for clearing technical banking queries in interviews.",
-        recommendedPrep: "Read the dynamic banking glossary. Highlight definitions of Capital Adequacy Ratio and Non-Performing Assets."
-    },
+
 
     // === COURSE CATEGORY (5 announcements) ===
     {
@@ -300,16 +235,16 @@ const DEFAULT_NOTIFICATIONS = [
     },
     {
         id: "notif-system-3",
-        title: "Current Affairs Hub Released",
-        description: "Knowledge portal launched with daily must-reads, relevance stars, and quiz panels.",
-        detailedSummary: "The Current Affairs Hub is live, featuring star ratings, saved articles bookmarks, and daily MCQ quizzes.",
+        title: "Sectional Practice Hub Released",
+        description: "Practice portal launched with subject-specific quizzes and time tracker panels.",
+        detailedSummary: "The Sectional Practice Hub is live, featuring star ratings, saved questions bookmarks, and daily MCQ quizzes.",
         date: "2026-05-27",
         category: "system",
         priority: "general",
         read: true,
         fullArticleUrl: "https://economictimes.indiatimes.com",
-        importance: "Consolidates general awareness, current news, and practice quizzes in one portal.",
-        recommendedPrep: "Explore the hub, bookmark critical economic news, and attempt the daily quiz."
+        importance: "Consolidates topic-wise practice, speed drills, and mock tests in one portal.",
+        recommendedPrep: "Explore the hub, bookmark critical formula guides, and attempt sectional tests."
     },
     {
         id: "notif-system-4",
@@ -705,7 +640,7 @@ function triggerRenderWithSkeleton() {
 
 // Show skeleton loading cards to simulate dynamic updates
 function showSkeletons() {
-    const categories = ['exam', 'affairs', 'course', 'mock', 'system'];
+    const categories = ['exam', 'course', 'mock', 'system'];
     categories.forEach(cat => {
         const list = document.getElementById(`list-${cat}-notifs`);
         const section = document.getElementById(`notif-section-${cat}`);
@@ -762,7 +697,6 @@ function renderNotificationCenterReal() {
     // Lists DOM Elements
     const lists = {
         exam: document.getElementById('list-exam-notifs'),
-        affairs: document.getElementById('list-affairs-notifs'),
         course: document.getElementById('list-course-notifs'),
         mock: document.getElementById('list-mock-notifs'),
         system: document.getElementById('list-system-notifs')
@@ -771,7 +705,6 @@ function renderNotificationCenterReal() {
     // Sections blocks
     const sections = {
         exam: document.getElementById('notif-section-exam'),
-        affairs: document.getElementById('notif-section-affairs'),
         course: document.getElementById('notif-section-course'),
         mock: document.getElementById('notif-section-mock'),
         system: document.getElementById('notif-section-system')
@@ -964,7 +897,6 @@ function renderFilterCounters() {
             count = notifications.filter(n => n.category === type).length;
             const names = {
                 exam: "Exam Alert",
-                affairs: "Current Affairs",
                 course: "Course Update",
                 mock: "Mock Tests",
                 system: "System Update"

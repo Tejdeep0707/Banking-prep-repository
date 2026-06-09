@@ -76,22 +76,43 @@
                 <div class="nav-card-icon"><i class="fas fa-home"></i></div>
                 <span class="nav-card-title">Dashboard</span>
             </a>
-            <a href="index.html#courses" class="nav-card active" id="nav-courses">
-                <div class="nav-card-icon"><i class="fas fa-book"></i></div>
-                <span class="nav-card-title">Courses</span>
-            </a>
-            <a href="index.html?triggerMock=true" class="nav-card" id="nav-mocks">
-                <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
-                <span class="nav-card-title">Mock Tests</span>
-            </a>
-            <a href="current-affairs.html" class="nav-card" id="nav-affairs">
-                <div class="nav-card-icon"><i class="fas fa-newspaper"></i></div>
-                <span class="nav-card-title">Current Affairs</span>
-            </a>
-            <a href="resources.html" class="nav-card" id="nav-resources">
-                <div class="nav-card-icon"><i class="fas fa-folder-open"></i></div>
-                <span class="nav-card-title">Resources</span>
-            </a>
+            <div class="sidebar-dropdown-container">
+                <button class="nav-card dropdown-trigger" id="nav-courses-trigger" aria-expanded="false">
+                    <div class="nav-card-icon"><i class="fas fa-book"></i></div>
+                    <span class="nav-card-title">Courses</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </button>
+                <div class="dropdown-menu" id="courses-dropdown">
+                    <a href="course-sbi.html" class="dropdown-item" id="nav-sbi-courses">
+                        <span class="bullet">&bull;</span> SBI Courses
+                    </a>
+                    <a href="course-rbi.html" class="dropdown-item" id="nav-rbi-courses">
+                        <span class="bullet">&bull;</span> RBI Courses
+                    </a>
+                    <a href="course-ibps.html" class="dropdown-item" id="nav-ibps-courses">
+                        <span class="bullet">&bull;</span> IBPS Courses
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-dropdown-container">
+                <button class="nav-card dropdown-trigger" id="nav-mocks-trigger" aria-expanded="false">
+                    <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
+                    <span class="nav-card-title">Mock Tests</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </button>
+                <div class="dropdown-menu" id="mocks-dropdown">
+                    <a href="mock-tests.html#sbi" class="dropdown-item" id="nav-sbi-mocks">
+                        <span class="bullet">&bull;</span> SBI Mock Tests
+                    </a>
+                    <a href="mock-tests.html#rbi" class="dropdown-item" id="nav-rbi-mocks">
+                        <span class="bullet">&bull;</span> RBI Mock Tests
+                    </a>
+                    <a href="mock-tests.html#ibps" class="dropdown-item" id="nav-ibps-mocks">
+                        <span class="bullet">&bull;</span> IBPS Mock Tests
+                    </a>
+                </div>
+            </div>
+
             <a href="notifications.html" class="nav-card" id="nav-notifications">
                 <div class="nav-card-icon"><i class="fas fa-bell"></i></div>
                 <span class="nav-card-title">Notifications</span>
@@ -189,13 +210,11 @@
                 <div class="train-track" id="train-track-content">
                     <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
                     <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
-                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
                     <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
                     <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
                     <!-- Duplicates for seamless loop -->
                     <a href="notifications.html" class="train-item">🚨 SBI PO Notification Released</a>
                     <a href="notifications.html" class="train-item">📢 IBPS Clerk Registration Open</a>
-                    <a href="current-affairs.html" class="train-item">📚 Weekly Current Affairs Capsule Uploaded</a>
                     <a href="notifications.html" class="train-item">🔥 New Mock Test Added</a>
                     <a href="interview.html" class="train-item">🎯 Interview & GD Module Launching Soon</a>
                 </div>
