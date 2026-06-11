@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https://checkout.razorpay.com https://cdn.jsdelivr.net https://code.jquery.com 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://api.emailjs.com;">
     <title>Contact Us & Support | QUASIBANKING</title>
     <link rel="icon" type="image/jpeg" href="RESOURCES/ICONATRIGHTTOPCORNER.jpeg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body data-theme="dark">
+<body data-theme="light">
     <!-- Premium Dashboard Sidebar -->
     <aside id="dashboard-sidebar" class="premium-sidebar">
         <!-- TOP SECTION: Logo, Brand & Tagline -->
@@ -19,6 +20,7 @@
                 </div>
                 <div class="sidebar-brand-wrapper">
                     <span class="sidebar-brand-name">QUASIBANKING</span>
+                    <span class="sidebar-brand-sub">classes</span>
                     <span class="sidebar-tagline">India's Premium Banking Platform</span>
                 </div>
             </a>
@@ -26,10 +28,7 @@
 
         <!-- MAIN NAVIGATION: Premium Interactive Navigation Cards -->
         <nav class="sidebar-nav">
-            <a href="index.html#user-stats" class="nav-card" id="nav-dashboard">
-                <div class="nav-card-icon"><i class="fas fa-home"></i></div>
-                <span class="nav-card-title">Dashboard</span>
-            </a>
+
             <a href="index.html#courses" class="nav-card" id="nav-courses">
                 <div class="nav-card-icon"><i class="fas fa-book"></i></div>
                 <span class="nav-card-title">Courses</span>
@@ -52,47 +51,10 @@
 
         <!-- MIDDLE SECTION: Progress Widget & Quick Actions -->
         <div class="sidebar-widgets-container">
-            <!-- Progress Widget -->
-            <div class="sidebar-widget progress-widget">
-                <div class="widget-header">
-                    <span class="widget-title">🎯 Target Exam</span>
-                    <span class="exam-value">IBPS PO 2026</span>
-                </div>
-                <div class="widget-content">
-                    <div class="widget-progress-bar-container">
-                        <div class="widget-progress-bar">
-                            <div id="sidebar-progress-fill" class="widget-progress-fill" style="width: 0%;"></div>
-                        </div>
-                        <span id="sidebar-progress-percent" class="progress-percent">0%</span>
-                    </div>
-                    <div class="widget-stats-grid">
-                        <div class="widget-stat-item">
-                            <span class="widget-stat-num" id="sidebar-stat-courses">0</span>
-                            <span class="widget-stat-label">Enrolled</span>
-                        </div>
-                        <div class="widget-stat-item">
-                            <span class="widget-stat-num" id="sidebar-stat-mocks">0</span>
-                            <span class="widget-stat-label">Mocks</span>
-                        </div>
-                        <div class="widget-stat-item">
-                            <span class="widget-stat-num" id="sidebar-stat-accuracy">0%</span>
-                            <span class="widget-stat-label">Accuracy</span>
-                        </div>
-                        <div class="widget-stat-item">
-                            <span class="widget-stat-num" id="sidebar-stat-streak">0 Days</span>
-                            <span class="widget-stat-label">Streak</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Quick Actions Section -->
             <div class="sidebar-widget quick-actions-widget">
                 <span class="widget-title">Quick Actions</span>
                 <div class="quick-actions-grid">
-                    <a href="index.html#user-stats" class="quick-action-btn" id="qa-resume">
-                        <i class="fas fa-play"></i> Resume Learning
-                    </a>
                     <a href="index.html?triggerMock=true" class="quick-action-btn" id="qa-mock">
                         <i class="fas fa-stopwatch"></i> Take Mock Test
                     </a>
@@ -114,10 +76,6 @@
             </div>
 
             <div class="sidebar-actions">
-                <button id="sidebar-theme-toggle" class="sidebar-action-btn" title="Toggle Theme">
-                    <i class="fas fa-moon"></i>
-                    <span>Dark Mode</span>
-                </button>
                 <button id="sidebar-logout-btn" class="sidebar-action-btn logout-btn hidden" onclick="handleLogout()" title="Logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
@@ -162,8 +120,138 @@
                 </button>
                 <a href="index.html" class="logo-link" aria-label="Go to Homepage">
                     <img src="RESOURCES/MAINWEBSITELOGO.jpeg" alt="QUASIBANKING LOGO" class="nav-logo">
+                    <div class="nav-brand-wrapper">
+                        <span class="nav-brand-main">QUASIBANKING</span>
+                        <span class="nav-brand-sub">classes</span>
+                    </div>
                 </a>
             </div>
+
+            <div class="nav-center">
+
+                
+                <div class="header-dropdown">
+                    <button class="nav-link-header dropdown-trigger" id="top-nav-courses-trigger" aria-expanded="false">
+                        Courses <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="header-dropdown-menu" id="courses-dropdown">
+                        <!-- SBI -->
+                        <div class="header-sub-dropdown">
+                            <button class="header-sub-trigger">
+                                SBI Courses <i class="fas fa-chevron-right sub-arrow"></i>
+                            </button>
+                            <div class="header-sub-menu">
+                                <a href="course-sbi.html#sbi-po" class="header-sub-item">SBI PO</a>
+                                <a href="course-sbi.html#sbi-clerk" class="header-sub-item">SBI Clerk</a>
+                                <a href="course-sbi.html#sbi-so" class="header-sub-item">SBI SO</a>
+                            </div>
+                        </div>
+                        <!-- RBI -->
+                        <div class="header-sub-dropdown">
+                            <button class="header-sub-trigger">
+                                RBI Courses <i class="fas fa-chevron-right sub-arrow"></i>
+                            </button>
+                            <div class="header-sub-menu">
+                                <a href="course-rbi.html#rbi-grade-b" class="header-sub-item">RBI Grade B</a>
+                                <a href="course-rbi.html#rbi-assistant" class="header-sub-item">RBI Assistant</a>
+                            </div>
+                        </div>
+                        <!-- IBPS -->
+                        <div class="header-sub-dropdown">
+                            <button class="header-sub-trigger">
+                                IBPS Courses <i class="fas fa-chevron-right sub-arrow"></i>
+                            </button>
+                            <div class="header-sub-menu">
+                                <a href="course-ibps.html#ibps-po" class="header-sub-item">IBPS PO</a>
+                                <a href="course-ibps.html#ibps-clerk" class="header-sub-item">IBPS Clerk</a>
+                                <a href="course-ibps.html#ibps-so-afo" class="header-sub-item">IBPS SO AFO</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-dropdown">
+                    <button class="nav-link-header dropdown-trigger" id="top-nav-mocks-trigger" aria-expanded="false">
+                        Mock Tests <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="header-dropdown-menu" id="mocks-dropdown">
+                        <!-- SBI Mocks -->
+                        <div class="header-sub-dropdown">
+                            <button class="header-sub-trigger">
+                                SBI Mocks <i class="fas fa-chevron-right sub-arrow"></i>
+                            </button>
+                            <div class="header-sub-menu">
+                                <a href="mock-tests.html#sbi-po" class="header-sub-item">SBI PO Mocks</a>
+                                <a href="mock-tests.html#sbi-clerk" class="header-sub-item">SBI Clerk Mocks</a>
+                            </div>
+                        </div>
+                        <!-- RBI Mocks -->
+                        <div class="header-sub-dropdown">
+                            <button class="header-sub-trigger">
+                                RBI Mocks <i class="fas fa-chevron-right sub-arrow"></i>
+                            </button>
+                            <div class="header-sub-menu">
+                                <a href="mock-tests.html#rbi-grade-b" class="header-sub-item">RBI Officers Grade-B</a>
+                                <a href="mock-tests.html#rbi-assistant" class="header-sub-item">RBI Assistants</a>
+                            </div>
+                        </div>
+                        <!-- IBPS Mocks -->
+                        <div class="header-sub-dropdown">
+                            <button class="header-sub-trigger">
+                                IBPS Mocks <i class="fas fa-chevron-right sub-arrow"></i>
+                            </button>
+                            <div class="header-sub-menu">
+                                <a href="mock-tests.html#ibps-po" class="header-sub-item">IBPS PO Mocks</a>
+                                <a href="mock-tests.html#ibps-clerk" class="header-sub-item">IBPS Clerk Mocks</a>
+                                <a href="mock-tests.html#ibps-so-afo" class="header-sub-item">IBPS SO AFO Mocks</a>
+                            </div>
+                        </div>
+                        <!-- Other Mocks -->
+                        <div class="header-sub-dropdown">
+                            <button class="header-sub-trigger">
+                                Other Mocks <i class="fas fa-chevron-right sub-arrow"></i>
+                            </button>
+                            <div class="header-sub-menu">
+                                <a href="mock-tests.html#epfo-assistant" class="header-sub-item">EPFO Assistant</a>
+                                <a href="mock-tests.html#nabard-grade-a" class="header-sub-item">NABARD Grade-A</a>
+                                <a href="mock-tests.html#nabard-assistant" class="header-sub-item">NABARD Assistant</a>
+                                <a href="mock-tests.html#sebi-grade-a" class="header-sub-item">SEBI Grade-A</a>
+                                <a href="mock-tests.html#sidbi-grade-a" class="header-sub-item">SIDBI Grade-A</a>
+                                <a href="mock-tests.html#idbi-am" class="header-sub-item">IDBI Assistant Manager</a>
+                                <a href="mock-tests.html#idbi-ja" class="header-sub-item">IDBI Junior Assistant</a>
+                                <a href="mock-tests.html#idbi-exec" class="header-sub-item">IDBI Executive</a>
+                                <a href="mock-tests.html#lic-hfl" class="header-sub-item">LIC HFL</a>
+                                <a href="mock-tests.html#niacl-ao" class="header-sub-item">NIACL AO</a>
+                                <a href="mock-tests.html#niacl-assistant" class="header-sub-item">NIACL Assistant</a>
+                                <a href="mock-tests.html#gic-am" class="header-sub-item">GIC Assistant Manager</a>
+                                <a href="mock-tests.html#cbi" class="header-sub-item">Central Bank of India</a>
+                                <a href="mock-tests.html#ecgc-po" class="header-sub-item">ECGC PO</a>
+                                <a href="mock-tests.html#esic-recruitment" class="header-sub-item">ESIC Recruitment</a>
+                                <a href="mock-tests.html#esic-sso" class="header-sub-item">ESIC SSO</a>
+                                <a href="mock-tests.html#fci-manager" class="header-sub-item">FCI Manager</a>
+                                <a href="mock-tests.html#boi-co" class="header-sub-item">BOI Credit Officer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="notifications.html" class="nav-link-header" id="top-nav-notifications">
+                    Notifications <span id="top-notif-badge" class="notif-badge hidden">0</span>
+                </a>
+                <a href="interview.html" class="nav-link-header" id="top-nav-interview">Interview & GD</a>
+                <div class="header-dropdown">
+                    <button class="nav-link-header dropdown-trigger" id="top-nav-more-trigger" aria-expanded="false">
+                        More <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="header-dropdown-menu" id="more-dropdown">
+                        <a href="contact.html" class="header-dropdown-item">Contact Us</a>
+                        <a href="privacy.html" class="header-dropdown-item">Privacy Policy</a>
+                        <a href="terms.html" class="header-dropdown-item">Terms & Conditions</a>
+                        <a href="refund-policy.html" class="header-dropdown-item">Refund Policy</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="nav-right">
                 <!-- Premium Notification Bell and Dropdown -->
                 <div class="nav-notification-container" id="nav-notif-container">
@@ -192,7 +280,9 @@
                 </div>
 
                 <div id="header-auth-btn">
-                    <a href="auth.html" class="btn btn-primary">Login</a>
+                    <a href="auth.html" class="btn btn-primary btn-login-icon" title="Login">
+                        <i class="fas fa-user"></i>
+                    </a>
                 </div>
             </div>
         </nav>

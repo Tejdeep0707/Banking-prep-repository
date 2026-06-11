@@ -10,16 +10,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #0f0f1a;
-            --bg-secondary: #16162a;
-            --bg-card: #1a1a2e;
-            --border: #2a2a4a;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --border: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
             --accent: #6366f1;
-            --accent-light: #818cf8;
-            --accent-glow: rgba(99, 102, 241, 0.15);
-            --amber: #f59e0b;
+            --accent-light: #4f46e5;
+            --accent-glow: rgba(99, 102, 241, 0.08);
+            --amber: #d97706;
         }
 
         body {
@@ -51,7 +51,7 @@
             font-size: 14px;
             transition: color 0.2s;
         }
-        .pp-header a:hover { color: white; }
+        .pp-header a:hover { color: var(--text-primary); }
 
         .pp-header-title {
             font-weight: 700;
@@ -61,7 +61,7 @@
 
         /* Hero Banner */
         .pp-hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16162a 50%, #0f0f1a 100%);
+            background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
             border-bottom: 1px solid var(--border);
             padding: 60px 24px;
             text-align: center;
@@ -98,7 +98,7 @@
         .pp-hero h1 {
             font-size: clamp(28px, 5vw, 48px);
             font-weight: 900;
-            color: white;
+            color: var(--text-primary);
             margin-bottom: 12px;
         }
 
@@ -184,7 +184,7 @@
             flex-shrink: 0;
         }
 
-        .pp-toc ol li a:hover { color: white; }
+        .pp-toc ol li a:hover { color: var(--text-primary); }
 
         /* Sections */
         .pp-section {
@@ -215,7 +215,7 @@
         .pp-section h2 {
             font-size: 20px;
             font-weight: 700;
-            color: white;
+            color: var(--text-primary);
         }
 
         .pp-section p {
@@ -327,7 +327,7 @@
         .pp-contact-item .value {
             font-size: 14px;
             font-weight: 600;
-            color: white;
+            color: var(--text-primary);
         }
 
         .pp-contact-item a {

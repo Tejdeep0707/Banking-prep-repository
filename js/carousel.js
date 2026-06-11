@@ -1,61 +1,4 @@
-function initPopularCarousel() {
-    const popularCarousel = document.getElementById('popular-carousel');
-    const popularPrev = document.getElementById('popular-prev');
-    const popularNext = document.getElementById('popular-next');
-    const dots = document.querySelectorAll('.dot');
-    const slides = document.querySelectorAll('.popular-slide');
-    const popularContainer = document.querySelector('.popular-carousel-container');
 
-    if (!popularCarousel || !popularPrev || !popularNext || slides.length === 0) return;
-
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-    let autoScrollTimer;
-
-    const updateCarousel = () => {
-        popularCarousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-        });
-        resetAutoScroll();
-    };
-
-    const nextSlide = () => {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
-    };
-
-    const prevSlide = () => {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-    };
-
-    const startAutoScroll = () => {
-        autoScrollTimer = setInterval(nextSlide, 4000);
-    };
-
-    const resetAutoScroll = () => {
-        clearInterval(autoScrollTimer);
-        startAutoScroll();
-    };
-
-    popularNext.addEventListener('click', nextSlide);
-    popularPrev.addEventListener('click', prevSlide);
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            currentSlide = index;
-            updateCarousel();
-        });
-    });
-
-    if (popularContainer) {
-        popularContainer.addEventListener('mouseenter', () => clearInterval(autoScrollTimer));
-        popularContainer.addEventListener('mouseleave', startAutoScroll);
-    }
-
-    startAutoScroll();
-}
 
 function initCourseCarousel() {
     const courseCarousel = document.getElementById('course-carousel');
@@ -109,7 +52,6 @@ function initScrollReveal() {
 }
 
 function initAll() {
-    initPopularCarousel();
     initCourseCarousel();
     initScrollReveal();
 }

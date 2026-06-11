@@ -1,6 +1,7 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth, authReady } from '../firebase-app.js';
 import { fetchUserStats } from './dashboard.js';
+import { escapeHtml } from './security-utils.js';
 
 // DOM Elements Cache
 const elements = {
@@ -37,15 +38,32 @@ function initAuthState() {
             }));
 
             if (welcomeMsg && !document.getElementById('user-greeting')) {
-                welcomeMsg.insertAdjacentHTML('beforebegin', `<p id="user-greeting" style="color: var(--primary-color); font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; animation: fadeIn 1s ease;">Hi, ${displayName} 👋</p>`);
+                welcomeMsg.insertAdjacentHTML('beforebegin', `<p id="user-greeting" style="color: var(--primary-color); font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; animation: fadeIn 1s ease;">Hi, ${escapeHtml(displayName)} 👋</p>`);
             }
 
             if (headerAuthBtn) {
                 headerAuthBtn.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.05); padding: 5px 15px; border-radius: 50px; border: 1px solid var(--glass-border); height: 44px;">
-                        <span style="font-weight: 600; font-size: 0.9rem; color: var(--text-main);">Hi, ${displayName}</span>
-                        <div style="width: 32px; height: 32px; flex-shrink: 0; background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.8rem;">
-                            ${displayName.charAt(0)}
+                    <div class="profile-dropdown-container">
+                        <button id="top-profile-avatar-btn" class="profile-avatar-btn" aria-haspopup="true" aria-expanded="false">
+                            <span class="avatar-letter" id="top-avatar-letter">${escapeHtml(displayName.charAt(0))}</span>
+                            <span class="avatar-status-ring"></span>
+                        </button>
+                        <div id="profile-popover-panel" class="profile-popover-panel">
+                            <div class="popover-profile-card">
+                                <div class="popover-avatar" id="top-avatar-popup">${escapeHtml(displayName.charAt(0))}</div>
+                                <div class="popover-profile-info">
+                                    <span class="popover-username" id="top-username">${escapeHtml(displayName)}</span>
+                                    <span class="popover-role">Student</span>
+                                </div>
+                            </div>
+                            
+
+                            <div class="popover-actions">
+                                <button id="top-logout-btn" class="popover-action-btn logout-btn" onclick="handleLogout()" title="Logout">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -59,13 +77,17 @@ function initAuthState() {
                 statsSection.classList.remove('hidden');
             }
             fetchUserStats(user.uid);
+
+            if (typeof window.initSidebarStats === 'function') {
+                window.initSidebarStats();
+            }
         } else {
             // User is signed out — clean up UI and localStorage
             const greeting = document.getElementById('user-greeting');
             if (greeting) greeting.remove();
 
             if (headerAuthBtn) {
-                headerAuthBtn.innerHTML = `<a href="auth.html" class="btn btn-primary">Login</a>`;
+                headerAuthBtn.innerHTML = `<a href="auth.html" class="btn btn-primary btn-login-icon" title="Login"><i class="fas fa-user"></i></a>`;
             }
 
             if (sidebarAvatar) sidebarAvatar.textContent = 'G';

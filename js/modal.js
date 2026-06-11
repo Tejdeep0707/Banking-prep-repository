@@ -1,6 +1,7 @@
 import { auth } from '../firebase-app.js';
 import { fetchUserStats } from './dashboard.js';
 import { EMAIL_CONFIG, loadEmailJS } from './emailjs-loader.js';
+import { escapeHtml } from './security-utils.js';
 
 // DOM Elements Cache
 const elements = {};
@@ -135,9 +136,9 @@ function openMockRazorpayGateway(options) {
             <div style="background: #6366f1; padding: 20px; position: relative; text-align: center;">
                 <button id="mock-rzp-close" style="position: absolute; right: 15px; top: 15px; background: none; border: none; color: white; font-size: 24px; cursor: pointer; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">&times;</button>
                 <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
-                    <span style="font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; text-transform: uppercase;">${options.name}</span>
+                    <span style="font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; text-transform: uppercase;">${escapeHtml(options.name)}</span>
                 </div>
-                <span style="font-size: 0.8rem; opacity: 0.85; display: block; margin-bottom: 6px;">${options.description}</span>
+                <span style="font-size: 0.8rem; opacity: 0.85; display: block; margin-bottom: 6px;">${escapeHtml(options.description)}</span>
                 <span style="font-size: 1.5rem; font-weight: 850; letter-spacing: 0.5px;">₹${amountINR}</span>
                 <div style="margin-top: 10px; display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 50px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #a5b4fc;">
                     🛡️ Razorpay Sandbox Simulator
@@ -148,7 +149,7 @@ function openMockRazorpayGateway(options) {
             <div style="padding: 24px;">
                 <!-- User details -->
                 <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 12px; border-radius: 12px; margin-bottom: 20px; font-size: 0.8rem; display: flex; flex-direction: column; gap: 4px; color: #94a3b8;">
-                    <div><strong style="color: #f1f5f9;">Billing Contact:</strong> ${options.prefill.email}</div>
+                    <div><strong style="color: #f1f5f9;">Billing Contact:</strong> ${escapeHtml(options.prefill.email)}</div>
                 </div>
 
                 <!-- Simulation selection -->
@@ -592,7 +593,7 @@ function initModals() {
 
             if (errorToast) {
                 const errMsg = err ? (err.message || err.text || JSON.stringify(err)) : "EmailJS config missing or SDK failed to load";
-                errorToast.innerHTML = `<i class="fas fa-exclamation-circle"></i> Unable to send message right now. (Detail: ${errMsg}). Please try again or contact us via WhatsApp.`;
+                errorToast.innerHTML = `<i class="fas fa-exclamation-circle"></i> Unable to send message right now. (Detail: ${escapeHtml(errMsg)}). Please try again or contact us via WhatsApp.`;
                 errorToast.classList.remove('hidden');
             }
         };

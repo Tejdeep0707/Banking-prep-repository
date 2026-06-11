@@ -7,7 +7,6 @@ const CONFIG = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
     initDropdowns();
     initMobileToggle();
     initActiveNav();
@@ -20,42 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initTeaserForm();
 });
 
-// 1. Theme Toggle Logic
-function initTheme() {
-    const themeToggleBtn = document.getElementById('sidebar-theme-toggle');
-    if (!themeToggleBtn) return;
-
-    // Load saved theme or default to body's data-theme attribute
-    const savedTheme = localStorage.getItem('quasibanking_theme') || document.body.getAttribute('data-theme') || 'dark';
-    setTheme(savedTheme);
-
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = document.body.getAttribute('data-theme') || 'dark';
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-    });
-}
-
-function setTheme(theme) {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('quasibanking_theme', theme);
-
-    const themeToggleBtn = document.getElementById('sidebar-theme-toggle');
-    if (themeToggleBtn) {
-        if (theme === 'light') {
-            themeToggleBtn.innerHTML = `<i class="fas fa-sun"></i><span>Light Mode</span>`;
-        } else {
-            themeToggleBtn.innerHTML = `<i class="fas fa-moon"></i><span>Dark Mode</span>`;
-        }
-    }
-}
-
 // Apply theme instantly before DOM is ready to prevent flash
 (function() {
-    const savedTheme = localStorage.getItem('quasibanking_theme');
-    if (savedTheme) {
-        document.body.setAttribute('data-theme', savedTheme);
-    }
+    document.body.setAttribute('data-theme', 'light');
 })();
 
 // 2. Mobile Drawer Logic
@@ -102,6 +68,15 @@ function initActiveNav() {
         contact: document.getElementById('nav-contact')
     };
 
+    const topNavCards = {
+        dashboard: document.getElementById('top-nav-dashboard'),
+        courses: document.getElementById('top-nav-courses-trigger'),
+        mocks: document.getElementById('top-nav-mocks-trigger'),
+        notifications: document.getElementById('top-nav-notifications'),
+        interview: document.getElementById('top-nav-interview'),
+        contact: document.getElementById('top-nav-contact')
+    };
+
     const updateActiveState = () => {
         const path = window.location.pathname;
         const hash = window.location.hash;
@@ -110,57 +85,66 @@ function initActiveNav() {
         Object.values(navCards).forEach(card => {
             if (card) card.classList.remove('active');
         });
+        Object.values(topNavCards).forEach(card => {
+            if (card) card.classList.remove('active');
+        });
 
-        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        const dropdownItems = document.querySelectorAll('.dropdown-item, .header-dropdown-item');
         dropdownItems.forEach(item => item.classList.remove('active'));
 
+        let activeKey = null;
+        let subActiveId = null;
+
         if (path.includes('course-ibps.html') || path.includes('course-rbi.html') || path.includes('course-sbi.html')) {
-            if (navCards.courses) navCards.courses.classList.add('active');
+            activeKey = 'courses';
             if (path.includes('course-sbi.html')) {
-                const item = document.getElementById('nav-sbi-courses');
-                if (item) item.classList.add('active');
+                subActiveId = 'nav-sbi-courses';
             } else if (path.includes('course-rbi.html')) {
-                const item = document.getElementById('nav-rbi-courses');
-                if (item) item.classList.add('active');
+                subActiveId = 'nav-rbi-courses';
             } else if (path.includes('course-ibps.html')) {
-                const item = document.getElementById('nav-ibps-courses');
-                if (item) item.classList.add('active');
+                subActiveId = 'nav-ibps-courses';
             }
         } else if (path.includes('mock-tests.html')) {
-            if (navCards.mocks) navCards.mocks.classList.add('active');
+            activeKey = 'mocks';
             if (hash.includes('sbi')) {
-                const item = document.getElementById('nav-sbi-mocks');
-                if (item) item.classList.add('active');
+                subActiveId = 'nav-sbi-mocks';
             } else if (hash.includes('rbi')) {
-                const item = document.getElementById('nav-rbi-mocks');
-                if (item) item.classList.add('active');
+                subActiveId = 'nav-rbi-mocks';
             } else if (hash.includes('ibps')) {
-                const item = document.getElementById('nav-ibps-mocks');
-                if (item) item.classList.add('active');
+                subActiveId = 'nav-ibps-mocks';
             }
-
         } else if (path.includes('notifications.html')) {
-            if (navCards.notifications) navCards.notifications.classList.add('active');
+            activeKey = 'notifications';
         } else if (path.includes('contact.html')) {
-            if (navCards.contact) navCards.contact.classList.add('active');
+            activeKey = 'contact';
         } else if (path.includes('interview.html')) {
-            if (navCards.interview) navCards.interview.classList.add('active');
+            activeKey = 'interview';
         } else if (path.includes('auth.html')) {
             // Keep all inactive
         } else {
             // Index.html navigation hashes
             if (hash.includes('courses')) {
-                if (navCards.courses) navCards.courses.classList.add('active');
+                activeKey = 'courses';
             } else if (hash.includes('mock-tests')) {
-                if (navCards.mocks) navCards.mocks.classList.add('active');
+                activeKey = 'mocks';
             } else if (hash.includes('user-stats')) {
-                if (navCards.dashboard) navCards.dashboard.classList.add('active');
+                activeKey = 'dashboard';
             } else if (hash.includes('notifications')) {
-                if (navCards.notifications) navCards.notifications.classList.add('active');
+                activeKey = 'notifications';
             } else {
                 // If it is index.html and no matching path, set Dashboard active
-                if (navCards.dashboard) navCards.dashboard.classList.add('active');
+                activeKey = 'dashboard';
             }
+        }
+
+        if (activeKey) {
+            if (navCards[activeKey]) navCards[activeKey].classList.add('active');
+            if (topNavCards[activeKey]) topNavCards[activeKey].classList.add('active');
+        }
+
+        if (subActiveId) {
+            const items = document.querySelectorAll(`[id="${subActiveId}"]`);
+            items.forEach(item => item.classList.add('active'));
         }
     };
 
@@ -188,19 +172,19 @@ function initMocksRedirect() {
 
 // 4.5 Dropdowns Controller
 function initDropdowns() {
+    // 1. Sidebar Dropdowns
     const coursesTrigger = document.getElementById('nav-courses-trigger');
     const mocksTrigger = document.getElementById('nav-mocks-trigger');
     const coursesMenu = document.getElementById('courses-dropdown');
     const mocksMenu = document.getElementById('mocks-dropdown');
 
-    if (!coursesTrigger || !mocksTrigger || !coursesMenu || !mocksMenu) return;
-
     const toggleDropdown = (trigger, menu, forceOpen) => {
+        if (!trigger || !menu) return;
         const isOpen = trigger.classList.contains('open');
         const shouldOpen = forceOpen !== undefined ? forceOpen : !isOpen;
 
         if (shouldOpen) {
-            // Close other dropdowns
+            // Close other sidebar dropdowns
             [coursesTrigger, mocksTrigger].forEach(t => {
                 if (t && t !== trigger) {
                     t.classList.remove('open');
@@ -228,20 +212,22 @@ function initDropdowns() {
         }
     };
 
-    coursesTrigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        toggleDropdown(coursesTrigger, coursesMenu);
-    });
+    if (coursesTrigger && coursesMenu) {
+        coursesTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleDropdown(coursesTrigger, coursesMenu);
+        });
+    }
 
-    mocksTrigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        toggleDropdown(mocksTrigger, mocksMenu);
-    });
+    if (mocksTrigger && mocksMenu) {
+        mocksTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleDropdown(mocksTrigger, mocksMenu);
+        });
+    }
 
-    // Auto-open on page load
+    // Auto-open sidebar dropdowns on page load if matched
     const path = window.location.pathname;
-    const hash = window.location.hash;
-
     const autoOpen = () => {
         if (path.includes('course-ibps.html') || path.includes('course-rbi.html') || path.includes('course-sbi.html')) {
             toggleDropdown(coursesTrigger, coursesMenu, true);
@@ -249,9 +235,148 @@ function initDropdowns() {
             toggleDropdown(mocksTrigger, mocksMenu, true);
         }
     };
-
     autoOpen();
     window.addEventListener('hashchange', autoOpen);
+
+    // 1.5. Sidebar Sub-Dropdowns
+    const subTriggers = document.querySelectorAll('.sidebar-sub-trigger');
+    subTriggers.forEach(subTrigger => {
+        subTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const subMenu = subTrigger.nextElementSibling;
+            if (!subMenu) return;
+            const isOpen = subTrigger.classList.contains('open');
+
+            // Close other sibling submenus inside the same parent dropdown menu
+            const container = subTrigger.closest('.dropdown-menu');
+            if (container) {
+                container.querySelectorAll('.sidebar-sub-trigger').forEach(t => {
+                    if (t !== subTrigger) {
+                        t.classList.remove('open');
+                        const m = t.nextElementSibling;
+                        if (m) {
+                            m.classList.remove('open');
+                            m.style.maxHeight = null;
+                        }
+                    }
+                });
+            }
+
+            if (isOpen) {
+                subTrigger.classList.remove('open');
+                subMenu.classList.remove('open');
+                subMenu.style.maxHeight = null;
+            } else {
+                subTrigger.classList.add('open');
+                subMenu.classList.add('open');
+                subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
+            }
+
+            // Recalculate parent dropdown height
+            const parentDropdown = subTrigger.closest('.dropdown-menu');
+            if (parentDropdown) {
+                // Temporarily allow overflow/unset max-height to get correct scrollHeight, then update
+                parentDropdown.style.maxHeight = 'none';
+                const newHeight = parentDropdown.scrollHeight;
+                parentDropdown.style.maxHeight = newHeight + 'px';
+            }
+        });
+    });
+
+    // 2. Top Header Dropdowns and Profile Popover (Event Delegation)
+    document.addEventListener('click', (e) => {
+        // A.5 Header Sub-Dropdowns click handler for mobile/tablet clicks
+        const headerSubTrigger = e.target.closest('.header-sub-trigger');
+        if (headerSubTrigger) {
+            e.preventDefault();
+            e.stopPropagation();
+            const subMenu = headerSubTrigger.nextElementSibling;
+            if (subMenu) {
+                const isOpen = subMenu.classList.contains('open');
+                // Close other sibling sub-menus
+                const parentMenu = headerSubTrigger.closest('.header-dropdown-menu');
+                if (parentMenu) {
+                    parentMenu.querySelectorAll('.header-sub-menu').forEach(m => {
+                        if (m !== subMenu) m.classList.remove('open');
+                    });
+                    parentMenu.querySelectorAll('.header-sub-trigger').forEach(t => {
+                        if (t !== headerSubTrigger) t.classList.remove('active');
+                    });
+                }
+
+                if (isOpen) {
+                    headerSubTrigger.classList.remove('active');
+                    subMenu.classList.remove('open');
+                } else {
+                    headerSubTrigger.classList.add('active');
+                    subMenu.classList.add('open');
+                }
+            }
+            return;
+        } else {
+            // Clicked elsewhere - close all header sub-menus
+            document.querySelectorAll('.header-sub-menu').forEach(m => m.classList.remove('open'));
+            document.querySelectorAll('.header-sub-trigger').forEach(t => t.classList.remove('active'));
+        }
+
+        // A. Header Navigation Dropdowns
+        const headerTrigger = e.target.closest('.header-dropdown .dropdown-trigger');
+        if (headerTrigger) {
+            e.preventDefault();
+            e.stopPropagation();
+            const menu = headerTrigger.nextElementSibling;
+            const isOpen = menu.classList.contains('open');
+
+            // Close all header dropdowns first
+            document.querySelectorAll('.header-dropdown-menu').forEach(m => {
+                if (m !== menu) m.classList.remove('open');
+            });
+            document.querySelectorAll('.header-dropdown .dropdown-trigger').forEach(t => {
+                if (t !== headerTrigger) {
+                    t.classList.remove('open');
+                    t.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            if (isOpen) {
+                headerTrigger.classList.remove('open');
+                menu.classList.remove('open');
+                headerTrigger.setAttribute('aria-expanded', 'false');
+            } else {
+                headerTrigger.classList.add('open');
+                menu.classList.add('open');
+                headerTrigger.setAttribute('aria-expanded', 'true');
+            }
+        } else {
+            // Clicked outside header dropdowns - close them
+            document.querySelectorAll('.header-dropdown-menu').forEach(m => m.classList.remove('open'));
+            document.querySelectorAll('.header-dropdown .dropdown-trigger').forEach(t => {
+                t.classList.remove('open');
+                t.setAttribute('aria-expanded', 'false');
+            });
+        }
+
+        // B. Profile Avatar Popover Click handling
+        const avatarBtn = e.target.closest('#top-profile-avatar-btn');
+        const popover = document.getElementById('profile-popover-panel');
+
+        if (avatarBtn && popover) {
+            e.stopPropagation();
+            const isOpen = popover.classList.contains('open');
+            if (isOpen) {
+                popover.classList.remove('open');
+                avatarBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                popover.classList.add('open');
+                avatarBtn.setAttribute('aria-expanded', 'true');
+            }
+        } else if (popover && !e.target.closest('#profile-popover-panel')) {
+            popover.classList.remove('open');
+            const avatarBtnEl = document.getElementById('top-profile-avatar-btn');
+            if (avatarBtnEl) avatarBtnEl.setAttribute('aria-expanded', 'false');
+        }
+    });
 }
 
 // 5. Unread notification badge visibility
@@ -298,36 +423,55 @@ function initSidebarStats() {
     const statAccuracy = document.getElementById('sidebar-stat-accuracy');
     const statStreak = document.getElementById('sidebar-stat-streak');
 
-    if (statCourses) statCourses.textContent = enrolledCount;
-    if (statMocks) statMocks.textContent = mocksCompleted;
-    if (statAccuracy) {
-        statAccuracy.textContent = accuracyVal.endsWith('%') ? accuracyVal : `${accuracyVal}%`;
-    }
-    if (statStreak) {
-        statStreak.textContent = streakDays.includes('Day') ? streakDays : `${streakDays} Days`;
-    }
+    const topProgressFill = document.getElementById('top-progress-fill');
+    const topProgressText = document.getElementById('top-progress-percent');
+    const topStatCourses = document.getElementById('top-stat-courses');
+    const topStatMocks = document.getElementById('top-stat-mocks');
+    const topStatAccuracy = document.getElementById('top-stat-accuracy');
+    const topStatStreak = document.getElementById('top-stat-streak');
+
+    const setVal = (el, val) => { if (el) el.textContent = val; };
+
+    setVal(statCourses, enrolledCount);
+    setVal(topStatCourses, enrolledCount);
+    
+    setVal(statMocks, mocksCompleted);
+    setVal(topStatMocks, mocksCompleted);
+
+    const formattedAccuracy = accuracyVal.endsWith('%') ? accuracyVal : `${accuracyVal}%`;
+    setVal(statAccuracy, formattedAccuracy);
+    setVal(topStatAccuracy, formattedAccuracy);
+
+    const formattedStreak = streakDays.includes('Day') ? streakDays : `${streakDays} Days`;
+    setVal(statStreak, formattedStreak);
+    setVal(topStatStreak, formattedStreak);
 
     // Animate progress bar fill
-    if (progressFill && progressText) {
-        progressFill.style.width = '0%';
-        progressText.textContent = '0%';
+    const animateFill = (fillEl, textEl) => {
+        if (fillEl && textEl) {
+            fillEl.style.width = '0%';
+            textEl.textContent = '0%';
 
-        setTimeout(() => {
-            progressFill.style.width = `${progressPercent}%`;
-            
-            // Ticker effect for percent label
-            let current = 0;
-            const interval = setInterval(() => {
-                if (current >= progressPercent) {
-                    progressText.textContent = `${progressPercent}%`;
-                    clearInterval(interval);
-                } else {
-                    current++;
-                    progressText.textContent = `${current}%`;
-                }
-            }, 8);
-        }, 100);
-    }
+            setTimeout(() => {
+                fillEl.style.width = `${progressPercent}%`;
+                
+                // Ticker effect for percent label
+                let current = 0;
+                const interval = setInterval(() => {
+                    if (current >= progressPercent) {
+                        textEl.textContent = `${progressPercent}%`;
+                        clearInterval(interval);
+                    } else {
+                        current++;
+                        textEl.textContent = `${current}%`;
+                    }
+                }, 8);
+            }, 100);
+        }
+    };
+
+    animateFill(progressFill, progressText);
+    animateFill(topProgressFill, topProgressText);
 }
 window.initSidebarStats = initSidebarStats;
 

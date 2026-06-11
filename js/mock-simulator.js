@@ -1,6 +1,6 @@
 import { logActivity, fetchUserStats } from './dashboard.js';
-
 import { MOCK_EXAM_DATABASE } from './mock-questions-db.js';
+import { escapeHtml } from './security-utils.js';
 
 // English Questions Pool
 const ENGLISH_POOL = [
@@ -271,10 +271,10 @@ function renderSimulatorHTML() {
                         <!-- Candidate Quick Info -->
                         <div class="hidden sm:flex items-center gap-3 border-r border-white/10 pr-4 text-left text-xs leading-normal">
                             <div class="w-8 h-8 rounded bg-slate-700 border border-slate-600 flex items-center justify-center text-white font-bold">
-                                ${userName.charAt(0).toUpperCase()}
+                                ${escapeHtml(userName.charAt(0).toUpperCase())}
                             </div>
                             <div class="flex flex-col text-white">
-                                <span>Candidate: <strong class="text-white">${userName}</strong></span>
+                                <span>Candidate: <strong class="text-white">${escapeHtml(userName)}</strong></span>
                                 <span class="text-[10px] text-indigo-300 font-semibold">Subject: Mock Paper</span>
                             </div>
                         </div>
@@ -333,9 +333,9 @@ function renderSimulatorHTML() {
                         <!-- Candidate Detailed Card (Real Exam Style) -->
                         <div class="hidden md:flex flex-col items-center p-4 border border-white/5 bg-white/5 rounded-xl mb-6 text-center">
                             <div class="w-14 h-14 rounded-full bg-indigo-600 border-2 border-indigo-400/30 flex items-center justify-center text-white text-xl font-bold mb-2">
-                                ${userName.charAt(0).toUpperCase()}
+                                ${escapeHtml(userName.charAt(0).toUpperCase())}
                             </div>
-                            <span class="text-white text-sm font-semibold truncate w-full">${userName}</span>
+                            <span class="text-white text-sm font-semibold truncate w-full">${escapeHtml(userName)}</span>
                             <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mt-1">Roll No: QB-${(state.isOpen ? '2026' : '0000')}</span>
                         </div>
 
@@ -553,9 +553,9 @@ function renderSimulatorHTML() {
                         <!-- Candidate Detailed Card (Real Exam Style) -->
                         <div class="hidden md:flex flex-col items-center p-4 border border-white/5 bg-white/5 rounded-xl mb-6 text-center">
                             <div class="w-14 h-14 rounded-full bg-indigo-600 border-2 border-indigo-400/30 flex items-center justify-center text-white text-xl font-bold mb-2">
-                                ${userName.charAt(0).toUpperCase()}
+                                ${escapeHtml(userName.charAt(0).toUpperCase())}
                             </div>
-                            <span class="text-white text-sm font-semibold truncate w-full">${userName}</span>
+                            <span class="text-white text-sm font-semibold truncate w-full">${escapeHtml(userName)}</span>
                             <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mt-1">Roll No: QB-${(state.isOpen ? '2026' : '0000')}</span>
                         </div>
 

@@ -1,6 +1,7 @@
 // QUASIBANKING Notification Controller - Premium Refined Version
 import { db } from '../firebase-app.js';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { escapeHtml } from './security-utils.js';
 
 const DEFAULT_NOTIFICATIONS = [
     // === EXAM CATEGORY (5 announcements) ===
@@ -424,14 +425,14 @@ function initBellDropdown() {
         dropdownList.innerHTML = filtered.map(notif => {
             const unreadDot = !notif.read ? `<span class="unread-dot-indicator"></span>` : '';
             return `
-                <div class="dropdown-item ${notif.read ? 'read' : 'unread'}" data-id="${notif.id}">
+                <div class="dropdown-item ${notif.read ? 'read' : 'unread'}" data-id="${escapeHtml(notif.id)}">
                     <div class="dropdown-item-header">
-                        <span class="dropdown-item-priority priority-${notif.priority}">${notif.priority.toUpperCase()}</span>
-                        <span class="dropdown-item-date">${notif.date}</span>
+                        <span class="dropdown-item-priority priority-${escapeHtml(notif.priority)}">${escapeHtml(notif.priority.toUpperCase())}</span>
+                        <span class="dropdown-item-date">${escapeHtml(notif.date)}</span>
                         ${unreadDot}
                     </div>
-                    <div class="dropdown-item-title">${notif.title}</div>
-                    <div class="dropdown-item-desc">${notif.description}</div>
+                    <div class="dropdown-item-title">${escapeHtml(notif.title)}</div>
+                    <div class="dropdown-item-desc">${escapeHtml(notif.description)}</div>
                 </div>
             `;
         }).join('');
@@ -739,21 +740,21 @@ function renderNotificationCenterReal() {
             card.setAttribute('data-id', notif.id);
             card.innerHTML = `
                 <div class="notif-card-header">
-                    <span class="badge badge-priority-${notif.priority}">${notif.priority.toUpperCase()}</span>
-                    <span class="badge badge-category">${notif.category.toUpperCase()}</span>
-                    <span class="notif-card-date"><i class="far fa-calendar-alt"></i> ${notif.date}</span>
+                    <span class="badge badge-priority-${escapeHtml(notif.priority)}">${escapeHtml(notif.priority.toUpperCase())}</span>
+                    <span class="badge badge-category">${escapeHtml(notif.category.toUpperCase())}</span>
+                    <span class="notif-card-date"><i class="far fa-calendar-alt"></i> ${escapeHtml(notif.date)}</span>
                 </div>
-                <h3>${notif.title}</h3>
-                <p>${notif.description}</p>
+                <h3>${escapeHtml(notif.title)}</h3>
+                <p>${escapeHtml(notif.description)}</p>
                 <div class="notif-card-actions-row">
-                    <button class="btn btn-primary btn-summary" data-id="${notif.id}">
+                    <button class="btn btn-primary btn-summary" data-id="${escapeHtml(notif.id)}">
                         <i class="fas fa-book-open"></i> Read Summary
                     </button>
-                    <a href="${notif.fullArticleUrl}" target="_blank" class="btn btn-outline btn-article" data-id="${notif.id}">
+                    <a href="${escapeHtml(notif.fullArticleUrl)}" target="_blank" class="btn btn-outline btn-article" data-id="${escapeHtml(notif.id)}">
                         <i class="fas fa-external-link-alt"></i> Read Full Article
                     </a>
                     ${!notif.read ? `
-                        <button class="btn btn-text btn-mark-read" data-id="${notif.id}">
+                        <button class="btn btn-text btn-mark-read" data-id="${escapeHtml(notif.id)}">
                             <i class="fas fa-check"></i> Mark as Read
                         </button>
                     ` : `
@@ -834,26 +835,26 @@ function renderFeaturedNotification() {
 
     featuredSection.classList.remove('hidden');
     featuredSection.innerHTML = `
-        <div class="featured-notif-card ${featured.read ? 'read' : 'unread'}" data-id="${featured.id}">
+        <div class="featured-notif-card ${featured.read ? 'read' : 'unread'}" data-id="${escapeHtml(featured.id)}">
             <div class="featured-glow-backdrop"></div>
             <div class="featured-content">
                 <div class="featured-badge-row">
                     <span class="badge-featured-label"><i class="fas fa-star text-amber-400"></i> FEATURED ALERT</span>
                     <span class="badge badge-priority-high">HIGH</span>
-                    <span class="badge badge-category">${featured.category.toUpperCase()}</span>
-                    <span class="featured-date"><i class="far fa-calendar-alt"></i> ${featured.date}</span>
+                    <span class="badge badge-category">${escapeHtml(featured.category.toUpperCase())}</span>
+                    <span class="featured-date"><i class="far fa-calendar-alt"></i> ${escapeHtml(featured.date)}</span>
                 </div>
-                <h3>${featured.title}</h3>
-                <p>${featured.description}</p>
+                <h3>${escapeHtml(featured.title)}</h3>
+                <p>${escapeHtml(featured.description)}</p>
                 <div class="featured-actions">
-                    <button class="btn btn-primary btn-modal-summary" data-id="${featured.id}">
+                    <button class="btn btn-primary btn-modal-summary" data-id="${escapeHtml(featured.id)}">
                         <i class="fas fa-book-open"></i> Read Summary
                     </button>
-                    <a href="${featured.fullArticleUrl}" target="_blank" class="btn btn-outline btn-full-article" data-id="${featured.id}">
+                    <a href="${escapeHtml(featured.fullArticleUrl)}" target="_blank" class="btn btn-outline btn-full-article" data-id="${escapeHtml(featured.id)}">
                         <i class="fas fa-external-link-alt"></i> Read Full Article
                     </a>
                     ${!featured.read ? `
-                        <button class="btn btn-text btn-mark-read-quick" data-id="${featured.id}">
+                        <button class="btn btn-text btn-mark-read-quick" data-id="${escapeHtml(featured.id)}">
                             <i class="fas fa-check"></i> Mark as Read
                         </button>
                     ` : `
