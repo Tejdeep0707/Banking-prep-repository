@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://quasibankingclasses.akamai.net.in/test-series",
+      "permanent": true
+    }
+  ]
+}
